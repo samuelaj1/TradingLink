@@ -27387,6 +27387,43 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
     cursor: pointer;
 }
 
+/* Default styles for larger screens */
+.button-container {
+    margin-top: 20px; /* Adjust as needed */
+}
+
+/* Styles for small screens */
+@media (max-width: 767px) {
+    .button-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        background-color: white; /* Ensure the background is white or as needed */
+        border-top: 1px solid #ccc; /* Add a border at the top on small screens */
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+    }
+
+    .button-container .row {
+        display: flex;
+        width: 100%;
+    }
+
+    .button-container .col-12 {
+        display: flex;
+        width: 100%;
+    }
+
+    .button-container button {
+        flex: 1; /* This makes the buttons grow equally to fill the space */
+        margin: 0 5px; /* Add some horizontal space between the buttons */
+    }
+}
+
+
+
+
 
 
 /*# sourceMappingURL=style.css.map */

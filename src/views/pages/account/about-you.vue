@@ -34,10 +34,14 @@
               <p class="mb-4 font-weight-lighter"> Welcome, Samuel! Let's get started.</p>
               <p class="mb-4 font-weight-lighter">We want to know our tradespeople better so we can send you the right local leads, matched to your skills.</p>
               <p class="font-weight-lighter">In this step, we'll ask you about the work you undertake, your professional status, and location.</p>
-              <div class="row mt-5">
-                <div class="col-12">
-                  <button class="btn btn-outline-dark me-3 big-button" @click="$router.go(-1)">Back</button>
-                  <button class="btn btn-outline-primary-1 big-button" @click="step++">Continue</button>
+              <div class="button-container">
+                <div class="row">
+                  <div class="col-12">
+                    <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
+                    <button class="btn bg-primary-1 text-light big-button" @click="step++">
+                      Continue
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -78,12 +82,17 @@
                 </div>
               </div>
 
-              <div class="row my-5">
-                <div class="col-12">
-                  <button class="btn btn-outline-dark me-3 big-button" @click="step--">Back</button>
-                  <button class="btn btn-outline-primary-1 big-button" @click="$router.push('/travel-to-work')">Continue</button>
+              <div class="button-container">
+                <div class="row">
+                  <div class="col-12">
+                    <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
+                    <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/business-type')">
+                      Continue
+                    </button>
+                  </div>
                 </div>
               </div>
+
 
             </div>
           </div>
