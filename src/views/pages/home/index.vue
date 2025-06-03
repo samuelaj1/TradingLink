@@ -5072,8 +5072,6 @@ export default {
         $('.mobile-search').removeClass('slide');
       });
     });
-
-
   }
 
 }

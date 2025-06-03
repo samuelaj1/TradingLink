@@ -53,17 +53,17 @@
 <script>
 import Auth from "../../layouts/auth";
 import appConfig from "../../../../app.config";
-import topHeader from '../../base-layout/header-2'
+import topHeader from '../../base-layout/header-1'
 
 import {required, email} from "vuelidate/lib/validators";
 import store from "@/store/store";
 
 /**
- * Login component
+ * Create Account component
  */
 export default {
   page: {
-    title: "Login",
+    title: "Create Account",
     meta: [{name: "description", content: appConfig.description}],
   },
   data() {
@@ -140,5 +140,17 @@ export default {
       this.$router.push('/about-you')
     }
   },
+  mounted() {
+    this.$nextTick(() => {
+      $('.sidebar-button').on("click", function(){
+        $('.main-menu').addClass('show-menu');
+      });
+
+      $('.menu-close-btn').on("click", function(){
+        $('.main-menu').removeClass('show-menu');
+      });
+
+    });
+  }
 };
 </script>

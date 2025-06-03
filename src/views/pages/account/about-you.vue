@@ -37,7 +37,7 @@
               <div class="row mt-5">
                 <div class="col-12">
                   <button class="btn btn-outline-dark me-3 big-button" @click="$router.go(-1)">Back</button>
-                  <button class="btn btn-outline-primary-1 big-button">Continue</button>
+                  <button class="btn btn-outline-primary-1 big-button" @click="step++">Continue</button>
                 </div>
               </div>
 
@@ -80,8 +80,8 @@
 
               <div class="row mt-5">
                 <div class="col-12">
-                  <button class="btn btn-outline-dark me-3 big-button" @click="$router.go(-1)">Back</button>
-                  <button class="btn btn-outline-primary-1 big-button">Continue</button>
+                  <button class="btn btn-outline-dark me-3 big-button" @click="step--">Back</button>
+                  <button class="btn btn-outline-primary-1 big-button" @click="$router.push('/travel-to-work')">Continue</button>
                 </div>
               </div>
 
@@ -134,7 +134,7 @@
 <script>
 import Auth from "../../layouts/auth";
 import appConfig from "../../../../app.config";
-import topHeader from '../../base-layout/header-2'
+import topHeader from '../../base-layout/header-1'
 
 import {required, email} from "vuelidate/lib/validators";
 import store from "@/store/store";
@@ -150,7 +150,7 @@ export default {
   data() {
     return {
       showModal:false,
-      step:2,
+      step:1,
       email: "",
       password: "",
       submitted: false,

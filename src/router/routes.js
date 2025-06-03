@@ -75,6 +75,114 @@ export default [
             },
         },
     },
+    {
+        path: '/travel-to-work',
+        name: 'travel',
+        component: () => import('../views/pages/account/travel-to-work'),
+        meta: {
+            beforeResolve(routeTo, routeFrom, next) {
+
+                // If the user is already logged in
+                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
+                    next({name: 'Home'});
+                } else {
+                    // Continue to the login page
+                    next()
+                }
+
+            },
+        },
+    },
+    {
+        path: '/business-type',
+        name: 'businessType',
+        component: () => import('../views/pages/account/business-type'),
+        meta: {
+            beforeResolve(routeTo, routeFrom, next) {
+
+                // If the user is already logged in
+                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
+                    next({name: 'Home'});
+                } else {
+                    // Continue to the login page
+                    next()
+                }
+
+            },
+        },
+    },
+    {
+        path: '/business-details',
+        name: 'businessDetails',
+        component: () => import('../views/pages/account/business-details'),
+        meta: {
+            beforeResolve(routeTo, routeFrom, next) {
+
+                // If the user is already logged in
+                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
+                    next({name: 'Home'});
+                } else {
+                    // Continue to the login page
+                    next()
+                }
+
+            },
+        },
+    },
+    {
+        path: '/verify-identity',
+        name: 'verifyIdentity',
+        component: () => import('../views/pages/account/verify-identity'),
+        meta: {
+            beforeResolve(routeTo, routeFrom, next) {
+
+                // If the user is already logged in
+                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
+                    next({name: 'Home'});
+                } else {
+                    // Continue to the login page
+                    next()
+                }
+
+            },
+        },
+    },
+    {
+        path: '/id-verification',
+        name: 'idVerification',
+        component: () => import('../views/pages/account/id-verification'),
+        meta: {
+            beforeResolve(routeTo, routeFrom, next) {
+
+                // If the user is already logged in
+                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
+                    next({name: 'Home'});
+                } else {
+                    // Continue to the login page
+                    next()
+                }
+
+            },
+        },
+    },
+    {
+        path: '/verify-skills',
+        name: 'skillVerification',
+        component: () => import('../views/pages/account/verify-skills'),
+        meta: {
+            beforeResolve(routeTo, routeFrom, next) {
+
+                // If the user is already logged in
+                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
+                    next({name: 'Home'});
+                } else {
+                    // Continue to the login page
+                    next()
+                }
+
+            },
+        },
+    },
     ///////////////////////// DASHBOARD ROUTES /////////////////////////////////
     {
         path: '/',

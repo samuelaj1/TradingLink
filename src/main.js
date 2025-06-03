@@ -7,6 +7,8 @@ import './utils/filters'
 
 import '../public/frontend/assets/js/main'
 
+import * as VueGoogleMaps from "vue2-google-maps";
+
 
 
 import router from './router'
@@ -23,11 +25,13 @@ Vue.use(ImageMagnifier)
 
 Vue.config.productionTip = false
 
-// Vue.use(vco)
-
-
-
-
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyDh6omW0tuZo8Kjy6UJtn2W00-1L1DHQqE",
+    libraries: "places"
+  },
+  installComponents: true
+});
 
 
 // Vue.use(VueDraggable)
