@@ -40,7 +40,7 @@
                 <gmap-circle :center="center" :radius="radius * 1609.34" :options="circleOptions"></gmap-circle>
               </gmap-map>
 
-              <div class="form-group form-check my-4">
+              <div class="form-group form-check mb-5 mt-4">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label font-weight-lighter" for="exampleCheck1">I work throughout
                   Jamaica</label>
