@@ -9,10 +9,10 @@
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h1 class="fw-bold mb-0">Work Details</h1>
 
-              <div class="ms-auto">
+              <router-link to="/id-verification" class="ms-auto">
                 <a href="#" class="text-decoration-underline me-2">Cancel</a>
                 <a href="#" aria-label="Close"><i class="fa fa-times"></i></a>
-              </div>
+              </router-link>
             </div>
 
             <div class="progress">
@@ -34,13 +34,14 @@
               <p class="mb-4 font-weight-lighter">Trade Link supports quality tradespeople.</p>
               <p class="mb-4 font-weight-lighter">In this step, we check the skills of all tradespeople joining so customers use MyBuilder with confidence.</p>
               <p class="mb-4 font-weight-lighter">Our application process is thorough, and only those who meet our high standards are accepted.</p>
-              <div class="row mt-5">
+              <div class="button-container mt-5">
                 <div class="col-12">
                   <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                  <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/id-verification')">Continue</button>
+                  <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/verify-skills')">
+                    Continue
+                  </button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>

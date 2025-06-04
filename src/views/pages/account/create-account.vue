@@ -36,8 +36,12 @@
 
                   </div>
                   <div class="col-lg-6 mb-4">
-                    <div class="form-inner">
-                      <button class="primry-btn-2" type="submit">Continue</button>
+                    <div class="button-container">
+                      <div class="col-12">
+                        <button class="btn bg-primary-1 text-light big-button" type="submit">
+                          Continue
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -81,7 +81,7 @@
                   class="text-decoration-underline" href="#">Privacy policy</a>.</p>
 
               <div class="text-center mt-5 mb-4">
-                <button @click="$router.push('/create-account')" class="primry-btn-2 d-block w-100 btn btn-block w-unset">Sign up for free</button>
+                <button @click="$router.push('/create-account')" class="primry-btn-2 d-block w-100 btn btn-block big-button">Sign up for free</button>
               </div>
             </div>
           </div>

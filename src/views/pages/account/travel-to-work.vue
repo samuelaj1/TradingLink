@@ -33,8 +33,7 @@
 
               <div class="slider-container mb-4">
                 <label for="radiusSlider">Radius: {{ radius }} miles</label>
-                <input type="range" class="custom-slider w-100" id="radiusSlider" v-model="radius" min="1" max="100"
-                       @input="updateCircleRadius"/>
+                <input type="range" class="custom-slider w-100" id="radiusSlider" v-model="radius" min="1" max="100"/>
               </div>
 
               <gmap-map :center="center" :zoom="10" style="width: 100%; height: 400px">

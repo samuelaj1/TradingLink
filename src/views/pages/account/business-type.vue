@@ -9,10 +9,10 @@
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h1 class="fw-bold mb-0">Work Details</h1>
 
-              <div class="ms-auto">
+              <router-link to="/professions" class="ms-auto">
                 <a href="#" class="text-decoration-underline me-2">Cancel</a>
                 <a href="#" aria-label="Close"><i class="fa fa-times"></i></a>
-              </div>
+              </router-link>
             </div>
 
             <div class="progress">
@@ -49,10 +49,12 @@
                 </div>
               </div>
 
-              <div class="row mt-5">
+              <div class="button-container mt-5">
                 <div class="col-12">
                   <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                  <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/business-details')">Continue</button>
+                  <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/business-details')">
+                    Continue
+                  </button>
                 </div>
               </div>
 

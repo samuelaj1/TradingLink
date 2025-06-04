@@ -27389,7 +27389,7 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
 
 /* Default styles for larger screens */
 .button-container {
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 20px;
 }
 
 /* Styles for small screens */
@@ -27403,11 +27403,6 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
         background-color: white; /* Ensure the background is white or as needed */
         border-top: 1px solid #ccc; /* Add a border at the top on small screens */
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
-    }
-
-    .button-container .row {
-        display: flex;
-        width: 100%;
     }
 
     .button-container .col-12 {

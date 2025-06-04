@@ -9,10 +9,10 @@
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h1 class="fw-bold mb-0">Work Details</h1>
 
-              <div class="ms-auto">
+              <router-link to="/create-account" class="ms-auto">
                 <a href="#" class="text-decoration-underline me-2">Cancel</a>
                 <a href="#" aria-label="Close"><i class="fa fa-times"></i></a>
-              </div>
+              </router-link>
             </div>
 
             <div class="progress">
@@ -27,7 +27,7 @@
               </div>
 
             </div>
-            <div v-if="step===1" class="form-wrapper mt-5">
+            <div class="form-wrapper mt-5">
               <div class="form-title mb-25">
                 <h3 class="text-start">Tell us about yourself</h3>
               </div>
@@ -35,64 +35,13 @@
               <p class="mb-4 font-weight-lighter">We want to know our tradespeople better so we can send you the right local leads, matched to your skills.</p>
               <p class="font-weight-lighter">In this step, we'll ask you about the work you undertake, your professional status, and location.</p>
               <div class="button-container">
-                <div class="row">
                   <div class="col-12">
                     <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                    <button class="btn bg-primary-1 text-light big-button" @click="step++">
+                    <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/professions')">
                       Continue
                     </button>
                   </div>
-                </div>
               </div>
-
-            </div>
-            <div v-if="step===2" class="form-wrapper mt-5">
-              <h3 class="font-weight-bold mb-4">Select up to 5 professions</h3>
-              <p class="font-weight-lighter">Tell us what you do so we can send you the most relevant leads.</p>
-
-              <div class="mb-3">
-                <label for="searchTrades" class="form-label font-weight-bold">Search trades</label>
-                <div class="input-group">
-                  <input type="text" class="form-control py-2" id="searchTrades" placeholder="i.e Gardener">
-                  <button class="btn btn-outline-secondary" type="button">×</button>
-                </div>
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center my-4">
-                <h6 class="mb-0 font-weight-bold">Selected</h6>
-                <div class="selected-count">1</div>
-              </div>
-
-              <div class="profession-list">
-                <div class="profession-item">
-                  <label for="design">Architectural Designer</label>
-                  <input id="design" type="checkbox" class="form-check-input">
-                </div>
-                <div class="profession-item">
-                  <label for="technician">Architectural Technician</label>
-                  <input id="technician" type="checkbox" class="form-check-input">
-                </div>
-                <div class="profession-item">
-                  <label for="fitter">Bathroom Fitter</label>
-                  <input id="fitter" type="checkbox" class="form-check-input">
-                </div>
-                <div class="profession-item">
-                  <label for="bricklayer">Bricklayer</label>
-                  <input id="bricklayer" type="checkbox" class="form-check-input">
-                </div>
-              </div>
-
-              <div class="button-container">
-                <div class="row">
-                  <div class="col-12">
-                    <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                    <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/business-type')">
-                      Continue
-                    </button>
-                  </div>
-                </div>
-              </div>
-
 
             </div>
           </div>

@@ -9,10 +9,10 @@
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h1 class="fw-bold mb-0">Work Details</h1>
 
-              <div class="ms-auto">
+              <router-link to="/business-details" class="ms-auto">
                 <a href="#" class="text-decoration-underline me-2">Cancel</a>
                 <a href="#" aria-label="Close"><i class="fa fa-times"></i></a>
-              </div>
+              </router-link>
             </div>
 
             <div class="progress">
@@ -33,10 +33,12 @@
               </div>
               <p class="mb-4 font-weight-lighter"> This helps us check that you’re really you. Identity verification is one of the ways we keep MyBuilder secure.</p>
               <p class="mb-4 font-weight-lighter">Your ID will be handled securely and won’t be shared with anyone else.</p>
-              <div class="row mt-5">
+              <div class="button-container mt-5">
                 <div class="col-12">
                   <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                  <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/id-verification')">Continue</button>
+                  <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/id-verification')">
+                    Continue
+                  </button>
                 </div>
               </div>
 

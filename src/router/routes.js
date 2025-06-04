@@ -76,6 +76,24 @@ export default [
         },
     },
     {
+        path: '/professions',
+        name: 'professions',
+        component: () => import('../views/pages/account/professions'),
+        meta: {
+            beforeResolve(routeTo, routeFrom, next) {
+
+                // If the user is already logged in
+                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
+                    next({name: 'Home'});
+                } else {
+                    // Continue to the login page
+                    next()
+                }
+
+            },
+        },
+    },
+    {
         path: '/travel-to-work',
         name: 'travel',
         component: () => import('../views/pages/account/travel-to-work'),
