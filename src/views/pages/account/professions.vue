@@ -66,7 +66,7 @@
               <div class="button-container">
                   <div class="col-12">
                     <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                    <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/business-type')">
+                    <button class="btn primry-btn-2 d-inline-block text-light big-button" @click="$router.push('/business-type')">
                       Continue
                     </button>
                   </div>

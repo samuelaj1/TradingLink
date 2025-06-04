@@ -57,7 +57,7 @@
               <div class="button-container mt-5">
                 <div class="col-12">
                   <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.push('/verify-skills')">Upload later</button>
-                  <button class="btn bg-primary-1 text-light big-button" @click="$router.push('/verify-skills')">
+                  <button class="btn primry-btn-2 d-inline-block text-light big-button" @click="$router.push('/verify-skills')">
                     Continue
                   </button>
                 </div>
