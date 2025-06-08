@@ -13,6 +13,7 @@ export const userService = {
     businessType,
     businessDetails,
     idVerification,
+    proofOfSkills,
     verifyEmail,
     resendVerifyEmail,
     getAdmins,
@@ -107,6 +108,15 @@ function businessDetails(payload) {
 function idVerification(formData) {
     return new Promise((resolve, reject) => {
         axios.post('/api/verify-identity', formData, useBearerTokenHeaders(true))
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function proofOfSkills(formData) {
+    return new Promise((resolve, reject) => {
+        axios.post('/api/proof-of-skills', formData, useBearerTokenHeaders(true))
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));

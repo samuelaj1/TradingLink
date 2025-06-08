@@ -207,6 +207,13 @@ export default [
         component: () => import('../views/pages/home'),
     },
 
+    {
+        path: '/profile/bio',
+        name: 'profile-bio',
+        authRequired: true,
+        component: () => import('../views/pages/profile/bio'),
+    },
+
     ///////// EXTRA ROUTES //////////////////////////
     {
         path: '/extras/maintenance',

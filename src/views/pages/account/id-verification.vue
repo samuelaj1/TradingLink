@@ -79,7 +79,7 @@
     </div>
 
     <!-- BootstrapVue Dropzone Modal -->
-    <b-modal v-model="showDropzoneModal" title="Upload Your ID" @ok="submitIdVerification">
+    <b-modal v-model="showDropzoneModal" title="Upload Your ID">
       <vue-dropzone
           id="identityFile"
           ref="identityFile"

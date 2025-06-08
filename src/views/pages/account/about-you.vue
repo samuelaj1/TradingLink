@@ -48,43 +48,32 @@
         </div>
       </div>
     </div>
-<!--    steps modal-->
-    <div v-if="showModal" class="modal fade show" data-backdrop="true">
-      <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Complete your registration</h5>
-            <button type="button" class="btn-close" @click="showModal = false" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="registration-steps">
-              <div class="step completed">
-                <span class="step-icon">✓</span>
-                <span class="step-text">Work details</span>
-              </div>
-              <div class="step completed">
-                <span class="step-icon">✓</span>
-                <span class="step-text">ID Check</span>
-              </div>
-              <div class="step completed">
-                <span class="step-icon">✓</span>
-                <span class="step-text">Safety & Quality</span>
-              </div>
-              <div class="step">
-                <span class="step-icon">4</span>
-                <span class="step-text">Profile Setup</span>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer mb-5">
-            <button type="button" class="btn btn-secondary" @click="showModal = false">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+
+    <!-- Steps Modal -->
+    <b-modal v-model="showModal" title="Complete your registration">
+      <div class="registration-steps">
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span class="step-text">Work details</span>
+        </div>
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span class="step-text">ID Check</span>
+        </div>
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span class="step-text">Safety & Quality</span>
+        </div>
+        <div class="step">
+          <span class="step-icon">4</span>
+          <span class="step-text">Profile Setup</span>
         </div>
       </div>
-    </div>
-    <!-- Backdrop -->
-    <div v-if="showModal" class="modal-backdrop fade show" @click="showModal=false"></div>
+      <template #modal-footer>
+        <b-button variant="secondary" @click="showModal = false">Close</b-button>
+        <b-button class="btn bg-primary-1 text-light ">Save changes</b-button>
+      </template>
+    </b-modal>
 
   </div>
 </template>
