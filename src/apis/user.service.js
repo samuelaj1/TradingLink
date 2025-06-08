@@ -11,6 +11,7 @@ export const userService = {
     saveProfession,
     saveTravelToWork,
     businessType,
+    businessDetails,
     verifyEmail,
     resendVerifyEmail,
     getAdmins,
@@ -87,6 +88,15 @@ function saveTravelToWork(payload) {
 function businessType(payload) {
     return new Promise((resolve) => {
         axios.post('/api/business-type', payload, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function businessDetails(payload) {
+    return new Promise((resolve) => {
+        axios.post('/api/business-details', payload, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
