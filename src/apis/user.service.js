@@ -10,6 +10,7 @@ export const userService = {
     signUp,
     saveProfession,
     saveTravelToWork,
+    businessType,
     verifyEmail,
     resendVerifyEmail,
     getAdmins,
@@ -77,6 +78,15 @@ function saveProfession(payload) {
 function saveTravelToWork(payload) {
     return new Promise((resolve) => {
         axios.post('/api/travel-to-work', payload, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function businessType(payload) {
+    return new Promise((resolve) => {
+        axios.post('/api/business-type', payload, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));

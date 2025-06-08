@@ -268,9 +268,21 @@ export default {
   align-items: center;
 }
 
-.profession-item label{
+.profession-item label {
   font-weight: lighter;
   cursor: pointer;
+}
+
+.profession-list {
+  height: 500px;
+  overflow: auto;
+  padding: 0.25rem;
+}
+
+@media (max-width: 767px) {
+  .profession-list {
+    height: 600px !important;
+  }
 }
 
 </style>

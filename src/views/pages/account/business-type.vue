@@ -27,38 +27,40 @@
               </div>
 
             </div>
+            <form @submit.prevent="save">
+
             <div class="form-wrapper mt-5">
               <h3 class="font-weight-bold mb-4">What type of business do you have?</h3>
 
-              <div class="profession-list">
-                <div class="profession-item">
-                  <label for="design" class="form-check-label">Architectural Designer</label>
-                  <input type="radio" id="design" name="profession" class="form-check-input">
+                <div class="profession-list">
+                  <div class="profession-item">
+                    <label for="technician" class="form-check-label">Limited company (LTD)</label>
+                    <input type="radio" id="technician" value="Limited company (LTD)" v-model="business_type"
+                           class="form-check-input">
+                  </div>
+                  <div class="profession-item">
+                    <label for="fitter" class="form-check-label">Ordinary partnership</label>
+                    <input type="radio" id="fitter" value="Ordinary partnership" v-model="business_type"
+                           class="form-check-input">
+                  </div>
+                  <div class="profession-item">
+                    <label for="bricklayer" class="form-check-label">Limited liability partnership (LLP)</label>
+                    <input type="radio" id="bricklayer" value="Limited liability partnership (LLP)"
+                           v-model="business_type" class="form-check-input">
+                  </div>
                 </div>
-                <div class="profession-item">
-                  <label for="technician" class="form-check-label">Limited company (LTD)</label>
-                  <input type="radio" id="technician" name="profession" class="form-check-input">
-                </div>
-                <div class="profession-item">
-                  <label for="fitter" class="form-check-label">Ordinary partnership</label>
-                  <input type="radio" id="fitter" name="profession" class="form-check-input">
-                </div>
-                <div class="profession-item">
-                  <label for="bricklayer" class="form-check-label">Limited liability partnership (LLP)</label>
-                  <input type="radio" id="bricklayer" name="profession" class="form-check-input">
-                </div>
-              </div>
 
-              <div class="button-container mt-5">
-                <div class="col-12">
-                  <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                  <button class="btn primry-btn-2 d-inline-block text-light big-button" @click="$router.push('/business-details')">
-                    Continue
-                  </button>
+                <div class="button-container mt-5">
+                  <div class="col-12">
+                    <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
+                    <button class="btn primry-btn-2 d-inline-block text-light big-button" type="submit">
+                      Continue
+                    </button>
+                  </div>
                 </div>
-              </div>
 
             </div>
+            </form>
           </div>
         </div>
       </div>
@@ -111,44 +113,46 @@ import topHeader from '../../base-layout/header-1'
 
 import {required, email} from "vuelidate/lib/validators";
 import store from "@/store/store";
+import {userService} from "@/apis/user.service";
 
 /**
- * Login component
+ * Business Type component
  */
 export default {
   page: {
-    title: "Login",
+    title: "Business Type",
     meta: [{name: "description", content: appConfig.description}],
   },
   data() {
     return {
       showModal: false,
-      step: 2,
-      center: { lat: 18.1096, lng: -77.2975 }, // Default center (London)
-      radius: 10,
-      circleOptions: {
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-      },
+      isLoading: false,
+      business_type: 'Limited company (LTD)',
     };
   },
   components: {
     Auth,
     topHeader
   },
-
-  watch: {
-
-  },
-  computed: {
-
-  },
   created() {
   },
   methods: {
+    async save() {
+      this.isLoading = true
+      await this.$store.dispatch('showLoader')
+      userService.businessType({
+        business_type: this.business_type,
+      }).then((res) => {
+        this.$store.dispatch('hideLoader')
+        this.isLoading = false
+        const {status, message} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message: message, showSwal: true})
+          return;
+        }
+        this.$router.push('/business-details')
+      });
+    },
   },
   mounted() {
   },
