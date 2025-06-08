@@ -27,28 +27,35 @@
               </div>
 
             </div>
-            <div class="form-wrapper mt-5">
-              <h3 class="font-weight-bold mb-5">Enter your business details?</h3>
+            <form @submit.prevent="submitBusinessDetails">
+              <div class="form-wrapper mt-5">
+                <h3 class="font-weight-bold mb-5">Enter your business details?</h3>
 
-              <div class="form-inner mb-20">
-                <label class="large-font mb-2 font-weight-bold" for="name">Trading name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control form-input" id="name" name="name" placeholder="Enter your trading name">
-              </div>
+                <div class="form-inner mb-20">
+                  <label class="large-font mb-2 font-weight-bold" for="name">Trading name <span
+                      class="text-danger">*</span></label>
+                  <input type="text" class="form-control form-input" id="name" v-model="business_name"
+                         placeholder="Enter your trading name" required>
+                </div>
 
-              <div class="form-inner mb-20">
-                <label class="large-font mb-2 font-weight-bold" for="name">Work address <span class="text-danger">*</span></label>
-                <input type="text" class="form-control form-input" id="name" name="name" placeholder="Enter your company address">
-              </div>
+                <div class="form-inner mb-20">
+                  <label class="large-font mb-2 font-weight-bold" for="work-address">Work address <span
+                      class="text-danger">*</span></label>
+                  <input type="text" class="form-control form-input" id="work-address" v-model="work_address"
+                         placeholder="Enter your company address" required>
+                </div>
 
-              <div class="button-container mt-5">
-                <div class="col-12">
-                  <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                  <button class="btn primry-btn-2 d-inline-block text-light big-button" @click="$router.push('/verify-identity')">
-                    Continue
-                  </button>
+                <div class="button-container mt-5">
+                  <div class="col-12">
+                    <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
+                    <button class="btn primry-btn-2 d-inline-block text-light big-button" type="submit">
+                      <b-spinner small v-if="isLoading"></b-spinner>
+                      {{ isLoading ? 'Saving' : 'Continue' }}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -101,28 +108,22 @@ import topHeader from '../../base-layout/header-1'
 
 import {required, email} from "vuelidate/lib/validators";
 import store from "@/store/store";
+import {userService} from "@/apis/user.service";
 
 /**
  * Login component
  */
 export default {
   page: {
-    title: "Login",
+    title: "Business Details",
     meta: [{name: "description", content: appConfig.description}],
   },
   data() {
     return {
       showModal: false,
-      step: 2,
-      center: { lat: 18.1096, lng: -77.2975 }, // Default center (London)
-      radius: 10,
-      circleOptions: {
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-      },
+      isLoading: false,
+      business_name: '',
+      work_address: '',
     };
   },
   components: {
@@ -130,15 +131,27 @@ export default {
     topHeader
   },
 
-  watch: {
-
-  },
-  computed: {
-
-  },
   created() {
   },
   methods: {
+    async submitBusinessDetails() {
+      this.isLoading = true
+      await this.$store.dispatch('showLoader')
+      userService.businessDetails({
+        business_name: this.business_name,
+        work_address: this.work_address,
+      }).then((res) => {
+        this.$store.dispatch('hideLoader')
+        this.isLoading = false
+        const {status, message} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message: message, showSwal: true})
+          return;
+        }
+        this.$router.push('/verify-identity')
+      });
+    },
+
   },
   mounted() {
   },

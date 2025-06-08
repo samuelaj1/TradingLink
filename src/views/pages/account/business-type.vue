@@ -54,7 +54,8 @@
                   <div class="col-12">
                     <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
                     <button class="btn primry-btn-2 d-inline-block text-light big-button" type="submit">
-                      Continue
+                      <b-spinner small v-if="isLoading"></b-spinner>
+                      {{ isLoading ? 'Saving' : 'Continue' }}
                     </button>
                   </div>
                 </div>
