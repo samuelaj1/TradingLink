@@ -1,5 +1,5 @@
 <template>
-  <body class="bg-wight">
+  <div class="bg-wight">
   <topHeader></topHeader>
   <div class="dashboard-area pt-80 mb-120">
     <div class="container">
@@ -59,7 +59,7 @@
   <div v-show="!isMobile">
     <HomeFooter></HomeFooter>
   </div>
-  </body>
+  </div>
 </template>
 
 <script>
@@ -104,6 +104,7 @@ export default {
   mounted() {
     this.checkScreenSize();
     window.addEventListener('resize', this.checkScreenSize);
+    $('body').addClass('bg-wight')
 
     $('#company-description').addClass('active')
   },

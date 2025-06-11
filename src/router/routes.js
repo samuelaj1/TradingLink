@@ -244,7 +244,7 @@ export default [
         meta:{
             authRequired: true,
         },
-        component: () => import('../views/pages/profile'),
+        component: () => import('../views/pages/company-description'),
     },
     {
         path: '/company-description',

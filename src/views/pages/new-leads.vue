@@ -269,6 +269,7 @@ export default {
   mounted() {
     this.checkScreenSize();
     window.addEventListener('resize', this.checkScreenSize);
+    $('body').addClass('bg-wight')
 
     $('#company-description').addClass('active')
   },
