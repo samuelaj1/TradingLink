@@ -7,7 +7,7 @@
         <!-- Sidebar -->
         <div class="col-lg-3" v-show="showSidebar">
           <div class="dashboard-sidebar">
-            <SideBar @link-clicked="toggleSidebar"></SideBar>
+            <SideBar></SideBar>
           </div>
         </div>
 

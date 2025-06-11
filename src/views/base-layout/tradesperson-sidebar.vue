@@ -132,8 +132,7 @@
     </div>
 
     <div>
-      <router-link to="/logout" class="text-danger d-flex justify-content-between align-items-center"
-                   @click.native.prevent="toggleSidebar">
+      <router-link to="/logout" class="text-danger d-flex justify-content-between align-items-center">
         <div>
           <i class="bi bi-box-arrow-right mr-2"></i> Logout
         </div>
