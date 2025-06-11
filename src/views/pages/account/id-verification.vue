@@ -61,7 +61,7 @@
 
                 <div class="button-container mt-5">
                   <div class="col-12">
-                    <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.push('/verify-skills')">
+                    <button class="btn btn-outline-primary-1 me-3 big-button" @click="skipIdVerification" type="button">
                       Upload later
                     </button>
                     <button class="btn primry-btn-2 d-inline-block text-light big-button" type="submit">
@@ -94,7 +94,10 @@
       </vue-dropzone>
       <template #modal-footer>
         <b-button variant="secondary" @click="showDropzoneModal = false">Close</b-button>
-        <b-button class="btn bg-primary-1 text-light" @click="submitIdVerification">Submit</b-button>
+        <b-button class="btn bg-primary-1 text-light" @click="submitIdVerification" :disabled="isLoading">
+          <b-spinner small v-if="isLoading"></b-spinner>
+          {{ isLoading ? 'Loading...' : 'Submit' }}
+        </b-button>
       </template>
     </b-modal>
 
@@ -133,6 +136,8 @@ import appConfig from "../../../../app.config";
 import topHeader from '../../base-layout/header-1'
 import vue2Dropzone from "vue2-dropzone";
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
+import {confirm} from "@/utils/functions";
+
 
 import {userService} from "@/apis/user.service";
 
@@ -177,6 +182,12 @@ export default {
       alert('You can only upload one file at a time.');
     },
 
+    skipIdVerification() {
+      confirm("Would you like to upload your identity verification later? This helps keep TradeLink secure", () => {
+        this.$router.push('/profile')
+      })
+    },
+
     async submitIdVerification() {
       this.isLoading = true
       await this.$store.dispatch('showLoader')
@@ -199,11 +210,12 @@ export default {
       userService.idVerification(formData).then((res) => {
         this.$store.dispatch('hideLoader')
         this.isLoading = false
-        const {status, message} = res;
+        const {status, message, extra} = res;
         if (!status) {
           this.$store.dispatch('error', {message: message, showSwal: true})
           return;
         }
+        this.$store.dispatch('updateUserInfo', extra)
         this.$router.push('/verify-skills')
       });
     },

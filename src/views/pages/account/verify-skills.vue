@@ -65,7 +65,10 @@
       </vue-dropzone>
       <template #modal-footer>
         <b-button class="btn btn-outline-primary-1 text-light" @click="proofOfSkills">Upload later</b-button>
-        <b-button class="btn bg-primary-1 text-light" @click="proofOfSkills">Submit</b-button>
+        <b-button class="btn bg-primary-1 text-light" @click="proofOfSkills" :disabled="isLoading">
+          <b-spinner small v-if="isLoading"></b-spinner>
+          {{ isLoading ? 'Loading...' : 'Submit' }}
+        </b-button>
       </template>
     </b-modal>
 
@@ -119,6 +122,7 @@ export default {
     return {
       showModal: false,
       showDropzoneModal: false,
+      isLoading: false,
       certificateDropzoneDropzoneOptions: {
         url: '#',
         maxFilesize: 20.0,
@@ -158,12 +162,13 @@ export default {
       userService.proofOfSkills(formData).then((res) => {
         this.$store.dispatch('hideLoader')
         this.isLoading = false
-        const {status, message} = res;
+        const {status, message, extra} = res;
         if (!status) {
           this.$store.dispatch('error', {message: message, showSwal: true})
           return;
         }
-        this.$router.push('/profile/bio')
+        this.$store.dispatch('updateUserInfo', extra)
+        this.$router.push('/profile')
       });
     },
 

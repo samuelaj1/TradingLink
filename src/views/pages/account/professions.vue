@@ -178,11 +178,12 @@ export default {
       userService.saveProfession({trades: this.selectedTrades}).then((res) => {
         this.$store.dispatch('hideLoader')
         this.isLoading = false
-        const {status, message} = res;
+        const {status, message, extra} = res;
         if (!status) {
           this.$store.dispatch('error', {message: message, showSwal: true})
           return;
         }
+        this.$store.dispatch('updateUserInfo', extra)
         this.$router.push('/travel-to-work')
       });
     },
@@ -191,85 +192,5 @@ export default {
 </script>
 
 <style scoped>
-/* Ensure the modal is displayed */
-.modal.show {
-  display: block;
-}
-
-.modal-dialog {
-  position: relative;
-  max-width: 500px !important;
-}
-
-.registration-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.step {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-radius: 5px;
-}
-
-.step.completed {
-  background-color: #e9f7ef;
-  color: #28a745;
-}
-
-.step-icon {
-  font-weight: bold;
-}
-
-
-.progress-bar {
-  height: 100%;
-  background-color: var(--primary-color1);
-  width: 20%; /* Adjust based on step */
-}
-
-.selected-count {
-  background-color: var(--primary-color1);
-  color: white;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-}
-
-.profession-item {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 20px 15px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.profession-item label {
-  font-weight: lighter;
-  cursor: pointer;
-}
-
-.profession-list {
-  height: 500px;
-  overflow: auto;
-  padding: 0.25rem;
-}
-
-@media (max-width: 767px) {
-  .profession-list {
-    height: 600px !important;
-  }
-}
 
 </style>

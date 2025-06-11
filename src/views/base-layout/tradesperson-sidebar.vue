@@ -20,11 +20,12 @@
     </div>
 
     <!-- Complete Registration -->
-    <a href="#" class="d-flex justify-content-between align-items-center mb-4 mt-5">
+    <a @click="completeRegistration" v-if="!isRegistrationComplete"
+       class="d-flex justify-content-between align-items-center mb-4 mt-5 cursor-pointer">
       <div>
         <i class="bi bi-person-lines-fill mr-2"></i> Complete registration
       </div>
-      <span class="badge bg-secondary rounded-pill">8 steps left</span>
+      <span class="badge bg-secondary rounded-pill">{{ registrationSteps }} steps left</span>
       <i class="bi bi-chevron-right d-lg-none"></i>
     </a>
 
@@ -150,9 +151,47 @@ export default {
       user: this.$store.getters.GET_USER_INFO || {},
     };
   },
+  computed: {
+    registrationSteps() {
+      // Calculate the number of steps left in the registration process
+      return 8 - this.user.registration_step;
+    },
+    isRegistrationComplete() {
+      // Check if the registration is complete
+      return this.user.registration_status ==='complete'
+    }
+  },
   methods: {
     toggleSidebar() {
       this.$emit('link-clicked');
+    },
+    completeRegistration() {
+      // Check the registration step and route accordingly
+      switch (this.user.registration_step) {
+        case 1:
+          this.$router.push('/create-account');
+          break;
+        case 2:
+          this.$router.push('/professions');
+          break;
+        case 3:
+          this.$router.push('/travel-to-work');
+          break;
+        case 4:
+          this.$router.push('/business-type');
+          break;
+        case 5:
+          this.$router.push('/business-details');
+          break;
+        case 6:
+          this.$router.push('/verify-identity');
+          break;
+        case 7:
+          this.$router.push('/verify-skills');
+          break;
+        default:
+          console.log('Unknown registration step');
+      }
     }
   }
 };

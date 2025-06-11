@@ -23,17 +23,35 @@ const mutations = {
     },
 
     'CLEAR_USER_INFO'() {
+        state.userInfo = '';
         localStorage.removeItem('userInfo');
+
     },
 
-    UPDATE_USER_INFO(state, {email, phone}) {
-        const userInfo = localStorage.getItem('userInfo');
-        const userInfoJson = JSON.parse(userInfo);
-        userInfoJson['email'] = email;
-        userInfoJson['phone'] = phone;
+    UPDATE_USER_INFO(state, userData) {
+        if (typeof userData !== 'object' || userData === null) {
+            console.error('userData must be an object');
+            return; // Exit the function if userData is not an object
+        }
 
-        localStorage.setItem("userInfo", JSON.stringify(userInfoJson))
+        // Retrieve the current user information from localStorage
+        let userInfo = localStorage.getItem('userInfo');
+
+        // Parse the user information or initialize an empty object if it doesn't exist
+        let userInfoJson = userInfo ? JSON.parse(userInfo) : {};
+
+        // Loop through the provided userData object
+        for (const key in userData) {
+            if (userData.hasOwnProperty(key)) {
+                // Update or add the key-value pair to the userInfoJson object
+                userInfoJson[key] = userData[key];
+            }
+        }
+        // Save the updated user information back to localStorage
+        state.userInfo = userInfoJson;
+        localStorage.setItem("userInfo", JSON.stringify(userInfoJson));
     }
+
 
 }
 
@@ -90,9 +108,19 @@ const actions = {
     },
 
     logout({commit}) {
-        userService.logout();
-        commit('CLEAR_USER_INFO');
-        window.location.href = "/"
+        return new Promise((resolve) => {
+            userService.logout();
+            commit('CLEAR_USER_INFO');
+            resolve('user info cleared')
+        })
+
+    },
+
+    updateUserInfo({commit, dispatch}, payload) {
+        return new Promise((resolve) => {
+            commit('UPDATE_USER_INFO', payload)
+            resolve('User info updated successfully')
+        })
     },
 
     updatePersonalInfo({commit, dispatch}, payload) {
@@ -100,7 +128,7 @@ const actions = {
         userService.updatePersonalInfo(payload).then(data => {
             dispatch('hideLoader')
             if (!data.status) {
-                dispatch('error', {message:data.message, showSwal: true})
+                dispatch('error', {message: data.message, showSwal: true})
                 resolve({status: false, message: data.message});
                 return;
             }
@@ -218,40 +246,7 @@ const actions = {
             });
         });
     },
-    editVendorUser({ commit, dispatch }, payload) {
-        return new Promise((resolve, reject) => {
-            dispatch("showLoader");
-            userService.editVendorUser(payload).then((data) => {
-                dispatch("hideLoader");
-                if (!data.status) {
-                    dispatch("error", { message: data.message, showSwal: true });
-                    reject();
-                    return;
-                }
 
-                dispatch("success", { message: data.message, showSwal: true });
-                resolve(data);
-            });
-        });
-    },
-
-
-
-    toggleAdminUserStatus({ commit, dispatch }, payload) {
-        return new Promise((resolve, reject) => {
-            dispatch("showLoader");
-            userService.toggleAdminUserStatus(payload).then((data) => {
-                dispatch("hideLoader");
-                if (!data.status) {
-                    dispatch("error", { message: data.message });
-                    reject();
-                    return;
-                }
-                resolve(data);
-                dispatch("success", { message: data.message, showSwal: true });
-            });
-        });
-    },
     resendPasswordAdmin({ commit, dispatch }, admin_id) {
         return new Promise((resolve, reject) => {
             dispatch("showLoader");

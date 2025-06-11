@@ -74,13 +74,13 @@
               <hr>
             </ul>
             <ul v-else>
-              <li>
-                <router-link to="/profile">
+              <li v-if="!isRegistrationComplete" class="cursor-pointer">
+                <a @click="completeRegistration">
                   <div>Complete my registration</div>
-                  <div class="badge bg-secondary rounded-pill">8 steps left</div>
-                </router-link>
+                  <div class="badge bg-secondary rounded-pill">{{ registrationSteps }} steps left</div>
+                </a>
+                <hr>
               </li>
-              <hr>
               <li>
                 <router-link to="/">Saved leads</router-link>
               </li>
@@ -105,7 +105,7 @@
           <!-- Navigation right content -->
           <ul v-if="loggedIn">
             <li class="d-md-flex d-none active">
-              <router-link to="/">New leads</router-link>
+              <router-link to="/new-leads">New leads</router-link>
             </li>
             <li class="d-md-flex d-none">
               <router-link to="/login">Activity</router-link>
@@ -123,21 +123,21 @@
                 </div>
                 <div class="user-card dropdown-menu" aria-labelledby="dropdownMenuButton3">
                   <ul style="box-shadow: rgba(0, 0, 0, 0.15) 0 0.0625rem 0.375rem; border-radius: 0.25rem;">
-                    <li>
-                      <router-link to="/profile">
+                    <li v-if="!isRegistrationComplete" class="cursor-pointer">
+                      <a @click="completeRegistration" >
                         <div>Complete my registration</div>
-                        <div class="badge bg-secondary rounded-pill">8 steps left</div>
+                        <div class="badge bg-secondary rounded-pill">{{ registrationSteps }} steps left</div>
+                      </a>
+                    </li>
+                    <li>
+                      <router-link to="/saved-leads">
+                        <i class="bi bi-bookmark text-primary-1"></i> Saved leads
                       </router-link>
                     </li>
                     <li>
-                      <a href="#">
-                        <i class="bi bi-bookmark text-primary-1"></i> Saved leads
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
+                      <router-link to="/profile">
                         <i class="bi bi-person-circle text-primary-1"></i> Profile
-                      </a>
+                      </router-link>
                     </li>
                     <li>
                       <a href="#">
@@ -187,12 +187,18 @@ export default {
   name: "Header2",
   data() {
     return {
-      isMobile: false
+      isMobile: false,
+      user: this.$store.getters.GET_USER_INFO || {},
+
     };
   },
+
   computed: {
-    loader() {
-      return this.$store.getters.LOADER;
+    registrationSteps() {
+      return 8 - this.user.registration_step;
+    },
+    isRegistrationComplete() {
+      return this.user.registration_status ==='complete'
     },
     loggedIn() {
       return this.$store.getters.GET_USER_INFO;
@@ -201,6 +207,34 @@ export default {
   methods: {
     checkScreenSize() {
       this.isMobile = window.innerWidth < 768;
+    },
+    completeRegistration() {
+      // Check the registration step and route accordingly
+      switch (this.user.registration_step) {
+        case 1:
+          this.$router.push('/create-account');
+          break;
+        case 2:
+          this.$router.push('/professions');
+          break;
+        case 3:
+          this.$router.push('/travel-to-work');
+          break;
+        case 4:
+          this.$router.push('/business-type');
+          break;
+        case 5:
+          this.$router.push('/business-details');
+          break;
+        case 6:
+          this.$router.push('/verify-identity');
+          break;
+        case 7:
+          this.$router.push('/verify-skills');
+          break;
+        default:
+          console.log('Unknown registration step');
+      }
     }
   },
   mounted() {

@@ -80,16 +80,22 @@ export default [
         component: () => import('../views/pages/account/professions'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
-
-                // If the user is already logged in
-                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
-                    next({name: 'Home'});
+                if (store.getters.GET_USER_INFO) {
+                    if (store.getters.GET_USER_INFO.status === 'complete') {
+                        next({name: 'profile'});
+                        return;
+                    }
+                    if (store.getters.GET_USER_INFO.registration_step >= 2 || routeFrom.name === 'about-you') {
+                        next()
+                        return;
+                    }
+                    next({name: 'profile'});
                 } else {
-                    // Continue to the login page
-                    next()
+                    next({name: 'Home'});
                 }
 
             },
+
         },
     },
     {
@@ -98,13 +104,18 @@ export default [
         component: () => import('../views/pages/account/travel-to-work'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
-
-                // If the user is already logged in
-                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
-                    next({name: 'Home'});
+                if (store.getters.GET_USER_INFO) {
+                    if (store.getters.GET_USER_INFO.status === 'complete') {
+                        next({name: 'profile'});
+                        return;
+                    }
+                    if (store.getters.GET_USER_INFO.registration_step >= 3 || routeFrom.name === 'professions') {
+                        next()
+                        return;
+                    }
+                    next({name: 'profile'});
                 } else {
-                    // Continue to the login page
-                    next()
+                    next({name: 'Home'});
                 }
 
             },
@@ -116,16 +127,22 @@ export default [
         component: () => import('../views/pages/account/business-type'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
-
-                // If the user is already logged in
-                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
-                    next({name: 'Home'});
+                if (store.getters.GET_USER_INFO) {
+                    if (store.getters.GET_USER_INFO.status === 'complete') {
+                        next({name: 'profile'});
+                        return;
+                    }
+                    if (store.getters.GET_USER_INFO.registration_step >= 4 || routeFrom.name === 'travel') {
+                        next()
+                        return;
+                    }
+                    next({name: 'profile'});
                 } else {
-                    // Continue to the login page
-                    next()
+                    next({name: 'Home'});
                 }
 
             },
+
         },
     },
     {
@@ -134,16 +151,22 @@ export default [
         component: () => import('../views/pages/account/business-details'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
-
-                // If the user is already logged in
-                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
-                    next({name: 'Home'});
+                if (store.getters.GET_USER_INFO) {
+                    if (store.getters.GET_USER_INFO.status === 'complete') {
+                        next({name: 'profile'});
+                        return;
+                    }
+                    if (store.getters.GET_USER_INFO.registration_step >= 5 || routeFrom.name === 'businessType') {
+                        next()
+                        return;
+                    }
+                    next({name: 'profile'});
                 } else {
-                    // Continue to the login page
-                    next()
+                    next({name: 'Home'});
                 }
 
             },
+
         },
     },
     {
@@ -152,13 +175,18 @@ export default [
         component: () => import('../views/pages/account/verify-identity'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
-
-                // If the user is already logged in
-                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
-                    next({name: 'Home'});
+                if (store.getters.GET_USER_INFO) {
+                    if (store.getters.GET_USER_INFO.status === 'complete') {
+                        next({name: 'profile'});
+                        return;
+                    }
+                    if (store.getters.GET_USER_INFO.registration_step >= 6 || routeFrom.name === 'businessDetails') {
+                        next()
+                        return;
+                    }
+                    next({name: 'profile'});
                 } else {
-                    // Continue to the login page
-                    next()
+                    next({name: 'Home'});
                 }
 
             },
@@ -170,7 +198,6 @@ export default [
         component: () => import('../views/pages/account/id-verification'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
-
                 // If the user is already logged in
                 if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
                     next({name: 'Home'});
@@ -188,13 +215,18 @@ export default [
         component: () => import('../views/pages/account/verify-skills'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
-
-                // If the user is already logged in
-                if (store.getters.GET_USER_INFO && store.getters.GET_USER_INFO.status === 'complete') {
-                    next({name: 'Home'});
+                if (store.getters.GET_USER_INFO) {
+                    if (store.getters.GET_USER_INFO.status === 'complete') {
+                        next({name: 'profile'});
+                        return;
+                    }
+                    if (store.getters.GET_USER_INFO.registration_step >= 7 || routeFrom.name === 'idVerification') {
+                        next()
+                        return;
+                    }
+                    next({name: 'profile'});
                 } else {
-                    // Continue to the login page
-                    next()
+                    next({name: 'Home'});
                 }
 
             },
@@ -208,7 +240,7 @@ export default [
     },
     {
         path: '/profile',
-        name: 'profile-bio',
+        name: 'profile',
         meta:{
             authRequired: true,
         },
@@ -261,6 +293,15 @@ export default [
             authRequired: true,
         },
         component: () => import('../views/pages/saved-leads'),
+    },
+
+    {
+        path: '/new-leads',
+        name: 'new-leads',
+        meta:{
+            authRequired: true,
+        },
+        component: () => import('../views/pages/new-leads'),
     },
 
     ///////// EXTRA ROUTES //////////////////////////

@@ -53,7 +53,7 @@
                 <div class="button-container mt-5">
                   <div class="col-12">
                     <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                    <button class="btn primry-btn-2 d-inline-block text-light big-button" type="submit">
+                    <button class="btn primry-btn-2 d-inline-block text-light big-button" type="submit" :disabled="isLoading">
                       <b-spinner small v-if="isLoading"></b-spinner>
                       {{ isLoading ? 'Saving' : 'Continue' }}
                     </button>
@@ -133,11 +133,12 @@ export default {
       }).then((res) => {
         this.$store.dispatch('hideLoader')
         this.isLoading = false
-        const {status, message} = res;
+        const {status, message, extra} = res;
         if (!status) {
           this.$store.dispatch('error', {message: message, showSwal: true})
           return;
         }
+        this.$store.dispatch('updateUserInfo', extra)
         this.$router.push('/business-details')
       });
     },

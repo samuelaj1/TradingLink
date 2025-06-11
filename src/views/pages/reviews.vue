@@ -13,16 +13,38 @@
         </div>
 
         <!-- Main Content -->
-        <div class="col-lg-9" v-show="!showSidebar || !isMobile">
+        <div class="col-lg-9 height-70" v-show="!showSidebar || !isMobile">
           <div class="mb-4" v-show="isMobile" @click="showSideBarMenu"><i class="bi bi-chevron-left"></i>
             Back to Menu
           </div>
           <div class="dashboard-inner">
             <div class="table-wrapper">
               <h5 class="title">Reviews</h5>
-              <div class="scroll-table">
-                <!-- Table content -->
+
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="card">
+                    <div class="card-body">
+                      <h2 class="reviews-title">Reviews</h2>
+                      <div class="rating-container">
+                        <span class="rating-value">0</span>
+                        <div class="rating-stars">
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-fill"></i>
+                        </div>
+                        <span class="review-count">(0 reviews)</span>
+                      </div>
+                      <button class="request-review-btn">Request a review</button>
+                    </div>
+                  </div>
+                  <p class="mt-3">Reviews (0)</p>
+
+                </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -91,4 +113,42 @@ export default {
 
 <style scoped>
 /* Add any custom styles here */
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.rating-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.rating-stars {
+  color: #ffc107;
+  margin-right: 5px;
+}
+
+.review-count {
+  color: #6c757d;
+  margin-left: 5px;
+}
+
+.request-review-btn {
+  background-color: var(--primary-color1);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.reviews-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 </style>

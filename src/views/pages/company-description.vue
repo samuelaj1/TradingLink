@@ -12,7 +12,7 @@
         </div>
 
         <!-- Main Content -->
-        <div class="col-lg-9" v-show="!showSidebar || !isMobile">
+        <div class="col-lg-9 height-70" v-show="!showSidebar || !isMobile">
 
           <div class="mb-4" v-show="isMobile" @click="showSideBarMenu"><i class="bi bi-chevron-left"></i>
             Back to Menu
@@ -20,9 +20,34 @@
           <div class="dashboard-inner">
             <div class="table-wrapper">
               <h4 class="title">Company description</h4>
-              <div class="scroll-table">
-                <!-- Table content -->
+              <h5 class="mb-4">About your company</h5>
+              <h5>Guarantee</h5>
+
+              <p class="font-weight-lighter">Increase your chances of getting hired by offering a guarantee.</p>
+
+              <small class="font-weight-lighter"> <i class="bi bi-info-circle"></i> Homeowners are aware guarantees vary
+                and should discuss the terms in advance.</small>
+
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="profession-list mt-4">
+                    <div class="profession-item">
+                      <label for="yes" class="form-check-label">
+                        Yes, I offer a guarantee
+                      </label>
+                      <input type="radio" id="yes" value="Passport" class="form-check-input">
+                    </div>
+                    <div class="profession-item">
+                      <label for="no" class="form-check-label">
+                        No, I do not offer a guarantee
+                      </label>
+                      <input type="radio" id="no" value="Identity Card" class="form-check-input">
+                    </div>
+                  </div>
+
+                </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -90,4 +115,8 @@ export default {
 
 <style scoped>
 /* Add any custom styles here */
+
+.profession-list {
+  height: auto !important;
+}
 </style>

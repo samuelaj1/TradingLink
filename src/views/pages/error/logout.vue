@@ -15,7 +15,9 @@ export default {
   components: {
   },
   created() {
-    this.$store.dispatch("logout");
+    this.$store.dispatch("logout").then(()=>{
+      this.$router.push("/")
+    });
   }
 };
 </script>

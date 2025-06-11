@@ -31,7 +31,7 @@
               <div class="form-title mb-25">
                 <h3 class="text-start">Verify your identity</h3>
               </div>
-              <p class="mb-4 font-weight-lighter"> This helps us check that you’re really you. Identity verification is one of the ways we keep MyBuilder secure.</p>
+              <p class="mb-4 font-weight-lighter"> This helps us check that you’re really you. Identity verification is one of the ways we keep TradeLink secure.</p>
               <p class="mb-4 font-weight-lighter">Your ID will be handled securely and won’t be shared with anyone else.</p>
               <div class="button-container mt-5">
                 <div class="col-12">
