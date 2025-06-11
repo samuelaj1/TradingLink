@@ -1,5 +1,5 @@
 <template>
-  <div class="single-widget mb-60">
+  <div class="single-widget mb-60" style="overflow-y: auto;">
     <!-- Profile Section -->
     <div class="">
       <div class="d-flex align-items-center mb-4">
