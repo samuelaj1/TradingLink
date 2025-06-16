@@ -9,7 +9,7 @@
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h1 class="fw-bold mb-0">Work Details</h1>
 
-              <router-link to="/professions" class="ms-auto">
+              <router-link to="/business-details" class="ms-auto">
                 <a href="#" class="text-decoration-underline me-2">Cancel</a>
                 <a href="#" aria-label="Close"><i class="fa fa-times"></i></a>
               </router-link>
@@ -20,38 +20,24 @@
             </div>
 
             <div class="d-flex align-items-center justify-content-between mt-3">
-              <h6 class=" mb-0">Step 1/5</h6>
+              <h6 class=" mb-0">Step 2/5</h6>
               <div class="ms-auto cursor-pointer">
                 <a @click="showModal = true" class="me-2" aria-label="Close"><i class="fa fa-info-circle"></i></a>
-                <a @click="showModal = true" class="text-decoration-underline">All Steps</a>
+                <a @click="showModal = true" class="text-decoration-underline" >All Steps</a>
               </div>
 
             </div>
             <div class="form-wrapper mt-5">
-              <h3 class="font-weight-bold mb-4">How far can you travel for work?</h3>
-              <p class="font-weight-lighter">Set the maximum distance you are willing to travel from kingston.</p>
-
-              <div class="slider-container mb-4">
-                <label for="radiusSlider">Radius: {{ radius }} miles</label>
-                <input type="range" class="custom-slider w-100" id="radiusSlider" v-model="radius" min="1" max="100"/>
+              <div class="form-title mb-25">
+                <h3 class="text-start">Verify your identity</h3>
               </div>
-
-              <gmap-map :center="center" :zoom="10" style="width: 100%; height: 400px">
-                <gmap-circle :center="center" :radius="radius * 1609.34" :options="circleOptions"></gmap-circle>
-              </gmap-map>
-
-              <div class="form-group form-check mb-5 mt-4">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="workThroughoutJamaica">
-                <label class="form-check-label font-weight-lighter" for="exampleCheck1">I work throughout
-                  Jamaica </label>
-              </div>
-
+              <p class="mb-4 font-weight-lighter"> This helps us check that you’re really you. Identity verification is one of the ways we keep TradeLink secure.</p>
+              <p class="mb-4 font-weight-lighter">Your ID will be handled securely and won’t be shared with anyone else.</p>
               <div class="button-container mt-5">
                 <div class="col-12">
                   <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                  <button class="btn primry-btn-2 d-inline-block text-light big-button" @click="save" :disabled="isLoading">
-                    <b-spinner small v-if="isLoading"></b-spinner>
-                    {{ isLoading ? 'Saving' : 'Continue' }}
+                  <button class="btn primry-btn-2 d-inline-block text-light big-button" @click="$router.push('/id-verification')">
+                    Continue
                   </button>
                 </div>
               </div>
@@ -61,6 +47,7 @@
         </div>
       </div>
     </div>
+
     <!-- Steps Modal -->
     <b-modal v-model="showModal" title="Complete your registration">
       <div class="registration-steps">
@@ -92,36 +79,20 @@
 
 <script>
 import Auth from "../../layouts/auth";
-import appConfig from "../../../../app.config";
+import appConfig from "../../../../app.config.json";
 import topHeader from '../../base-layout/header-1'
-
-import {required, email} from "vuelidate/lib/validators";
-import store from "@/store/store";
-import {userService} from "@/apis/user.service";
 
 /**
  * Login component
  */
 export default {
   page: {
-    title: "Travel To Work",
+    title: "Verify Your Identity",
     meta: [{name: "description", content: appConfig.description}],
   },
   data() {
     return {
-      showModal: false,
-      step: 2,
-      center: {lat: 18.1096, lng: -77.2975}, // Default center (London)
-      radius: 10,
-      workThroughoutJamaica: false,
-      circleOptions: {
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-      },
-      isLoading: false
+      showModal:false,
     };
   },
   components: {
@@ -129,45 +100,7 @@ export default {
     topHeader
   },
 
-  watch: {
-    workThroughoutJamaica(newValue) {
-      if (newValue) {
-        this.radius = 100;
-      } else {
-        this.radius = 10;
-      }
-    },
-    radius(newValue) {
-      if (newValue !== 100) {
-        this.workThroughoutJamaica = false;
-      }
-    }
-  },
-  computed: {},
   created() {
-  },
-  methods: {
-    async save() {
-      this.isLoading = true
-      await this.$store.dispatch('showLoader')
-      userService.saveTravelToWork({
-        travel_radius: this.radius,
-        work_all_jamaica: this.workThroughoutJamaica
-      }).then((res) => {
-        this.$store.dispatch('hideLoader')
-        this.isLoading = false
-        const {status, message,extra} = res;
-        if (!status) {
-          this.$store.dispatch('error', {message: message, showSwal: true})
-          return;
-        }
-        this.$store.dispatch('updateUserInfo', extra)
-        this.$router.push('/business-type')
-      });
-    },
-
-  },
-  mounted() {
   },
 };
 </script>
@@ -214,4 +147,31 @@ export default {
   width: 20%; /* Adjust based on step */
 }
 
+.selected-count {
+  background-color: var(--primary-color1);
+  color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.profession-item {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profession-item label{
+  font-weight: lighter;
+  cursor: pointer;
+}
 </style>

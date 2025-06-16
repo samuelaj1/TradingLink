@@ -37,7 +37,7 @@ export const menuItems = [
     {
         label: "account",
         icon: "ri-money-dollar-box-line",
-        link: '/admin/account',
+        link: '/admin/auth',
     },
     {
         label: "product.text",
@@ -66,7 +66,7 @@ export const menuItems = [
         label: "settings",
         icon: "ri-user-settings-line",
         permission: "manage admins",
-        link: '/admin/account-settings',
+        link: '/admin/auth-settings',
     },
 
 ];

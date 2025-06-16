@@ -60,7 +60,7 @@
 
 <script>
 import Auth from "../../layouts/auth";
-import appConfig from "../../../../app.config";
+import appConfig from "../../../../app.config.json";
 import topHeader from '../../base-layout/header-1'
 
 /**
@@ -98,7 +98,7 @@ export default {
     async createAccount() {
       const user = this.$store.getters.GET_USER_INFO
       if (!user.email) {
-        alert('Please login to create an account');
+        alert('Please login to create an auth');
         this.$router.push('/login');
         return;
       }

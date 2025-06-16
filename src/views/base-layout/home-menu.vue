@@ -86,7 +86,7 @@
               </li>
               <hr>
               <li>
-                <router-link to="/profile">Profile</router-link>
+                <router-link to="/profile-menu">Profile</router-link>
               </li>
               <hr>
               <li>
@@ -212,7 +212,7 @@ export default {
       // Check the registration step and route accordingly
       switch (this.user.registration_step) {
         case 1:
-          this.$router.push('/create-account');
+          this.$router.push('/create-auth');
           break;
         case 2:
           this.$router.push('/professions');

@@ -96,7 +96,7 @@
 
 <script>
 import Auth from "../../layouts/auth";
-import appConfig from "../../../../app.config";
+import appConfig from "../../../../app.config.json";
 
 import {required, email} from "vuelidate/lib/validators";
 import {userService} from "@/apis/user.service";

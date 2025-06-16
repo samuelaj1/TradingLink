@@ -6,7 +6,7 @@ export default [
     {
         path: '/login',
         name: 'login',
-        component: () => import('../views/pages/account/login'),
+        component: () => import('../views/pages/auth/login'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
 
@@ -24,7 +24,7 @@ export default [
     {
         path: '/register',
         name: 'register',
-        component: () => import('../views/pages/account/register'),
+        component: () => import('../views/pages/auth/register'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
                 // If the user is already logged in
@@ -40,12 +40,12 @@ export default [
         },
     },
     {
-        path: '/create-account',
+        path: '/create-auth',
         name: 'createAccount',
-        component: () => import('../views/pages/account/create-account'),
+        component: () => import('../views/pages/auth/create-account'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
-                // If logged in but not completed account creation
+                // If logged in but not completed auth creation
                 const user = store.getters.GET_USER_INFO;
                 if (user && !user.access_token) {
                     next()
@@ -60,7 +60,7 @@ export default [
     {
         path: '/about-you',
         name: 'about-you',
-        component: () => import('../views/pages/account/about-you'),
+        component: () => import('../views/pages/auth/about-you'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
                 const user = store.getters.GET_USER_INFO;
@@ -77,7 +77,7 @@ export default [
     {
         path: '/professions',
         name: 'professions',
-        component: () => import('../views/pages/account/professions'),
+        component: () => import('../views/pages/auth/professions'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
                 if (store.getters.GET_USER_INFO) {
@@ -101,7 +101,7 @@ export default [
     {
         path: '/travel-to-work',
         name: 'travel',
-        component: () => import('../views/pages/account/travel-to-work'),
+        component: () => import('../views/pages/auth/travel-to-work'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
                 if (store.getters.GET_USER_INFO) {
@@ -124,7 +124,7 @@ export default [
     {
         path: '/business-type',
         name: 'businessType',
-        component: () => import('../views/pages/account/business-type'),
+        component: () => import('../views/pages/auth/business-type'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
                 if (store.getters.GET_USER_INFO) {
@@ -148,7 +148,7 @@ export default [
     {
         path: '/business-details',
         name: 'businessDetails',
-        component: () => import('../views/pages/account/business-details'),
+        component: () => import('../views/pages/auth/business-details'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
                 if (store.getters.GET_USER_INFO) {
@@ -172,7 +172,7 @@ export default [
     {
         path: '/verify-identity',
         name: 'verifyIdentity',
-        component: () => import('../views/pages/account/verify-identity'),
+        component: () => import('../views/pages/auth/verify-identity'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
                 if (store.getters.GET_USER_INFO) {
@@ -195,7 +195,7 @@ export default [
     {
         path: '/id-verification',
         name: 'idVerification',
-        component: () => import('../views/pages/account/id-verification'),
+        component: () => import('../views/pages/auth/id-verification'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
                 // If the user is already logged in
@@ -212,7 +212,7 @@ export default [
     {
         path: '/verify-skills',
         name: 'skillVerification',
-        component: () => import('../views/pages/account/verify-skills'),
+        component: () => import('../views/pages/auth/verify-skills'),
         meta: {
             beforeResolve(routeTo, routeFrom, next) {
                 if (store.getters.GET_USER_INFO) {
@@ -239,12 +239,20 @@ export default [
         component: () => import('../views/pages/home'),
     },
     {
+        path: '/profile-menu',
+        name: 'profileMenu',
+        meta:{
+            authRequired: true,
+        },
+        component: () => import('../views/pages/navigation/small-screen-profile-menu'),
+    },
+    {
         path: '/profile',
         name: 'profile',
         meta:{
             authRequired: true,
         },
-        component: () => import('../views/pages/company-description'),
+        component: () => import('../views/pages/account/company-description'),
     },
     {
         path: '/company-description',
@@ -252,7 +260,7 @@ export default [
         meta:{
             authRequired: true,
         },
-        component: () => import('../views/pages/company-description'),
+        component: () => import('../views/pages/account/company-description'),
     },
     {
         path: '/reviews',
@@ -276,15 +284,15 @@ export default [
         meta:{
             authRequired: true,
         },
-        component: () => import('../views/pages/contact-details'),
+        component: () => import('../views/pages/account/contact-details'),
     },
     {
-        path: '/manage-account',
+        path: '/manage-auth',
         name: 'manage-account',
         meta:{
             authRequired: true,
         },
-        component: () => import('../views/pages/manage-account'),
+        component: () => import('../views/pages/account/manage-account'),
     },
     {
         path: '/saved-leads',
@@ -292,7 +300,7 @@ export default [
         meta:{
             authRequired: true,
         },
-        component: () => import('../views/pages/saved-leads'),
+        component: () => import('../views/pages/account/saved-leads'),
     },
 
     {

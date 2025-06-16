@@ -15,15 +15,11 @@ export const userService = {
     idVerification,
     proofOfSkills,
     verifyEmail,
+    getUserInfo,
     resendVerifyEmail,
-    getAdmins,
-    getVendorUsers,
     getPermissions,
     addAdmins,
-    addVendorUser,
-    editVendorUser,
     editAdmin,
-    toggleAdminUserStatus,
     resendPasswordAdmin,
     forgotPassword,
     resetPassword,
@@ -124,6 +120,15 @@ function proofOfSkills(formData) {
 
 }
 
+function getUserInfo() {
+    return new Promise((resolve) => {
+        axios.get(`/api/user`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
 
 function logout() {
     // remove user from local storage to log user out
@@ -159,31 +164,6 @@ function addAdmins(payload) {
             .catch((err) => resolve({status: false, message: err}));
     });
 }
-function addVendorUser(payload) {
-    return new Promise((resolve) => {
-        axios
-            .post("/customer/api/add-user", payload, useBearerTokenHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
-
-function editVendorUser(payload) {
-    return new Promise((resolve) => {
-        axios
-            .put(
-                `/customer/api/users/${payload.id}`,
-                payload,
-                useBearerTokenHeaders()
-            )
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
 
 function editAdmin(payload) {
     return new Promise((resolve) => {
@@ -200,16 +180,6 @@ function editAdmin(payload) {
     });
 }
 
-function toggleAdminUserStatus(payload) {
-    return new Promise((resolve) => {
-        axios.post(
-                `/admin/api/admin-users/status`, payload, useBearerTokenHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
 
 function resendPasswordAdmin(user_id) {
     return new Promise((resolve) => {
@@ -225,27 +195,7 @@ function resendPasswordAdmin(user_id) {
     });
 }
 
-function getAdmins() {
-    return new Promise((resolve) => {
-        axios
-            .get("/admin/api/users", useBearerTokenHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
 
-function getVendorUsers() {
-    return new Promise((resolve) => {
-        axios
-            .get("/customer/api/users", useBearerTokenHeaders())
-            .then((response) => {
-                resolve(response.data);
-            })
-            .catch((err) => resolve({status: false, message: err}));
-    });
-}
 
 function getPermissions() {
     return new Promise((resolve) => {

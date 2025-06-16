@@ -27,7 +27,7 @@
             </div>
           </template>
 <!--          <b-dropdown-item>-->
-<!--            <router-link to="/settings/account-settings">-->
+<!--            <router-link to="/settings/auth-settings">-->
 <!--              <i class="remixicon-settings-3-line"></i>-->
 <!--              <span>{{ $t("settings") }}</span>-->
 <!--            </router-link>-->

@@ -32,7 +32,7 @@ export const branchMenuItems = [
     {
         label: "transactions",
         icon: "ri-money-dollar-circle-line",
-        link: '/branch/account',
+        link: '/branch/auth',
     },
     {
         label: "Configurations",
@@ -42,7 +42,7 @@ export const branchMenuItems = [
     {
         label: "settings",
         icon: "ri-user-settings-line",
-        link: '/branch/account-settings',
+        link: '/branch/auth-settings',
     }
 ];
 
