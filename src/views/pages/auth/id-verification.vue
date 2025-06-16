@@ -155,6 +155,7 @@ export default {
       isLoading: false,
       identity_type: 'Passport',
       showDropzoneModal: false,
+      identityFile: [],
       identityFileDropzoneOptions: {
         url: '#',
         maxFilesize: 20.0,
@@ -190,7 +191,6 @@ export default {
 
     async submitIdVerification() {
       this.isLoading = true
-      await this.$store.dispatch('showLoader')
       this.identityFile = this.$refs.identityFile.getAcceptedFiles();
 
       if (this.identityFile.length === 0) {
@@ -208,7 +208,6 @@ export default {
       formData.append("identity_type", this.identity_type);
 
       userService.idVerification(formData).then((res) => {
-        this.$store.dispatch('hideLoader')
         this.isLoading = false
         const {status, message, extra} = res;
         if (!status) {
@@ -227,16 +226,6 @@ export default {
 </script>
 
 <style scoped>
-/* Ensure the modal is displayed */
-/*.modal.show {*/
-/*  display: block;*/
-/*}*/
-
-/*.modal-dialog {*/
-/*  position: relative;*/
-/*  max-width: 500px !important;*/
-/*}*/
-
 .registration-steps {
   display: flex;
   flex-direction: column;

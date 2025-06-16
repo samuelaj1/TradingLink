@@ -18,6 +18,9 @@ export const userService = {
     getUserInfo,
     getGuarantee,
     updateGuarantee,
+    getPortfolio,
+    checkIdVerified,
+    updatePortfolio,
     resendVerifyEmail,
     getPermissions,
     addAdmins,
@@ -46,6 +49,7 @@ function login(email, password) {
     })
 
 }
+
 
 function signUp(payload) {
     return new Promise((resolve) => {
@@ -147,6 +151,34 @@ function updateGuarantee(payload) {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
     })
+}
+
+function getPortfolio() {
+    return new Promise((resolve) => {
+        axios.get(`/api/get-portfolio`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function checkIdVerified() {
+    return new Promise((resolve) => {
+        axios.get(`/api/check-id-verified`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function updatePortfolio(formData) {
+    return new Promise((resolve) => {
+        axios.post('/api/update-portfolio', formData, useBearerTokenHeaders(true))
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+
 }
 
 
@@ -269,7 +301,7 @@ function resetPassword(payload) {
 
 function updatePersonalInfo(payload) {
     return new Promise((resolve) => {
-        axios.post('/customer/api/update-personal-info', payload, useBearerTokenHeaders())
+        axios.post('/api/update-personal-info', payload, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));

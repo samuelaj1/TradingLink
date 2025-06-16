@@ -252,7 +252,7 @@ export default [
         meta:{
             authRequired: true,
         },
-        component: () => import('../views/pages/account/company-description'),
+        component: () => import('../views/pages/company-description'),
     },
     {
         path: '/company-description',
@@ -260,7 +260,7 @@ export default [
         meta:{
             authRequired: true,
         },
-        component: () => import('../views/pages/account/company-description'),
+        component: () => import('../views/pages/company-description'),
     },
     {
         path: '/reviews',
@@ -287,13 +287,23 @@ export default [
         component: () => import('../views/pages/account/contact-details'),
     },
     {
-        path: '/manage-auth',
+        path: '/manage-account',
         name: 'manage-account',
         meta:{
             authRequired: true,
         },
         component: () => import('../views/pages/account/manage-account'),
     },
+
+    {
+        path: '/auth-login',
+        name: 'auth-login',
+        meta:{
+            authRequired: true,
+        },
+        component: () => import('../views/pages/auth/auth-login'),
+    },
+
     {
         path: '/saved-leads',
         name: 'saved-leads',

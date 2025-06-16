@@ -1,7 +1,7 @@
 <template>
   <BaseDashboardLayout>
     <template v-slot:title>
-      <h4 class="title mb-5">Company Description</h4>
+      <h4 class="title mb-5 font-weight-bold">Company Description</h4>
     </template>
     <h5>Guarantee</h5>
     <p class="font-weight-lighter">Increase your chances of getting hired by offering a guarantee.</p>
@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import BaseDashboardLayout from '../../base-layout/tradesperson-dashboard';
-import appConfig from "../../../../app.config.json";
+import BaseDashboardLayout from '../base-layout/tradesperson-dashboard';
+import appConfig from "../../../app.config.json";
 import {userService} from "@/apis/user.service";
 
 export default {
