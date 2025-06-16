@@ -46,7 +46,7 @@ export const menuItems = [
         label: 'order_transactions',
         icon: 'ri-money-dollar-circle-line',
         permissions: ["manage_order_transactions"],
-        link: '/account'
+        link: '/auth'
     },
     {
         label: 'faq',

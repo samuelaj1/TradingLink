@@ -106,22 +106,6 @@
     </div>
 
     <div class="list-group mt-4">
-      <h6 class="font-weight-bold">Payments</h6>
-      <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-        <div>
-          <i class="bi bi-currency-exchange mr-2"></i> Balance
-        </div>
-        <i class="bi bi-chevron-right d-lg-none"></i>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-        <div>
-          <i class="bi bi-file-earmark-text mr-2"></i> Payments
-        </div>
-        <i class="bi bi-chevron-right d-lg-none"></i>
-      </a>
-    </div>
-
-    <div class="list-group mt-4">
       <h6 class="font-weight-bold">Support</h6>
       <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
         <div>
@@ -144,7 +128,7 @@
 
 <script>
 export default {
-  name: "TradespersonSidebar",
+  name: "Tradesperson-sidebar",
   data() {
     return {
       user: this.$store.getters.GET_USER_INFO || {},
@@ -161,14 +145,11 @@ export default {
     }
   },
   methods: {
-    toggleSidebar() {
-      this.$emit('link-clicked');
-    },
     completeRegistration() {
       // Check the registration step and route accordingly
       switch (this.user.registration_step) {
         case 1:
-          this.$router.push('/create-account');
+          this.$router.push('/create-auth');
           break;
         case 2:
           this.$router.push('/professions');

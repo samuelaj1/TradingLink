@@ -9,7 +9,7 @@
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h1 class="fw-bold mb-0">Work Details</h1>
 
-              <router-link to="/create-account" class="ms-auto">
+              <router-link to="/business-type" class="ms-auto">
                 <a href="#" class="text-decoration-underline me-2">Cancel</a>
                 <a href="#" aria-label="Close"><i class="fa fa-times"></i></a>
               </router-link>
@@ -23,32 +23,44 @@
               <h6 class=" mb-0">Step 1/5</h6>
               <div class="ms-auto cursor-pointer">
                 <a @click="showModal = true" class="me-2" aria-label="Close"><i class="fa fa-info-circle"></i></a>
-                <a @click="showModal = true" class="text-decoration-underline" >All Steps</a>
+                <a @click="showModal = true" class="text-decoration-underline">All Steps</a>
               </div>
 
             </div>
-            <div class="form-wrapper mt-5">
-              <div class="form-title mb-25">
-                <h3 class="text-start">Tell us about yourself</h3>
-              </div>
-              <p class="mb-4 font-weight-lighter"> Welcome, <span class="text-capitalize">{{ name }}</span>! Let's get started.</p>
-              <p class="mb-4 font-weight-lighter">We want to know our tradespeople better so we can send you the right local leads, matched to your skills.</p>
-              <p class="font-weight-lighter">In this step, we'll ask you about the work you undertake, your professional status, and location.</p>
-              <div class="button-container">
+            <form @submit.prevent="submitBusinessDetails">
+              <div class="form-wrapper mt-5">
+                <h3 class="font-weight-bold mb-5">Enter your business details?</h3>
+
+                <div class="form-inner mb-20">
+                  <label class="large-font mb-2 font-weight-bold" for="name">Trading name <span
+                      class="text-danger">*</span></label>
+                  <input type="text" class="form-control form-input" id="name" v-model="business_name"
+                         placeholder="Enter your trading name" required>
+                </div>
+
+                <div class="form-inner mb-20">
+                  <label class="large-font mb-2 font-weight-bold" for="work-address">Work address <span
+                      class="text-danger">*</span></label>
+                  <input type="text" class="form-control form-input" id="work-address" v-model="work_address"
+                         placeholder="Enter your company address" required>
+                </div>
+
+                <div class="button-container mt-5">
                   <div class="col-12">
                     <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
-                    <button class="btn primry-btn-2 d-inline-block text-light big-button" @click="$router.push('/professions')">
-                      Continue
+                    <button class="btn primry-btn-2 d-inline-block text-light big-button" type="submit"
+                            :disabled="isLoading">
+                      <b-spinner small v-if="isLoading"></b-spinner>
+                      {{ isLoading ? 'Saving' : 'Continue' }}
                     </button>
                   </div>
+                </div>
               </div>
-
-            </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-
     <!-- Steps Modal -->
     <b-modal v-model="showModal" title="Complete your registration">
       <div class="registration-steps">
@@ -80,41 +92,58 @@
 
 <script>
 import Auth from "../../layouts/auth";
-import appConfig from "../../../../app.config";
+import appConfig from "../../../../app.config.json";
 import topHeader from '../../base-layout/header-1'
 
 import {required, email} from "vuelidate/lib/validators";
 import store from "@/store/store";
+import {userService} from "@/apis/user.service";
 
 /**
- * About You component
+ * Login component
  */
 export default {
   page: {
-    title: "About You",
+    title: "Business Details",
     meta: [{name: "description", content: appConfig.description}],
   },
   data() {
     return {
-      showModal:false,
-      name: '',
-      step:1,
-      submitted: false,
-      success: false,
-      error: false,
-      errorMessage: ''
+      showModal: false,
+      isLoading: false,
+      business_name: '',
+      work_address: '',
     };
   },
   components: {
     Auth,
     topHeader
   },
+
   created() {
-    const user = this.$store.getters.GET_USER_INFO;
-    this.name = user.name || '';
-    this.phone = user.phone || '';
   },
   methods: {
+    async submitBusinessDetails() {
+      this.isLoading = true
+      await this.$store.dispatch('showLoader')
+      userService.businessDetails({
+        business_name: this.business_name,
+        work_address: this.work_address,
+      }).then((res) => {
+        this.$store.dispatch('hideLoader')
+        this.isLoading = false
+        const {status, message, extra} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message: message, showSwal: true})
+          return;
+        }
+        this.$store.dispatch('updateUserInfo', extra)
+        this.$router.push('/verify-identity')
+      });
+    },
+
+  },
+  mounted() {
   },
 };
 </script>
@@ -161,17 +190,6 @@ export default {
   width: 20%; /* Adjust based on step */
 }
 
-.selected-count {
-  background-color: var(--primary-color1);
-  color: white;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-}
 
 .profession-item {
   background-color: #fff;
@@ -188,4 +206,5 @@ export default {
   font-weight: lighter;
   cursor: pointer;
 }
+
 </style>

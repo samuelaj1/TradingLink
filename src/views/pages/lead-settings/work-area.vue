@@ -1,7 +1,7 @@
 <template>
   <BaseDashboardLayout>
     <template v-slot:title>
-      <h4 class="title mb-5">Portfolio</h4>
+      <h4 class="title mb-5">Work Area</h4>
     </template>
 
     <div class="row">
@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import BaseDashboardLayout from '../base-layout/tradesperson-dashboard';
+import BaseDashboardLayout from '../../base-layout/tradesperson-dashboard';
 import VueDropzone from 'vue2-dropzone';
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
-import appConfig from "../../../app.config.json";
+import appConfig from "../../../../app.config.json";
 
 export default {
   page: {

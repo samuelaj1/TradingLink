@@ -224,6 +224,8 @@
   <div v-show="!isMobile" >
     <HomeFooter></HomeFooter>
   </div>
+    <MobileFooter></MobileFooter>
+
   </div>
 </template>
 
@@ -231,8 +233,14 @@
 import HomeFooter from '../base-layout/footer';
 import topHeader from '../base-layout/header-2';
 import SideBar from '../base-layout/tradesperson-sidebar';
+import MobileFooter from '../../components/mobile-nav';
+import appConfig from "../../../app.config.json";
 
 export default {
+  page: {
+    title: "New Leads",
+    meta: [{ name: "description", content: appConfig.description }]
+  },
   data() {
     return {
       user: this.$store.getters.GET_USER_INFO,
@@ -244,6 +252,7 @@ export default {
     HomeFooter,
     topHeader,
     SideBar,
+    MobileFooter
   },
   computed: {
     loggedIn() {
@@ -251,16 +260,7 @@ export default {
     },
   },
   methods: {
-    toggleSidebar() {
-      if (this.isMobile) {
-        this.showSidebar = !this.showSidebar;
-      }
-    },
-    showSideBarMenu() {
-      if (this.isMobile) {
-        this.showSidebar = true;
-      }
-    },
+
     checkScreenSize() {
       this.isMobile = window.innerWidth < 992;
       this.showSidebar = !this.isMobile;
@@ -271,7 +271,6 @@ export default {
     window.addEventListener('resize', this.checkScreenSize);
     $('body').addClass('bg-wight')
 
-    $('#company-description').addClass('active')
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.checkScreenSize);
@@ -280,9 +279,5 @@ export default {
 </script>
 
 <style scoped>
-/* Add any custom styles here */
 
-.profession-list {
-  height: auto !important;
-}
 </style>

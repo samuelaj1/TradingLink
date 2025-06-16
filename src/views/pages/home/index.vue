@@ -4628,7 +4628,12 @@
 <script>
 import HomeFooter from '../../base-layout/footer'
 import topHeader from '../../base-layout/home-menu'
+import appConfig from "../../../../app.config.json";
 export default {
+  page: {
+    title: "Home",
+    meta: [{ name: "description", content: appConfig.description }]
+  },
   components:{
     HomeFooter,
     topHeader

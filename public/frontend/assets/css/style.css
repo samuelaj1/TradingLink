@@ -27156,10 +27156,36 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
     .profession-list {
         height: 600px !important;
     }
+    .pt-80{
+        padding-top: 50px !important;
+    }
 }
 
 .height-70{
     min-height: 70vh;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid #dee2e6;
+    z-index: 100;
+}
+
+.bottom-nav .nav-link {
+    text-align: center;
+    padding: 10px;
+    color: #6c757d;
+}
+
+.bottom-nav .nav-link.active {
+    color: var(--primary-color1);
+}
+
+.bottom-nav .nav-link i {
+    font-size: 1.25rem;
 }
 
 

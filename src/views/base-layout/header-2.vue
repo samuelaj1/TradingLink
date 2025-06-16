@@ -148,24 +148,6 @@
     </header>
 
     <!-- Bottom Navigation -->
-    <nav class="bottom-nav navbar navbar-expand navbar-light bg-light justify-content-around d-md-none" v-if="isMobile && loggedIn">
-      <router-link class="nav-link" to="/new-leads">
-        <i class="bi bi-house-door-fill d-block"></i>
-        <small>New Leads</small>
-      </router-link>
-      <router-link class="nav-link" to="/#">
-        <i class="bi bi-briefcase d-block"></i>
-        <small>Activity</small>
-      </router-link>
-      <router-link class="nav-link" to="/#">
-        <i class="bi bi-people d-block"></i>
-        <small>Contacts</small>
-      </router-link>
-      <router-link class="nav-link active" to="/profile">
-        <i class="bi bi-person-circle d-block"></i>
-        <small>Profile</small>
-      </router-link>
-    </nav>
   </div>
 </template>
 
@@ -197,7 +179,7 @@ export default {
       // Check the registration step and route accordingly
       switch (this.user.registration_step) {
         case 1:
-          this.$router.push('/create-account');
+          this.$router.push('/create-auth');
           break;
         case 2:
           this.$router.push('/professions');
@@ -236,28 +218,5 @@ export default {
 <style scoped>
 .top-bar2 {
   background: white !important;
-}
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: white;
-  border-top: 1px solid #dee2e6;
-  z-index: 100;
-}
-
-.nav-link {
-  text-align: center;
-  padding: 10px;
-  color: #6c757d;
-}
-
-.nav-link.active {
-  color: var(--primary-color1);
-}
-
-.nav-link i {
-  font-size: 1.25rem;
 }
 </style>

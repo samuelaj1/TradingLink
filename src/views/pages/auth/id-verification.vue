@@ -132,7 +132,7 @@
 
 <script>
 import Auth from "../../layouts/auth";
-import appConfig from "../../../../app.config";
+import appConfig from "../../../../app.config.json";
 import topHeader from '../../base-layout/header-1'
 import vue2Dropzone from "vue2-dropzone";
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';

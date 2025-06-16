@@ -21,7 +21,7 @@ export const customerServiceMenuItems = [
         label: "settings",
         icon: "ri-user-settings-line",
         permission: "manage admins",
-        link: '/customer-service/account-settings',
+        link: '/customer-service/auth-settings',
     }
 ];
 

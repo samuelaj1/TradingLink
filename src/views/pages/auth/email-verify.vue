@@ -146,7 +146,7 @@
 
 <script>
 import Auth from "../../layouts/auth";
-import appConfig from "../../../../app.config";
+import appConfig from "../../../../app.config.json";
 import {userService} from "@/apis/user.service";
 
 /**
