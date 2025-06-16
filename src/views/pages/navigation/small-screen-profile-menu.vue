@@ -55,7 +55,8 @@
             <i class="bi bi-file-text me-3"></i> Contact Details
           </div>
           <div>
-            <span class="badge action-required rounded-pill me-2">Action required</span>
+            <span class="badge action-required rounded-pill me-2" v-if="!user.identity_verified || user.identity_verified ==='rejected'">Action required</span>
+            <span class="badge bg-secondary text-white rounded-pill me-2" v-if="user.identity_verified ==='pending'">Pending</span>
             <i class="bi bi-chevron-right text-muted"></i>
           </div>
         </router-link>
@@ -137,6 +138,16 @@ export default {
       return this.user.registration_status === 'complete';
     }
   },
+  watch: {
+    // Watch the Vuex store getter directly and update local user data
+    '$store.getters.GET_USER_INFO': {
+      handler(newUser) {
+        this.user = newUser || {};
+      },
+      immediate: true,
+      deep: true
+    }
+  },
   methods: {
     handleNavigation() {
       this.$emit('navigate');
@@ -186,60 +197,5 @@ export default {
 </script>
 
 <style scoped>
-.settings-container {
-  background-color: #f2f2f7;
-  min-height: 100vh;
-  padding-bottom:4rem;
-  padding-top:0.5rem;
-}
 
-.settings-widget {
-  background-color: white;
-}
-
-.profile-section {
-  border-bottom: 1px solid #f2f2f7;
-}
-
-.registration-section {
-  border-bottom: 10px solid #f2f2f7;
-}
-
-.settings-group {
-  border-bottom: 10px solid #f2f2f7;
-}
-
-.settings-header {
-  color: #8e8e93;
-  font-size: 14px;
-  background-color: #f2f2f7;
-}
-
-.settings-item {
-  border-bottom: 1px solid #f2f2f7;
-}
-
-.settings-item:last-child {
-  border-bottom: none;
-}
-
-.profile-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  background-color: #e9ecef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.badge {
-  margin-right: 0.5rem;
-}
-
-.action-required {
-  color: #ff3b30;
-  background-color: #ffebee;
-  border-color: #ffcdd2;
-}
 </style>

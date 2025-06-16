@@ -64,7 +64,9 @@
         <div>
           <i class="bi bi-file-text mr-2"></i> Contact details
         </div>
-        <span class="badge action-required rounded-pill">Action required</span>
+        <span class="badge action-required rounded-pill" v-if="!user.identity_verified || user.identity_verified ==='rejected'">Action required</span>
+
+        <span class="badge bg-secondary text-white rounded-pill" v-if="user.identity_verified ==='pending'">Pending</span>
         <i class="bi bi-chevron-right d-lg-none"></i>
       </router-link>
       <router-link to="manage-account" id="manage-account"
@@ -142,6 +144,16 @@ export default {
     isRegistrationComplete() {
       // Check if the registration is complete
       return this.user.registration_status ==='complete'
+    }
+  },
+  watch: {
+    // Watch the Vuex store getter directly and update local user data
+    '$store.getters.GET_USER_INFO': {
+      handler(newUser) {
+        this.user = newUser || {};
+      },
+      immediate: true,
+      deep: true
     }
   },
   methods: {

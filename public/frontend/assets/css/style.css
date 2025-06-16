@@ -925,6 +925,31 @@ i.bx {
     opacity: 1;
 }
 
+.btn-primary {
+    color: #fff;
+    background-color: #00A7AC;
+    border-color: #00A7AC;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #008d92; /* A slightly darker shade for hover state */
+    border-color: #007a7f; /* A slightly darker shade for hover state */
+}
+
+.btn-check:focus + .btn-primary, .btn-primary:focus {
+    color: #fff;
+    background-color: #008d92; /* A slightly darker shade for focus state */
+    border-color: #007a7f; /* A slightly darker shade for focus state */
+    box-shadow: 0 0 0 0.25rem rgba(0, 167, 172, 0.5); /* Adjusted to match the new color */
+}
+
+.icon-circle {
+    width: 30px;
+    height: 30px;
+}
+
+
 .explore-btn a {
     font-size: 1.063rem;
     font-weight: 500;
@@ -27188,6 +27213,72 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
     font-size: 1.25rem;
 }
 
+
+/*user navigation settings*/
+.settings-container {
+    background-color: #f2f2f7;
+    min-height: 100vh;
+    padding-bottom:4rem;
+    padding-top:0.5rem;
+}
+
+.settings-widget {
+    background-color: white;
+}
+
+.profile-section {
+    border-bottom: 1px solid #f2f2f7;
+}
+
+.registration-section {
+    border-bottom: 10px solid #f2f2f7;
+}
+
+.settings-group {
+    border-bottom: 10px solid #f2f2f7;
+}
+
+.settings-header {
+    color: #8e8e93;
+    font-size: 14px;
+    background-color: #f2f2f7;
+}
+
+.settings-item {
+    border-bottom: 1px solid #f2f2f7;
+}
+
+.settings-item:last-child {
+    border-bottom: none;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge {
+    margin-right: 0.5rem;
+}
+
+.action-required {
+    color: #ff3b30;
+    background-color: #ffebee;
+    border-color: #ffcdd2;
+}
+
+/*end of settings*/
+
+.form-control:focus{
+    box-shadow: none;
+    border-color: var(--primary-color1);
+    appearance: auto;
+}
 
 
 /*# sourceMappingURL=style.css.map */
