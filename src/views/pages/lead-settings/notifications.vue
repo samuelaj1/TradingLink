@@ -4,7 +4,7 @@
       <h4 class="title mb-5">Notifications</h4>
     </template>
 
-    <div class="row">
+    <div class="row" style="margin-bottom: 7rem">
       <div class="col-md-8">
         <h5 class="fw-bold">Lead and job updates</h5>
 

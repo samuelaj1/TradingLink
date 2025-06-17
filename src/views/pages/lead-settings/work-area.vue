@@ -4,7 +4,7 @@
       <h4 class="title mb-5">Work Area</h4>
     </template>
 
-    <div class="row">
+    <div class="row" style="margin-bottom: 6rem">
       <div class="col-md-8">
         <p class="fw-lighter">This is the area you are prepared to travel for work and ensures you receive relevant
           leads.</p>
