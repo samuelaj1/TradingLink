@@ -77,35 +77,35 @@
       <!-- Lead Settings Section -->
       <div class="settings-group">
         <div class="settings-header p-3">Lead Settings</div>
-        <a href="#" class="settings-item d-flex justify-content-between align-items-center p-3">
+        <router-link to="/work-area" class="settings-item d-flex justify-content-between align-items-center p-3">
           <div>
             <i class="bi bi-briefcase me-3"></i> Work Area
           </div>
           <i class="bi bi-chevron-right text-muted"></i>
-        </a>
-        <a href="#" class="settings-item d-flex justify-content-between align-items-center p-3">
+        </router-link>
+        <router-link to="/services" class="settings-item d-flex justify-content-between align-items-center p-3">
           <div>
             <i class="bi bi-tools me-3"></i> Services
           </div>
           <i class="bi bi-chevron-right text-muted"></i>
-        </a>
-        <a href="#" class="settings-item d-flex justify-content-between align-items-center p-3">
+        </router-link>
+        <router-link to="/notifications" class="settings-item d-flex justify-content-between align-items-center p-3">
           <div>
             <i class="bi bi-bell me-3"></i> Notifications
           </div>
           <i class="bi bi-chevron-right text-muted"></i>
-        </a>
+        </router-link>
       </div>
 
       <!-- Support Section -->
       <div class="settings-group">
         <div class="settings-header p-3">Support</div>
-        <a href="#" class="settings-item d-flex justify-content-between align-items-center p-3">
+        <router-link to="/support" class="settings-item d-flex justify-content-between align-items-center p-3">
           <div>
             <i class="bi bi-info-circle me-3"></i> Support Centre
           </div>
           <i class="bi bi-chevron-right text-muted"></i>
-        </a>
+        </router-link>
       </div>
 
       <!-- Logout -->
