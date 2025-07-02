@@ -10,10 +10,10 @@
               <p class="fw-lighter mb-4">Your job has been posted successfully. Thank you!</p>
               <h5 class="fw-bold mb-2">What happens now?</h5>
               <p>We will notify tradespeople about your job shortly. If someone is interested, you'll receive a notification by email.</p>
-              <button class="btn btn-primary mt-4 mb-5 custom-block-btn" style="height: 3rem">View your job</button>
+              <router-link :to="'/my-projects/'+project_id" class="btn btn-primary mt-4 mb-5 custom-block-btn" style="height: 3rem">View your job</router-link>
 
               <p>Looking for help with other jobs around the house?</p>
-              <button class="btn big-button btn-outline-primary-1 mb-5 custom-block-btn">Post another project</button>
+              <router-link to="/post-a-job" class="btn big-button btn-outline-primary-1 mb-5 custom-block-btn">Post another project</router-link>
             </div>
 
           </div>
@@ -68,6 +68,7 @@ export default {
       },
       cityName: '',
       parishName: '',
+      project_id: null,
     };
   },
 
@@ -75,6 +76,12 @@ export default {
     // google: googleApi,
   },
   methods: {
+  },
+  created() {
+    this.project_id = this.$route.params.id
+    if (!this.project_id) {
+      this.$router.push('/unauthorized');
+    }
   },
   mounted() {
     this.$nextTick(() => {

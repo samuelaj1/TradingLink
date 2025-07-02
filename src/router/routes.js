@@ -278,7 +278,7 @@ export default [
 
 
     {
-        path: '/service-request-posted',
+        path: '/service-request-posted/:id',
         name: 'serviceRequestPosted',
         meta: {
             authRequired: true,

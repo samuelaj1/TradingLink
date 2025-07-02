@@ -640,7 +640,7 @@ export default {
       userService.postJob(formData).then((res) => {
         this.submitLoading = false;
         this.trades = res.extra;
-        this.$router.push('/service-request-posted');
+        this.$router.push('/service-request-posted/' + res.extra.project_id);
       })
     },
 
