@@ -52,7 +52,7 @@ import {userService} from "@/apis/user.service";
 export default {
   name: "InboxPage",
   page: {
-    title: "Company Description",
+    title: "Inbox",
     meta: [{name: "description", content: appConfig.description}]
   },
   data() {

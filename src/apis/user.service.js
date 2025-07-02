@@ -5,8 +5,10 @@ export const userService = {
     login,
     logout,
     getTrades,
+    getTradeQuestion,
     getParisCities,
     createAccount,
+    registerHomeOwner,
     signUp,
     saveProfession,
     saveTravelToWork,
@@ -18,6 +20,8 @@ export const userService = {
     verifyEmail,
     getUserInfo,
     getGuarantee,
+    getProjectDetails,
+    getPostedServices,
     updateGuarantee,
     getPortfolio,
     getBusinessType,
@@ -27,10 +31,13 @@ export const userService = {
     checkIdVerified,
     editPortfolio,
     addPortfolio,
+    getRecommendedTradesperson,
     savePortfolioOrder,
     deletePortfolio,
     resendVerifyEmail,
     getPermissions,
+    verifyHomeOwner,
+    postJob,
     addAdmins,
     editAdmin,
     resendPasswordAdmin,
@@ -41,7 +48,6 @@ export const userService = {
 };
 
 function login(email, password) {
-
     //// fetch from the server
     const data = {
         "grant_type": "password",
@@ -55,9 +61,7 @@ function login(email, password) {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
     })
-
 }
-
 
 function signUp(payload) {
     return new Promise((resolve) => {
@@ -66,12 +70,21 @@ function signUp(payload) {
                  resolve(response.data)
         }).catch(err => resolve({status: false, message: err}));
     })
-
 }
 
 function createAccount(payload) {
     return new Promise((resolve) => {
         axios.post('/api/create-account', payload, useBasicAuthHeaders())
+            .then(response => {
+                 resolve(response.data)
+        }).catch(err => resolve({status: false, message: err}));
+    })
+
+}
+
+function registerHomeOwner(payload) {
+    return new Promise((resolve) => {
+        axios.post('/job-poster/api/register-home-owner', payload, useBasicAuthHeaders())
             .then(response => {
                  resolve(response.data)
         }).catch(err => resolve({status: false, message: err}));
@@ -133,6 +146,7 @@ function idVerification(formData) {
     })
 }
 
+
 function proofOfSkills(formData) {
     return new Promise((resolve, reject) => {
         axios.post('/api/proof-of-skills', formData, useBearerTokenHeaders(true))
@@ -155,6 +169,33 @@ function getUserInfo() {
 function getGuarantee() {
     return new Promise((resolve) => {
         axios.get(`/api/user/guarantee`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function getProjectDetails(id) {
+    return new Promise((resolve) => {
+        axios.get(`/api/project/${id}`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function getPostedServices() {
+    return new Promise((resolve) => {
+        axios.get(`/api/posted-services`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function getRecommendedTradesperson(service_id) {
+    return new Promise((resolve) => {
+        axios.get(`/api/recommended/tradesperson/${service_id}`, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
@@ -260,6 +301,15 @@ function deletePortfolio(id) {
     })
 }
 
+function postJob(formData) {
+    return new Promise((resolve) => {
+        axios.post('/job-poster/api/post-job', formData, useBearerTokenHeaders(true))
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
 
 function logout() {
     // remove user from local storage to log user out
@@ -348,6 +398,16 @@ function getTrades(limit) {
     });
 }
 
+function getTradeQuestion(id) {
+    return new Promise((resolve) => {
+        axios.get(`/api/trades/${id}/questions`, useBasicAuthHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
 function getParisCities() {
     return new Promise((resolve) => {
         axios.get("/api/parishes-cities", useBasicAuthHeaders())
@@ -356,6 +416,16 @@ function getParisCities() {
             })
             .catch((err) => resolve({status: false, message: err}));
     });
+}
+
+function verifyHomeOwner(payload) {
+    return new Promise((resolve) => {
+        axios.post('/job-poster/api/verify-home-owner', payload, useBasicAuthHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+
 }
 
 function forgotPassword(payload) {

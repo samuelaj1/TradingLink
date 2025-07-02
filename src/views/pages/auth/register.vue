@@ -275,14 +275,13 @@ export default {
     submit() {
       this.$router.push('/create-account')
     },
-    async getTrades() {
-      this.tradeLoader = true
-      await this.$store.dispatch('showLoader')
-      userService.getTrades().then((res) => {
-        this.trades = res.extra;
-        this.tradeLoader = false
-      });
-    },
+     getTrades() {
+       this.tradeLoader = true
+       userService.getTrades().then((res) => {
+         this.trades = res.extra;
+         this.tradeLoader = false
+       });
+     },
 
     async getParisCities() {
       this.parishLoader = true

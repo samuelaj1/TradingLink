@@ -39,6 +39,15 @@
           </div>
           <i class="bi bi-chevron-right text-muted"></i>
         </router-link>
+        <router-link to="/inbox" class="settings-item d-flex justify-content-between align-items-center p-3">
+          <div>
+            <i class="bi bi-file-text me-3"></i> Inbox
+          </div>
+          <div>
+            <span class="badge bg-danger text-white rounded-pill">2</span>
+            <i class="bi bi-chevron-right text-muted"></i>
+          </div>
+        </router-link>
         <router-link to="/portfolio" class="settings-item d-flex justify-content-between align-items-center p-3">
           <div>
             <i class="bi bi-camera me-3"></i> Portfolio

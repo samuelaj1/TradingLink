@@ -25103,9 +25103,9 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
 }
 
 .btn-outline-primary-1:hover {
-    color: #fff;
-    background-color: var(--primary-color1);
-    border-color: var(--primary-color1)
+    /*color: #fff;*/
+    /*background-color: var(--primary-color1);*/
+    /*border-color: var(--primary-color1)*/
 }
 
 .big-button {
@@ -25442,4 +25442,8 @@ header.style-7 .main-menu ul li.menu-item-has-children > i {
 
 .btn-rounded {
     border-radius: 50px !important;
+}
+
+input[type="checkbox"]{
+    padding:10px;
 }
