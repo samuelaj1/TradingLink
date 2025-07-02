@@ -8,7 +8,7 @@
       <div class="col-md-10">
         <!-- Add Portfolio Button -->
         <div class="mb-4">
-          <b-button variant="primary" @click="addPortfolio"><i class="bi bi-plus-circle"/> Add Portfolio</b-button>
+          <b-button variant="primary" @click="addPortfolio"><i class="bi bi-plus-circle"/> Add Photos</b-button>
         </div>
 
         <!-- Portfolio Cards with Draggable -->
@@ -18,8 +18,7 @@
                 class="card h-100 shadow-sm"
                 style="cursor: pointer;"
             >
-              <img
-                  :src="item.file || 'https://placehold.co/400x300'"
+              <img :src="item.file || 'https://placehold.co/400x300'"
                   class="card-img-top"
                   @click="openGallery(index)"
                   style="height: 200px; object-fit: cover;"

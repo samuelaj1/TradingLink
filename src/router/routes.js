@@ -202,7 +202,7 @@ export default [
                     next({name: 'Home'});
                 } else {
                     // Continue to the login page
-                    next()
+                   return next()
                 }
 
             },
@@ -238,17 +238,101 @@ export default [
         component: () => import('../views/pages/home'),
     },
     {
+        path: '/post-a-job',
+        name: 'postJob',
+        meta: {
+            beforeResolve(routeTo, routeFrom, next) {
+                const loggedUser = store.getters.GET_USER_INFO;
+
+                // Allow access if user is not logged in
+                if (!loggedUser) {
+                    return next();
+                }
+
+                // Allow access if user is logged in and role is 'homeowner'
+                const userRole = loggedUser.roles?.[0] || '';
+                if (userRole === 'homeowner') {
+                    return next();
+                }
+
+                // Otherwise, redirect to unauthorized
+                return next({name: 'unauthorized'});
+            },
+        },
+        component: () => import('../views/pages/home/post-job'),
+    },
+
+
+    {
+        path: '/service-request-posted',
+        name: 'serviceRequestPosted',
+        meta: {
+            authRequired: true,
+            beforeResolve(routeTo, routeFrom, next) {
+                const loggedUser = store.getters.GET_USER_INFO;
+
+                // Allow access if user is not logged in
+                if (!loggedUser) {
+                    return next();
+                }
+
+                // Allow access if user is logged in and role is 'homeowner'
+                const userRole = loggedUser.roles?.[0] || '';
+                if (userRole === 'homeowner') {
+                    return next();
+                }
+
+                // Otherwise, redirect to unauthorized
+                return next({name: 'unauthorized'});
+            },
+        },
+
+        component: () => import('../views/pages/homeowner/service-request-posted'),
+    },
+    {
+        path: '/question-builder',
+        name: 'questionBuilder',
+        meta: {
+            authRequired: true,
+        },
+        component: () => import('../views/pages/admin/question-builder'),
+    },
+    {
         path: '/profile-menu',
         name: 'profileMenu',
-        meta:{
+        meta: {
             authRequired: true,
         },
         component: () => import('../views/base-layout/navigation/small-screen-profile-menu'),
     },
     {
+        path: '/projects/menu/:id',
+        name: 'projectMenu',
+        meta: {
+            authRequired: true,
+        },
+        component: () => import('../views/base-layout/navigation/home-owner-sm-menu'),
+    },
+    {
+        path: '/tradesperson-recommendation/:id',
+        name: 'tradesperson-recommendation',
+        meta: {
+            authRequired: true,
+        },
+        component: () => import('../views/pages/homeowner/tradesperson-recommendation'),
+    },
+    {
+        path: '/my-projects/:id',
+        name: 'project-details',
+        meta: {
+            authRequired: true,
+        },
+        component: () => import('../views/pages/homeowner/project-details'),
+    },
+    {
         path: '/profile',
         name: 'profile',
-        meta:{
+        meta: {
             authRequired: true,
         },
         component: () => import('../views/pages/company-description'),
@@ -338,6 +422,15 @@ export default [
     },
 
     {
+        path: '/homeowner/my-projects',
+        name: 'homeowner-my-projects',
+        meta:{
+            authRequired: true,
+        },
+        component: () => import('../views/pages/homeowner/my-projects'),
+    },
+
+    {
         path: '/work-area',
         name: 'work-area',
         meta:{
@@ -399,6 +492,11 @@ export default [
             authRequired: true,
         },
         component: () => import('../views/pages/error/404')
+    },
+    {
+        path: '/unauthorized',
+        name: 'unauthorized',
+        component: () => import('../views/pages/error/unauthorized')
     },
     {
         path: '/error/500',

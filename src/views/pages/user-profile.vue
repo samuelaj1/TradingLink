@@ -28,8 +28,8 @@
           <!-- Portfolio -->
           <div>
             <h5 class="mb-3 mt-4 fw-bold">Portfolio</h5>
-            <div class="row justify-content-start align-items-stretch">
-              <div v-for="(item, index) in portfolio" :key="index" class="col-md-3 mb-3 d-flex">
+            <div class="row justify-content-start align-items-stretch mx-sm-0 mx-5">
+              <div v-for="(item, index) in portfolio" :key="index" class="col-md-3 mb-3">
                 <div
                     class="card h-100 shadow-sm"
                     style="cursor: pointer;"

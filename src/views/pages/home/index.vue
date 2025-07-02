@@ -1,7 +1,8 @@
 <template>
   <div>
+    <homeOwnerHeader v-if="isHomeOwner"/>
 
-    <topHeader></topHeader>
+    <topHeader v-else/>
 
     <div class="hero2">
       <div class="hero-wapper">
@@ -1519,8 +1520,10 @@
 <script>
 import HomeFooter from '../../base-layout/footer'
 import topHeader from '../../base-layout/navigation/home-menu'
+import homeOwnerHeader from '../../base-layout/navigation/homeowner-menu'
 import appConfig from "../../../../app.config.json";
 import {userService} from "@/apis/user.service";
+import store from "@/store/store";
 
 export default {
   name: "Home",
@@ -1531,12 +1534,21 @@ export default {
   data() {
     return {
       trades: [],
-      tradesLoader: false
+      tradesLoader: false,
+      user: this.$store.getters.GET_USER_INFO || {},
     };
+  },
+  computed: {
+    isHomeOwner() {
+      const loggedUser = store.getters.GET_USER_INFO;
+      const userRole = loggedUser.roles?.[0] || '';
+      return userRole === 'homeowner';
+    }
   },
   components: {
     HomeFooter,
-    topHeader
+    topHeader,
+    homeOwnerHeader
   },
   methods: {
     async getTrades() {
@@ -1552,7 +1564,6 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      $('body').addClass('bg-wight')
       $('.select1').niceSelect();
       $('#slick1').slick({
         rows: 2,

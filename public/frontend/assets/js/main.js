@@ -1,4 +1,6 @@
-(function($) { "use strict";
+// jQuery.noConflict();
+
+// (function($) { "use strict";
 
   // $('.odometer').counterUp({
   //   delay: 10,
@@ -1121,4 +1123,4 @@ jQuery(window).on('load', function () {
   $(".eg-preloder").fadeOut("100");
 });
 
-}(jQuery));
+// }(jQuery));

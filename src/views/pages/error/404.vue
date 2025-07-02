@@ -2,8 +2,8 @@
 import Auth from "../../layouts/auth";
 import appConfig from "../../../../app.config";
 import topHeader from '../../base-layout/header-2';
-
-
+import homeOwnerHeader from '../../base-layout/navigation/homeowner-menu'
+import store from "@/store/store";
 /**
  * Error-404 component
  */
@@ -15,17 +15,26 @@ export default {
   data() {
     return {};
   },
+  computed: {
+    isHomeOwner() {
+      const loggedUser = store.getters.GET_USER_INFO;
+      const userRole = loggedUser.roles?.[0] || '';
+      return userRole === 'homeowner';
+    }
+  },
   components: {
     Auth,
     topHeader,
-
+    homeOwnerHeader
   },
 };
 </script>
 
 <template>
   <div>
-    <topHeader></topHeader>
+    <homeOwnerHeader v-if="isHomeOwner"/>
+
+    <topHeader v-else/>
     <div class="error-page">
       <div class="container">
         <div class="row">

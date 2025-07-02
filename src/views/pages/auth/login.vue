@@ -21,11 +21,9 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-inner mb-20">
-                      <label for="email">Email*</label>
-                      <div class="input-area">
-                        <img src="../../../../public/frontend/assets/images/icon/email-2.svg" alt="">
-                        <input type="email" id="email" v-model="email" placeholder="Email" required>
-                      </div>
+                      <label for="email">Email</label>
+                      <input type="email" id="email" v-model="email" placeholder="" required>
+
                     </div>
                     <div class="form-inner mb-20">
                       <label class="large-font" for="email">Password</label>
