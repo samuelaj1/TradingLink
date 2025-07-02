@@ -17,7 +17,7 @@
 
     <div class="py-5 iJZMjH">
       <div class="container">
-        <a href="/post-a-job" class="hOqzfX kFPtkB">
+        <router-link to="/post-a-job" class="hOqzfX kFPtkB">
           <h2 class="text-light fw-bold">Post your job now</h2>
           <svg aria-hidden="true" focusable="false" data-prefix="fass" data-icon="circle-arrow-right"
                class="svg-inline--fa fa-circle-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@
             <path fill="currentColor"
                   d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zm409 17L297 385l-17 17L246.1 368l17-17 71-71L120 280l-24 0 0-48 24 0 214.1 0-71-71-17-17L280 110.1l17 17L409 239l17 17-17 17z"></path>
           </svg>
-        </a>
+        </router-link>
       </div>
     </div>
 

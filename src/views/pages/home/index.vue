@@ -1264,7 +1264,7 @@
                 <p class="fw-lighter text-light mt-3" style="font-size: 18px">Reviews on MyBuilder are written by
                   customers like you</p>
                 <div class="text-center mt-5">
-                  <button class="btn btn-light text-center py-3 btn-block">Post your job</button>
+                  <router-link to="/post-a-job" class="btn btn-light text-center py-3 btn-block">Post your job</router-link>
                 </div>
               </div>
             </div>
