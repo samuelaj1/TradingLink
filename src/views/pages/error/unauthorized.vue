@@ -9,7 +9,7 @@
         <h1>This page isn't available</h1>
 
         <p>You can't view this page whilst logged in with this account.
-          <router-link to="/Log out" class="text-decoration-underline">Logout.</router-link>
+          <router-link to="/logout" class="text-decoration-underline">Logout.</router-link>
         </p>
       </div>
     </div>
