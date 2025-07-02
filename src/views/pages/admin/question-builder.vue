@@ -32,6 +32,7 @@
 
 <script>
 import NestedOption from '../../../components/optionNode.vue';
+import {userService} from "@/apis/user.service";
 
 export default {
   components: { NestedOption },
@@ -53,12 +54,6 @@ export default {
     this.fetchTrades();
   },
   methods: {
-    fetchTrades() {
-      this.trades = [
-        { id: '1', name: 'Plumbing' },
-        { id: '2', name: 'Electrical' },
-      ];
-    },
     addOption(question) {
       question.options.push({
         formLabel: '',
@@ -70,10 +65,28 @@ export default {
       });
     },
     submitQuestions() {
-      console.log('Saving for trade ID:', this.selectedTrade);
-      console.log(JSON.stringify(this.question, null, 2));
-      alert('Questions submitted. Check console log.');
-    }
+
+      const payload = {
+        trade_id: this.selectedTrade,
+        question: this.question
+      };
+      userService.saveTradeQuestions(payload).then((res) => {
+        const {message, status, extra} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message: message, showSwal: true});
+          return;
+        }
+        this.$store.dispatch('success', {message: message, showSwal: true});
+      });
+
+    },
+    fetchTrades() {
+      this.tradeLoader = true
+      userService.getTrades().then((res) => {
+        this.trades = res.extra;
+        this.tradeLoader = false
+      });
+    },
   }
 };
 </script>

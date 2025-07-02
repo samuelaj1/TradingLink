@@ -39,6 +39,7 @@ export const userService = {
     verifyHomeOwner,
     postJob,
     addAdmins,
+    saveTradeQuestions,
     editAdmin,
     resendPasswordAdmin,
     forgotPassword,
@@ -287,6 +288,15 @@ function addPortfolio(formData) {
 function savePortfolioOrder(formData) {
     return new Promise((resolve) => {
         axios.post('/api/portfolio/reorder', formData, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function saveTradeQuestions(payload) {
+    return new Promise((resolve) => {
+        axios.post('/api/save-questions', payload, useBasicAuthHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
