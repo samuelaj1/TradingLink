@@ -10,36 +10,27 @@
           <div class="row">
             <div class="col-lg-7 d-flex align-items-center">
               <div class="hero-content">
-                <h1>To Choose Your Level Best <span>Dream Career.</span></h1>
-                <p><span>2400</span> Peoples are daily search in this portal, <span>100</span> user added job portal!
-                </p>
-                <div class="job-search-area">
-                  <form>
+                <h1>Find the perfect expert for your <span>project.</span></h1>
+                <h4 class="text-light mt-5">What is your job?</h4>
+                <div class="job-search-area mt-3">
+                  <form @submit.prevent>
                     <div class="form-inner job-title">
-                      <input type="text" placeholder="What jobs are you looking for?">
+                      <input type="text" placeholder="Search for a tradesperson" v-model="searchQuery" @focus="showDropdown = true" @input="filterCategories" @blur="collapseDropdown">
                     </div>
-                    <div class="form-inner category">
-                      <select class="select1">
-                        <option value="0">Category</option>
-                        <option value="1">UI/UX</option>
-                        <option value="2">Closed</option>
-                        <option value="4">Closed</option>
-                        <option value="5">Closed</option>
-                      </select>
-                    </div>
+
                     <div class="form-inner">
-                      <button type="submit" class="primry-btn-2 "><img
+                      <button type="button" class="primry-btn-2" @click="showDropdown=true"><img
                           src="../../../../public/frontend/assets/images/icon/search-icon.svg" alt=""> Search
                       </button>
                     </div>
                   </form>
-                </div>
-                <div class="suggest-tag">
-                  <h6><i class="bi bi-bookmark-fill"></i>Suggested Tag:</h6>
-                  <ul>
-                    <li><a href="#">Engineering,</a></li>
-                    <li><a href="#">Marketing,</a></li>
-                  </ul>
+                  <div class="dropdown" v-show="showDropdown">
+                    <ul>
+                      <li v-for="(category,i) in filteredCategories" :key="i">
+                        <router-link :to="'/post-a-job?category='+category.name">{{ category.name }}</router-link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1155,7 +1146,7 @@
         <div class="row mb-60">
           <div class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
             <div class="section-title1">
-              <h2>Top Trade <span>Categories</span></h2>
+              <h2>Popular <span>Categories</span></h2>
               <p>To much valuable feed from our trusted users in world-wide.</p>
             </div>
             <div class="explore-btn">
@@ -1535,7 +1526,12 @@ export default {
     return {
       trades: [],
       tradesLoader: false,
+      categoryLoader: false,
       user: this.$store.getters.GET_USER_INFO || {},
+      searchQuery: '',
+      showDropdown: false,
+      categories: ['Engineering', 'Marketing', 'Healthcare', 'Education', 'Finance', 'IT', 'Construction'],
+      filteredCategories: []
     };
   },
   computed: {
@@ -1561,9 +1557,38 @@ export default {
         this.tradeLoader = false
       });
     },
+    async getAllTrades() {
+      this.categoryLoader = true
+      userService.getTrades().then((res) => {
+        this.filteredCategories = res.extra;
+        this.categories = res.extra;
+        this.categoryLoader = false
+      });
+    },
+    filterCategories() {
+      if (this.searchQuery.trim() === '') {
+        this.filteredCategories = this.categories;
+      } else {
+        const query = this.searchQuery.toLowerCase();
+        this.filteredCategories = this.categories.filter(category =>
+            category.name.toLowerCase().includes(query)
+        );
+      }
+    },
+    collapseDropdown(){
+      setTimeout(() => {
+        this.showDropdown = false;
+      }, 200);
+    },
+    handleClickOutside(event) {
+      if (!this.$el.contains(event.target)) {
+        this.showDropdown = false;
+      }
+    }
   },
   created() {
     this.getTrades();
+    this.getAllTrades();
   },
   mounted() {
     this.$nextTick(() => {
@@ -1678,6 +1703,10 @@ export default {
         $('.mobile-search').removeClass('slide');
       });
     });
+    document.addEventListener('click', this.handleClickOutside);
+  },
+  beforeDestroy() {
+    document.removeEventListener('click', this.handleClickOutside);
   }
 }
 </script>
@@ -1693,5 +1722,36 @@ export default {
 .iJZMjH {
   background-color: var(--primary-color1);
   color: rgb(255, 255, 255);
+}
+
+.dropdown {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  width: 43%;
+  z-index: 1000;
+  max-height: 170px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown li {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background-color: #f8f9fa;
+}
+
+::placeholder {
+  color: rgba(154, 153, 153, 0.3);
+  opacity: 1;
 }
 </style>

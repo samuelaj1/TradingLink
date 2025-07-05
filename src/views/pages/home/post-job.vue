@@ -400,6 +400,14 @@ export default {
       userService.getTrades().then((res) => {
         this.isLoading = false;
         this.trades = res.extra;
+        const routerQuery = this.$route.query.category;
+        if (routerQuery) {
+          const tradeObj = this.trades.find(t => t.name.toLowerCase() === routerQuery.toLowerCase());
+          if (tradeObj) {
+            this.selectedTrade = tradeObj.id;
+            this.selectedTradeName = tradeObj.name;
+          }
+        }
       });
     },
     loadFirstStep() {
@@ -673,10 +681,8 @@ export default {
   ,
   created() {
     this.getTrades();
-  }
-  ,
-}
-;
+  },
+};
 </script>
 
 <style scoped>
