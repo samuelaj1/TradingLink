@@ -392,6 +392,15 @@ export default [
         component: () => import('../views/pages/company-description'),
     },
     {
+        path: '/who-viewed-my-profile',
+        name: 'profileView',
+        meta: {
+            authRequired: true,
+            roles: ['tradesperson']
+        },
+        component: () => import('../views/pages/profile-views'),
+    },
+    {
         path: '/user-profile',
         name: 'user-profile',
         meta:{

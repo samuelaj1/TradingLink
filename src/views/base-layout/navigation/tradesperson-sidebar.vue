@@ -14,10 +14,20 @@
           <h5 class="card-title mb-1">{{ user.parish_name }} ~ <small>{{ user.city_name }}</small></h5>
         </div>
       </div>
-      <router-link to="/user-profile" class="btn btn-outline-dark btn-block" style="border-color: #bebebe;">
-        <i class="bi bi-eye me-2"></i> View profile
+    </div>
+
+    <div class="card">
+      <router-link to="/who-viewed-my-profile">
+        <div class="card-body d-flex justify-content-between align-items-center cursor-pointer">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>
+            <small class="mr-3">Profile Views</small>
+          </div>
+          <div class="text-primary-1 fw-bold">46</div>
+        </div>
       </router-link>
     </div>
+
 
     <!-- Complete Registration -->
     <a @click="completeRegistration" v-if="!isRegistrationComplete"
