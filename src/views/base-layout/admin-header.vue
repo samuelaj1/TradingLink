@@ -30,7 +30,8 @@
             <ul>
 
               <li>
-                <router-link to="/register">Visit website</router-link>
+                <router-link to="/register">Visit website <i class="bi bi-globe2 ms-2"></i>
+                </router-link>
               </li>
               <hr>
             </ul>
@@ -42,15 +43,15 @@
           <ul>
             <li class="d-md-flex d-none">
               <div class="sign-in-btn">
-                <router-link to="/" class="primry-btn-1 lg-btn">Visit website</router-link>
+                <router-link to="/" class="primry-btn-1 lg-btn">Visit website <i class="bi bi-globe2 ms-2" /></router-link>
               </div>
             </li>
           </ul>
           <div class="sidebar-button mobile-menu-btn">
-            <button class="primry-btn-1 lg-btn d-flex align-items-center">
-              <span>Menu</span>
-              <i class="bi bi-list ms-2"></i>
-            </button>
+            <router-link to="/" class="primry-btn-1 lg-btn d-flex align-items-center">
+              <span>Visit website</span>
+              <i class="bi bi-globe2 ms-2"></i>
+            </router-link>
           </div>
         </div>
       </div>
@@ -151,62 +152,14 @@ export default {
     };
   },
   computed: {
-    registrationSteps() {
-      return 8 - this.user.registration_step;
-    },
-    isRegistrationComplete() {
-      return this.user.registration_status === 'complete'
-    },
     loggedIn() {
       return this.$store.getters.GET_USER_INFO;
     }
   },
   methods: {
-    checkScreenSize() {
-      this.isMobile = window.innerWidth < 768;
-    },
-    completeRegistration() {
-      // Check the registration step and route accordingly
-      switch (this.user.registration_step) {
-        case 1:
-          this.$router.push('/create-account');
-          break;
-        case 2:
-          this.$router.push('/professions');
-          break;
-        case 3:
-          this.$router.push('/travel-to-work');
-          break;
-        case 4:
-          this.$router.push('/business-type');
-          break;
-        case 5:
-          this.$router.push('/business-details');
-          break;
-        case 6:
-          this.$router.push('/verify-identity');
-          break;
-        case 7:
-          this.$router.push('/verify-skills');
-          break;
-        default:
-          console.log('Unknown registration step');
-      }
-    }
-
-  },
-  mounted() {
-    this.checkScreenSize();
-    window.addEventListener('resize', this.checkScreenSize);
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.checkScreenSize);
   }
 };
 </script>
 
 <style scoped>
-.top-bar2 {
-  background: white !important;
-}
 </style>
