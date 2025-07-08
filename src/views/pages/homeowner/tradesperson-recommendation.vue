@@ -39,7 +39,7 @@
                       city_name
                     }}</span>
                   </p>
-                  <button class="btn btn-primary btn-block">Send invite</button>
+                  <button class="btn btn-primary btn-block">Send message</button>
                 </div>
               </div>
             </div>

@@ -470,6 +470,8 @@ function getTrades(limit) {
     });
 }
 
+
+
 function getTradespersonsByTrade(tradeName) {
     return new Promise((resolve) => {
         axios.get(`/api/tradesperson-by-name${tradeName ? '?name=' + tradeName : ''}`, useBasicAuthHeaders())

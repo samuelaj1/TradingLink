@@ -25,9 +25,9 @@
 
 
           <div class="d-flex align-items-center mt-4" v-if="!project.invite && !isLoading">
-            <h6 class="fw-lighter mb-0 me-3">Interested in this job?</h6>
+            <h6 class="fw-lighter mb-0 me-3">Are you interested in this job?</h6>
             <button class="btn btn-primary flex-shrink-1" @click="sendInvite()">
-              <i class="bi bi-envelope"></i> Send an invite
+              <i class="bi bi-envelope"></i> I'm interested in this job
             </button>
           </div>
 

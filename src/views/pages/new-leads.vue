@@ -38,6 +38,11 @@
                             <small class="fw-light">{{service.trade.name}}</small>
                             <p class="fw-light mt-3"><i class="bi bi-pin-map"></i> {{ service.city_name }} ({{service.distance}} miles), <small
                                 class="fw-light">{{service.created_at | toHumanDate()}}</small></p>
+                            <hr/>
+                            <button class="btn btn-primary flex-shrink-1">
+                              <i class="bi bi-envelope"></i> I'm interested in this job
+                            </button>
+
                           </div>
                         </div>
                       </div>

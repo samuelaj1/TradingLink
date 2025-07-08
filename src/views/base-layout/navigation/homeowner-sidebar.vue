@@ -33,7 +33,7 @@
           </div>
           <div class="card-body">
             <p>Invite 10 more recommended tradespeople to get more responses.</p>
-            <button class="btn btn-primary">Invite 10 more tradespeople to get more responses</button>
+            <button class="btn btn-primary">Share you job 10 more tradespeople to get more responses</button>
           </div>
         </div>
       </div>

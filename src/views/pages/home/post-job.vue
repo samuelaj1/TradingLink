@@ -391,8 +391,7 @@ export default {
     },
     resetForms() {
       this.selectedTradeName = '';
-      this.rootQuestions = [];
-      this.answers = {};
+      this.questions = [];
       this.currentQuestionIndex = 0;
     },
     getTrades() {
