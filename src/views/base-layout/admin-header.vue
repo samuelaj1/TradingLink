@@ -63,6 +63,12 @@
             <div class="dashboard-menu">
               <ul>
                 <li>
+                  <router-link id="trades" to="/admin/trades">
+                    <i class="bi bi-app-indicator me-2"/>
+                     Trades
+                  </router-link>
+                </li>
+                <li>
                   <router-link id="question-builder" to="/question-builder">
                     <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -74,7 +80,7 @@
                       <path
                           d="M16.8755 10.5H10.8755C10.2552 10.5 9.75049 9.99525 9.75049 9.375V1.125C9.75049 0.50475 10.2552 0 10.8755 0H16.8755C17.4957 0 18.0005 0.50475 18.0005 1.125V9.375C18.0005 9.99525 17.4957 10.5 16.8755 10.5ZM10.8755 0.75C10.6692 0.75 10.5005 0.918 10.5005 1.125V9.375C10.5005 9.582 10.6692 9.75 10.8755 9.75H16.8755C17.0817 9.75 17.2505 9.582 17.2505 9.375V1.125C17.2505 0.918 17.0817 0.75 16.8755 0.75H10.8755Z"/>
                     </svg>
-                    Trades & Question Builder
+                     Question Builder
                   </router-link>
                 </li>
                 <li>
@@ -144,7 +150,7 @@
 
 <script>
 export default {
-  name: "Header2",
+  name: "AdminHeader",
   data() {
     return {
       isMobile: false,

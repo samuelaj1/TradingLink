@@ -6,7 +6,7 @@
 
       <div class="mb-3">
         <label class="form-label">Select Trade</label>
-        <select v-model="selectedTrade" class="form-select">
+        <select v-model="selectedTrade" class="form-select" @change="loadQuestions">
           <option disabled value="">Select a trade</option>
           <option v-for="trade in trades" :key="trade.id" :value="trade.id">{{ trade.name }}</option>
         </select>
@@ -58,6 +58,19 @@ export default {
     this.fetchTrades();
   },
   methods: {
+    loadQuestions() {
+      const tradeObj = this.trades.find(t => t.id === this.selectedTrade);
+      if (tradeObj) this.selectedTradeName = tradeObj.name;
+      this.fetchQuestions();
+    },
+    fetchQuestions() {
+      userService.getTradeQuestion(this.selectedTrade).then((res) => {
+        if (!Array.isArray(res.extra)){
+          this.question = res.extra;
+        }
+      });
+    },
+
     addOption(question) {
       question.options.push({
         formLabel: '',

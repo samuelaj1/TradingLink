@@ -10,9 +10,8 @@
             <div class="menu-container">
               <ul>
                 <li><router-link to="/post-a-job">Post a job <i class='bx bx-up-arrow-alt'></i></router-link></li>
-                <li><a href="#">How it works<i class='bx bx-up-arrow-alt'></i></a></li>
-                <li><a href="#">Find trades <i class='bx bx-up-arrow-alt'></i></a></li>
-                <li><a href="#">Candidate Listing <i class='bx bx-up-arrow-alt'></i></a></li>
+                <li><router-link to="/faq">How it works<i class='bx bx-up-arrow-alt'></i></router-link></li>
+                <li><router-link to="/find-a-trade">Find trades <i class='bx bx-up-arrow-alt'></i></router-link></li>
               </ul>
             </div>
           </div>
@@ -25,10 +24,10 @@
             </div>
             <div class="menu-container">
               <ul>
-                <li><a href="#">Register as tradesperson <i class='bx bx-up-arrow-alt'></i></a></li>
-                <li><a href="#">Quality requirements <i class='bx bx-up-arrow-alt'></i></a></li>
+                <li><router-link to="/register">Register as tradesperson <i class='bx bx-up-arrow-alt'></i></router-link></li>
+                <li><router-link to="/faq">Quality requirements <i class='bx bx-up-arrow-alt'></i></router-link></li>
                 <li><a href="#">Reviews policy <i class='bx bx-up-arrow-alt'></i></a></li>
-                <li><a href="#">Browse Leads <i class='bx bx-up-arrow-alt'></i></a></li>
+                <li><router-link to="/new-leads">Browse Leads <i class='bx bx-up-arrow-alt'></i></router-link></li>
               </ul>
             </div>
           </div>
@@ -44,7 +43,6 @@
                 <li><a href="#">About us <i class='bx bx-up-arrow-alt'></i></a></li>
                 <li><a href="#">Press and media <i class='bx bx-up-arrow-alt'></i></a></li>
                 <li><a href="#">Vacancies <i class='bx bx-up-arrow-alt'></i></a></li>
-                <li><a href="#">Jobs Featured <i class='bx bx-up-arrow-alt'></i></a></li>
               </ul>
             </div>
           </div>

@@ -40,6 +40,11 @@ export default [
         },
     },
     {
+        path: '/faq',
+        name: 'faq',
+        component: () => import('../views/pages/faq'),
+    },
+    {
         path: '/find-tradesperson',
         name: 'findTradesperson',
         component: () => import('../views/pages/find-tradesperson'),
@@ -59,6 +64,14 @@ export default [
             authRequired:false,
         },
         component: () => import('../views/pages/admin/jobs'),
+    },
+    {
+        path: '/admin/trades',
+        name: 'adminTrades',
+        meta: {
+            authRequired:false,
+        },
+        component: () => import('../views/pages/admin/trades'),
     },
     {
         path: '/jobs/:id',

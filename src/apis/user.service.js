@@ -38,10 +38,12 @@ export const userService = {
     getIdStatus,
     checkIdVerified,
     editPortfolio,
+    editTrade,
     addPortfolio,
     getRecommendedTradesperson,
     savePortfolioOrder,
     deletePortfolio,
+    deleteTrades,
     resendVerifyEmail,
     getPermissions,
     verifyHomeOwner,
@@ -335,7 +337,15 @@ function editPortfolio(formData, id) {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
     })
+}
 
+function editTrade(formData, id) {
+    return new Promise((resolve) => {
+        axios.post('/api/edit-trade/' + id, formData, useBasicAuthHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
 }
 
 function addPortfolio(formData) {
@@ -367,6 +377,15 @@ function saveTradeQuestions(payload) {
 function deletePortfolio(id) {
     return new Promise((resolve) => {
         axios.delete('/api/portfolio/delete/'+ id, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function deleteTrades(tradeIds) {
+    return new Promise((resolve) => {
+        axios.post('/api/trade/delete', tradeIds, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));

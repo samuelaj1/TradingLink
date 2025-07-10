@@ -226,28 +226,6 @@ export default {
 </script>
 
 <style scoped>
-.top-bar2 {
-  background: white !important;
-}
-
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: white;
-  border-top: 1px solid #dee2e6;
-  z-index: 100;
-}
-
-.nav-link {
-  text-align: center;
-  padding: 10px;
-  color: #6c757d;
-}
-
-.nav-link.active {
-  color: #007bff;
-}
 
 .nav-link i {
   font-size: 1.25rem;
