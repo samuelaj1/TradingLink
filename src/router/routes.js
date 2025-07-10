@@ -55,7 +55,7 @@ export default [
         meta: {
             authRequired:false,
         },
-        component: () => import('../views/pages/admin/question-builder'),
+        component: () => import('../views/pages/admin/trades'),
     },
     {
         path: '/admin/job-posts',
