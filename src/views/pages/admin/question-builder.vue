@@ -1,7 +1,7 @@
 <template>
   <div>
     <topHeader/>
-    <div class="container">
+    <div class="container mb-40">
       <h2 class="mb-4">Add Questions for Trade</h2>
 
       <div class="mb-3">
@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <button class="btn btn-primary" :disabled="!selectedTrade || isSaving" @click="submitQuestions">
+      <button class="btn btn-primary mb-5" :disabled="!selectedTrade || isSaving" @click="submitQuestions">
         <b-spinner small v-if="isSaving"></b-spinner>
         {{ isSaving ? 'Saving..' : 'Save' }}
       </button>
