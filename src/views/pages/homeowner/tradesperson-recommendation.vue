@@ -33,7 +33,8 @@
               <div class="card">
                 <div class="card-body text-center">
                   <router-link :to="`/user-profile/${tradesperson.id}`">
-                    <img v-if="tradesperson.photo" :src="tradesperson.photo" alt="Profile" class="" style="width: 50px; height: 50px; object-fit: cover; border-radius: 10px;" />
+                    <img v-if="tradesperson.photo" :src="tradesperson.photo" alt="Profile" class=""
+                         style="width: 50px; height: 50px; object-fit: cover; border-radius: 10px;"/>
                     <i v-else class="bi bi-person-circle mb-3" style="font-size: 2rem;"></i>
                     <h5 class="card-title">{{ tradesperson.name }}</h5>
                   </router-link>
@@ -42,7 +43,19 @@
                       city_name
                     }}</span>
                   </p>
-                  <button class="btn btn-primary btn-block">Send message</button>
+
+                  <div>
+                    <div v-if="tradesperson.invited">
+                      <router-link :to="`/homeowner/chat/${jobId}?id=${tradesperson.user_invite.id}`"
+                                   class="btn btn-gold">
+                        <i class="bi bi-chat-dots"></i> View Chats
+                      </router-link>
+                    </div>
+
+                    <button class="btn btn-primary" @click="chatTradesperson(tradesperson)" v-else>Send
+                      message
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -92,15 +105,16 @@ export default {
       place: null,
       user: this.$store.getters.GET_USER_INFO,
       tradespersons: [],
-      city_name: '',
+      jobId: '',
       parish_name: '',
+      city_name: '',
       isLoading: false,
     };
   },
   methods: {
-    getRecommendedTradesperson(service_id) {
+    getRecommendedTradesperson() {
       this.isLoading = true;
-      userService.getRecommendedTradesperson(service_id).then((res) => {
+      userService.getRecommendedTradesperson(this.jobId).then((res) => {
         this.isLoading = false;
         const {extra, status} = res;
         if (status) {
@@ -110,15 +124,34 @@ export default {
         }
       });
     },
+
+    chatTradesperson(tradesperson) {
+      // invite tradesperson to the job with status accepted, send tradesperson a notification and chat with the tradesperson
+      this.isLoading = true;
+      const payload = {
+        invited_user_id: tradesperson.id,
+        request_id: this.$route.params.id,
+      };
+      userService.inviteTradesperson(payload).then((res) => {
+        this.isLoading = false;
+        const {extra, status,message} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message: message, showSwal: true});
+          return;
+        }
+        this.$router.push(`/homeowner/chat/${this.jobId}?id=${extra.id}`);
+
+      });
+    },
   },
   mounted() {
-    const service_id = this.$route.params.id
-    if (!service_id) {
+    this.jobId = this.$route.params.id;
+    if (!this.jobId) {
       this.$router.push('/unauthorized');
       return;
     }
 
-    this.getRecommendedTradesperson(service_id);
+    this.getRecommendedTradesperson();
     this.$nextTick(() => {
       $('.sidebar-button').on("click", function () {
         $('.main-menu').addClass('show-menu');

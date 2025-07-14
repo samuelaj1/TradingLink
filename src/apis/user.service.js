@@ -15,6 +15,7 @@ export const userService = {
     signUp,
     saveProfession,
     sendInvite,
+    inviteTradesperson,
     saveTravelToWork,
     workArea,
     businessType,
@@ -25,6 +26,7 @@ export const userService = {
     getUserInfo,
     getGuarantee,
     getProjectDetails,
+    getProjectInterest,
     jobDetails,
     getPostedServices,
     getJobPosts,
@@ -43,6 +45,7 @@ export const userService = {
     editTrade,
     addPortfolio,
     getRecommendedTradesperson,
+    getRatings,
     savePortfolioOrder,
     deletePortfolio,
     deleteTrades,
@@ -51,6 +54,8 @@ export const userService = {
     getPermissions,
     verifyHomeOwner,
     postJob,
+    acceptInvite,
+    getAcceptedInterest,
     addAdmins,
     saveTradeQuestions,
     editAdmin,
@@ -118,6 +123,15 @@ function saveProfession(payload) {
 function sendInvite(payload) {
     return new Promise((resolve) => {
         axios.post('/api/invites', payload, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function inviteTradesperson(payload) {
+    return new Promise((resolve) => {
+        axios.post('/api/invite-tradesperson', payload, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
@@ -207,6 +221,15 @@ function getProjectDetails(id) {
     })
 }
 
+function getProjectInterest(id) {
+    return new Promise((resolve) => {
+        axios.get(`/api/project/${id}/interests`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
 function jobDetails(id) {
     return new Promise((resolve) => {
         axios.get(`/api/job/${id}`, useBearerTokenHeaders())
@@ -264,6 +287,15 @@ function getHomeowners() {
 function getRecommendedTradesperson(service_id) {
     return new Promise((resolve) => {
         axios.get(`/api/recommended/tradesperson/${service_id}`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function getRatings() {
+    return new Promise((resolve) => {
+        axios.get(`/api/user/rating`, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
@@ -415,6 +447,24 @@ function createTrade(formData) {
 function postJob(formData) {
     return new Promise((resolve) => {
         axios.post('/job-poster/api/post-job', formData, useBearerTokenHeaders(true))
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function acceptInvite(payload) {
+    return new Promise((resolve) => {
+        axios.post(`/api/accept-invite`, payload, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function getAcceptedInterest(id) {
+    return new Promise((resolve) => {
+        axios.get(`/api/invite/accepted/${id}`, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));

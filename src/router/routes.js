@@ -534,6 +534,7 @@ export default [
         name: 'saved-leads',
         meta:{
             authRequired: true,
+            roles: ['tradesperson']
         },
         component: () => import('../views/pages/account/saved-leads'),
     },
@@ -543,6 +544,7 @@ export default [
         name: 'new-leads',
         meta: {
             authRequired: true,
+            roles: ['tradesperson']
         },
         component: () => import('../views/pages/new-leads'),
     },
@@ -552,6 +554,7 @@ export default [
         name: 'leadDetails',
         meta: {
             authRequired: true,
+            roles: ['tradesperson']
         },
         component: () => import('../views/pages/job-lead-details'),
     },
@@ -565,6 +568,17 @@ export default [
 
         },
         component: () => import('../views/pages/homeowner/my-projects'),
+    },
+
+    {
+        path: '/homeowner/chat/:jobId',
+        name: 'homeowner-chat',
+        meta: {
+            authRequired: true,
+            roles: ['homeowner']
+
+        },
+        component: () => import('../views/pages/homeowner/homeowner-chat'),
     },
 
     {

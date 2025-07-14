@@ -109,20 +109,6 @@ export default {
     BaseDashboardLayout
   },
   methods: {
-    async save() {
-      this.isLoading = true;
-      userService.updateGuarantee({
-        guarantee: this.guarantee,
-      }).then((res) => {
-        this.isLoading = false;
-        const {status, message, extra} = res;
-        if (!status) {
-          this.$store.dispatch('error', {message: message, showSwal: true});
-          return;
-        }
-        this.$store.dispatch('success', {message, showSwal: true});
-      });
-    },
     getProjectDetails(project_id) {
       this.isLoading = true;
       userService.getProjectDetails(project_id).then((res) => {

@@ -34,15 +34,34 @@
                       <div class="company-area">
                         <div class="company-details">
                           <div class="name-location">
-                            <h5 class="text-capitalize mb-2"><router-link :to="`/job-lead-details/${service.city_name}/${service.id}`">{{ service.headline }}</router-link></h5>
-                            <small class="fw-light">{{service.trade.name}}</small>
-                            <p class="fw-light mt-3"><i class="bi bi-pin-map"></i> {{ service.city_name }} ({{service.distance}} miles), <small
-                                class="fw-light">{{service.created_at | toHumanDate()}}</small></p>
+                            <div class="cursor-pointer"
+                                 @click="$router.push(`/job-lead-details/${service.city_name}/${service.id}`)">
+                              <h5 class="text-capitalize mb-2">
+                                {{ service.headline }}
+                              </h5>
+                              <small class="fw-light">{{ service.trade.name }}</small>
+                              <p class="fw-light mt-3"><i class="bi bi-pin-map"></i> {{ service.city_name }}
+                                ({{ service.distance }} miles), <small
+                                    class="fw-light">{{ service.created_at | toHumanDate() }}</small></p>
+                            </div>
                             <hr/>
-                            <button class="btn btn-primary flex-shrink-1">
+                            <button class="btn btn-primary flex-shrink-1" @click="sendInvite(service)"
+                                    v-if="!service.invited">
                               <i class="bi bi-envelope"></i> I'm interested in this job
                             </button>
-
+                            <div class="d-flex justify-content-start align-items-center" v-else>
+                              <div class="badge bg-primary-1 text-white rounded-pill"
+                                   v-if="service.user_invite.status ==='pending'">
+                                Invite sent. Waiting for the homeowner to respond.
+                              </div>
+                              <div v-if="service.user_invite.status ==='accepted'">
+                                <router-link class="btn btn-gold btn-sm"
+                                             :to="`/chat?job=${service.headline}&id=${service.user_invite.id}`">
+                                  <i class="bi bi-chat-dots"></i>
+                                  Send a message to the homeowner to discuss the job.
+                                </router-link>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -114,6 +133,24 @@ export default {
         if (status) {
           this.services = extra;
         }
+      });
+    },
+
+    sendInvite(service) {
+      this.isLoading = true;
+      const payload = {
+        request_id: service.id,
+        invited_user_id: this.user.id,
+      };
+      userService.sendInvite(payload).then((res) => {
+        this.isLoading = false;
+        const {extra, status, message} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message: message, showSwal: true});
+          return;
+        }
+        this.$store.dispatch('success', {message: message, showSwal: true});
+        this.getJobsNearMe();
       });
     },
   },
