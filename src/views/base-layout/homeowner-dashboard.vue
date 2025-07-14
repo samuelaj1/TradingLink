@@ -13,7 +13,7 @@
           <!-- Sidebar -->
           <div class="col-lg-3" v-if="!isMobile">
             <div class="dashboard-sidebar">
-              <SideBar></SideBar>
+              <SideBar :jobId="job_id"></SideBar>
             </div>
           </div>
 

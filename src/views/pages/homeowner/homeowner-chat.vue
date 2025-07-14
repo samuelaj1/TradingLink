@@ -15,7 +15,7 @@
         <div class="card">
           <div class="" style="height: 550px; overflow-y: auto;">
             <div class="card-body">
-              <div class="media mb-3">
+              <div class=" media mb-3">
                 <div class="media-body d-flex justify-content-start align-items-center">
                   <h5 class="mt-0 mb-0">
                     <router-link to="/contacts/profile" class="text-capitalize me-2"
@@ -31,21 +31,20 @@
                   </a>
                 </div>
               </div>
-
               <small class="text-muted text-uppercase fw-lighter">Chats</small>
             </div>
             <!-- users -->
-            <div class="">
+            <div class="row">
               <div
-                  class="text-body"
+                  class="py-1"
                   v-for="(item, index) in invites"
                   :key="index"
-                  @click="chatJobOwner(item.service)"
+                  @click="chatTradesperson(item)"
               >
-                <div class="media p-3 cursor-pointer" :class="serviceSelected.id === item.request_id?'bg-muted':''">
+                <div class="p-3 media cursor-pointer" :class="selectedTradesperson === item.invited_user_id?'bg-muted':''">
                   <div class="media-body">
                     <h5 class="mt-0 mb-0 font-14">
-                      <span class="text-capitalize">{{ item.service.headline }}</span>
+                      <span class="text-capitalize">{{ item.invited_user.name }}</span>
                     </h5>
                     <p class="mt-1 mb-0 text-muted fw-lighter">
                       <span class="w-75">{{ !item.lastMessage ? 'Click to start chatting' : item.lastMessage }}</span>
@@ -54,12 +53,12 @@
                 </div>
               </div>
 
-                <div v-if="isLoading">
-                  <div class="lines shine"></div>
-                  <div class="lines shine"></div>
-                  <div class="lines shine"></div>
-                  <div class="lines shine"></div>
-                </div>
+              <div v-if="isLoading">
+                <div class="lines shine"></div>
+                <div class="lines shine"></div>
+                <div class="lines shine"></div>
+                <div class="lines shine"></div>
+              </div>
 
               <!-- End col -->
             </div>
@@ -74,7 +73,7 @@
         <!-- Chat area -->
         <div class="card">
           <div class="card-header bg-primary-1 text-white">
-            {{ serviceSelected ? serviceSelected.headline : 'Select a job to start chatting' }}
+            {{ jobDetails ? jobDetails.headline : 'Select a job to start chatting' }}
           </div>
           <div class="card-body" ref="chatBody" style="height: 400px; overflow-y: auto;">
             <div v-for="(message, index) in messages" :key="index" class="mb-3">
@@ -100,11 +99,11 @@
 
       <div class="col-md-3">
         <div class="card">
-          <div class="card-body" style="height: 560px; overflow-y: auto;" v-if="serviceSelected">
+          <div class="card-body" style="height: 560px; overflow-y: auto;" v-if="jobDetails">
             <div class="mb-3">
               <div>
-                <h5 class="mb-0">{{ serviceSelected.headline }}</h5>
-                <small class="text-capitalize">{{ serviceSelected.created_at | toHumanDate }}</small>
+                <h5 class="mb-0">{{ jobDetails.headline }}</h5>
+                <small class="text-capitalize">{{ jobDetails.created_at | toHumanDate }}</small>
               </div>
             </div>
             <hr>
@@ -114,22 +113,22 @@
               <div class="fw-lighter">
                 <div class="row mt-3">
                   <div class="col-md-4">Job ID:</div>
-                  <div class="col-md-8 text-left">{{ serviceSelected.id }}</div>
+                  <div class="col-md-8 text-left">{{ jobDetails.id }}</div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-4">Job type:</div>
                   <div class="col-md-8 text-left">
-                    {{ serviceSelected.trade ? serviceSelected.trade.name : 'N/A' }}
+                    {{ jobDetails.trade ? jobDetails.trade.name : 'N/A' }}
                   </div>
                 </div>
-                <div class="row mt-3" v-if="serviceSelected.questions.length>0">
+                <div class="row mt-3" v-if="jobDetails.questions.length>0">
                   <div class="col-md-4">Category:</div>
-                  <div class="col-md-8 text-left">{{ serviceSelected.questions[0]['answers'] }}</div>
+                  <div class="col-md-8 text-left">{{ jobDetails.questions[0]['answers'] }}</div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-4">Location:</div>
-                  <div class="col-md-8 text-left"><i class="bi bi-pin-map"></i> {{ serviceSelected.city_name }}
-                    {{ serviceSelected.parish_name ? '~ ' + serviceSelected.parish_name : '' }}
+                  <div class="col-md-8 text-left"><i class="bi bi-pin-map"></i> {{ jobDetails.city_name }}
+                    {{ jobDetails.parish_name ? '~ ' + jobDetails.parish_name : '' }}
                   </div>
                 </div>
               </div>
@@ -146,7 +145,7 @@
                   <div id="collapseOne" class="accordion-collapse collapse show"
                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <div v-for="(question,i) in serviceSelected.questions" :key="i">
+                      <div v-for="(question,i) in jobDetails.questions" :key="i">
                         <h6>{{ question.formLabel }}</h6>
                         <p class="fw-light">{{ question.answers }}</p>
                       </div>
@@ -156,7 +155,7 @@
               </div>
 
             </div>
-            <router-link :to="`/job-lead-details/${serviceSelected.city_name}/${serviceSelected.id}`"
+            <router-link :to="`/job-lead-details/${jobDetails.city_name}/${jobDetails.id}`"
                          class="card-link">View full job description
             </router-link>
           </div>
@@ -175,15 +174,15 @@
 </template>
 
 <script>
-import BaseDashboardLayout from '../base-layout/tradesperson-dashboard';
-import appConfig from "../../../app.config.json";
+import BaseDashboardLayout from '../../base-layout/tradesperson-dashboard';
+import appConfig from "../../../../app.config.json";
 import {userService} from "@/apis/user.service";
-import topHeader from '../base-layout/header-2';
+import topHeader from '../../base-layout/navigation/homeowner-menu';
 
-import {getDatabase, ref, push, off,update, onChildAdded} from "firebase/database";
+import {getDatabase, ref, push, off, onChildAdded, update} from "firebase/database";
 
 export default {
-  name: "Chat",
+  name: "HomeOwnerChat",
   page: {
     title: "Chat",
     meta: [{name: "description", content: appConfig.description}]
@@ -193,9 +192,11 @@ export default {
       isLoading: false,
       invites: [],
       user: this.$store.getters.GET_USER_INFO || {},
-      serviceSelected: '',
+      jobDetails: '',
       messages: [],
       newMessage: '',
+      jobId: '',
+      selectedTradesperson: '',
     };
   },
   components: {
@@ -203,58 +204,50 @@ export default {
     topHeader
   },
   methods: {
-
-    chatJobOwner(service) {
-      this.serviceSelected = service
-      const jobId = this.serviceSelected.id;
-      this.listenToMessages(jobId);
+    chatTradesperson(invite) {
+      this.selectedTradesperson = invite.invited_user_id;
+      const jobId = this.jobId;
+      this.listenToMessages(jobId, this.selectedTradesperson);
     },
 
 
-    listenToMessages(jobId) {
+    listenToMessages(jobId, tradespersonId) {
       const db = getDatabase();
-      const messagesRef = ref(db, `chat_channels/${jobId}/${this.user.id}/messages`);
+      const messagesRef = ref(db, `chat_channels/${jobId}/${tradespersonId}/messages`);
 
-      // Reset current messages before loading new ones
       this.messages = [];
 
-      // Detach any previous listener
       if (this.unsubscribeMessages) {
-        this.unsubscribeMessages(); // properly defined below
+        this.unsubscribeMessages();
       }
 
-      // Define handler function once so it can be referenced during off()
-      const handleNewMessage = (snapshot) => {
+      const handleNewMessage = async (snapshot) => {
         const msg = snapshot.val();
-        const msgKey = snapshot.key;
+        const key = snapshot.key;
 
-        // Push message to the array
-        this.messages.push({ ...msg, id: msgKey });
+        // Add the message to UI
+        this.messages.push(msg);
+        this.scrollToBottom();
 
-        // If message is for this user and not yet read, mark it as read
+        // If the message is to the current user and not read, mark it as read
         if (msg.to === this.user.id && !msg.read) {
-          const msgRef = ref(db, `chat_channels/${jobId}/${this.user.id}/messages/${msgKey}`);
-          update(msgRef, { read: true }).catch((err) => {
+          const messageRef = ref(db, `chat_channels/${jobId}/${tradespersonId}/messages/${key}`);
+          update(messageRef, { read: true }).catch((err) => {
             console.error('Failed to mark message as read:', err);
           });
         }
-
-        this.scrollToBottom();
       };
 
-      // Attach new listener
       onChildAdded(messagesRef, handleNewMessage);
 
-      // Save unsubscribe function
       this.unsubscribeMessages = () => {
         off(messagesRef, 'child_added', handleNewMessage);
       };
     },
 
-
-    getServiceInvites() {
+    getAcceptedInterest() {
       this.isLoading = true;
-      userService.getServiceInvites().then((res) => {
+      userService.getAcceptedInterest(this.jobId).then((res) => {
         this.isLoading = false;
         const {status, message, extra} = res;
         if (!status) {
@@ -266,13 +259,27 @@ export default {
         if (inviteId) {
           const invite = this.invites.find(s => Number(s.id) === Number(inviteId));
           if (invite) {
-            this.chatJobOwner(invite.service);
+            this.chatTradesperson(invite);
           }
         } else if (this.invites.length > 0) {
-          this.chatJobOwner(this.invites[0].service);
+          this.chatTradesperson(this.invites[0]);
         }
       });
     },
+
+    getProjectDetails() {
+      this.isLoading = true;
+      userService.getProjectDetails(this.jobId).then((res) => {
+        this.isLoading = false;
+        const {status, message, extra} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message: message, showSwal: true});
+          return;
+        }
+        this.jobDetails = extra;
+      });
+    },
+
 
     scrollToBottom() {
       this.$nextTick(() => {
@@ -284,18 +291,19 @@ export default {
     sendMessage() {
       if (this.newMessage.trim() === '') return;
       const db = getDatabase();
-      const jobId = this.serviceSelected.id;
+      const jobId = this.jobDetails.id;
       const fromId = this.user.id;
-      const toId = this.serviceSelected.user_id;
+      const toId = this.selectedTradesperson;
 
       const message = {
         from: fromId,
         to: toId,
         text: this.newMessage.trim(),
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        read: false,
       };
 
-      const messagesRef = ref(db, `chat_channels/${jobId}/${fromId}/messages`);
+      const messagesRef = ref(db, `chat_channels/${jobId}/${toId}/messages`);
       push(messagesRef, message).then(() => {
         this.newMessage = '';
         this.scrollToBottom();
@@ -304,7 +312,12 @@ export default {
 
   },
   created() {
-    this.getServiceInvites();
+    this.jobId = this.$route.params.jobId
+    if (!this.jobId) {
+      this.$router.push('/unauthorized');
+    }
+    this.getAcceptedInterest();
+    this.getProjectDetails();
   },
   mounted() {
     $('#inbox').addClass('active')
