@@ -26,7 +26,7 @@
         <div class="col-lg-8 offset-lg-2">
 
           <div class="row">
-            <div class="col-lg-12 mb-30">
+            <div class="col-lg-12 mb-30" v-if="invites.length">
               <p class="text-center fw-lighter small"> You have shown interest in these job(s) </p>
               <div class="job-listing-card" v-for="(invite, i) in invites" :key="i">
                 <div class="cursor-pointer"

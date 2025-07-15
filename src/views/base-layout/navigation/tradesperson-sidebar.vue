@@ -98,13 +98,13 @@
         </div>
         <i class="bi bi-chevron-right d-lg-none"></i>
       </router-link>
-      <router-link to="saved-leads" id="saved-leads"
-                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-        <div>
-          <i class="bi bi-bookmark mr-2"></i> Saved leads
-        </div>
-        <i class="bi bi-chevron-right d-lg-none"></i>
-      </router-link>
+<!--      <router-link to="saved-leads" id="saved-leads"-->
+<!--                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">-->
+<!--        <div>-->
+<!--          <i class="bi bi-bookmark mr-2"></i> Saved leads-->
+<!--        </div>-->
+<!--        <i class="bi bi-chevron-right d-lg-none"></i>-->
+<!--      </router-link>-->
     </div>
 
     <div class="list-group mt-4">

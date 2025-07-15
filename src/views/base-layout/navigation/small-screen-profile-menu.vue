@@ -47,7 +47,7 @@
             <i class="bi bi-file-text me-3"></i> Inbox
           </div>
           <div>
-            <span class="badge bg-danger text-white rounded-pill">2</span>
+            <span class="badge bg-danger text-white rounded-pill">{{inboxCount}}</span>
             <i class="bi bi-chevron-right text-muted"></i>
           </div>
         </router-link>
@@ -78,12 +78,12 @@
           </div>
           <i class="bi bi-chevron-right text-muted"></i>
         </router-link>
-        <router-link to="/saved-leads" class="settings-item d-flex justify-content-between align-items-center p-3">
-          <div>
-            <i class="bi bi-bookmark me-3"></i> Saved Leads
-          </div>
-          <i class="bi bi-chevron-right text-muted"></i>
-        </router-link>
+<!--        <router-link to="/saved-leads" class="settings-item d-flex justify-content-between align-items-center p-3">-->
+<!--          <div>-->
+<!--            <i class="bi bi-bookmark me-3"></i> Saved Leads-->
+<!--          </div>-->
+<!--          <i class="bi bi-chevron-right text-muted"></i>-->
+<!--        </router-link>-->
       </div>
 
       <!-- Lead Settings Section -->
@@ -141,7 +141,8 @@ export default {
   data() {
     return {
       user: this.$store.getters.GET_USER_INFO || {},
-      isMobile: false
+      isMobile: false,
+      inboxCount: this.$store.getters.GET_INBOX_COUNT || 0,
     };
   },
   computed: {
@@ -160,7 +161,15 @@ export default {
       },
       immediate: true,
       deep: true
+    },
+    '$store.getters.GET_INBOX_COUNT': {
+      handler(count) {
+        this.inboxCount = count || 0;
+      },
+      immediate: true,
+      deep: true
     }
+
   },
   methods: {
     handleNavigation() {
