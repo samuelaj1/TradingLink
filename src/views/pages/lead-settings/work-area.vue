@@ -46,10 +46,7 @@
                 <option :value="20">20 miles</option>
                 <option :value="25">25 miles</option>
                 <option :value="50">50 miles</option>
-                <option :value="100">100 miles</option>
-                <option :value="200">200 miles</option>
-                <option :value="300">300 miles</option>
-                <option :value="'all'">I work throughout Jamaica</option>
+                <option :value="100">I work throughout Jamaica</option>
               </select>
             </div>
 

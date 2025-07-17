@@ -99,7 +99,7 @@
       <div class="container" style="max-width: calc(66rem);">
         <!-- Header with Search Bar -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h1>Some of our top {{ selectedTrade ? selectedTrade : 'professionals' }}</h1>
+          <h1>Some of our top {{ selectedTrade ? selectedTrade+'(s)' : 'professionals' }}</h1>
         </div>
         <div class="me-3 col-md-3 col-8 mb-4">
           <input type="text" class="form-control" placeholder="Your address">

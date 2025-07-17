@@ -58,7 +58,6 @@
               <ul>
                 <li><a href="#">Trades <i class='bx bx-up-arrow-alt'></i></a></li>
                 <li><a href="#">Services <i class='bx bx-up-arrow-alt'></i></a></li>
-                <li><a href="#">Cities <i class='bx bx-up-arrow-alt'></i></a></li>
               </ul>
             </div>
           </div>
