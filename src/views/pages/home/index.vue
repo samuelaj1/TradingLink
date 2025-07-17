@@ -1089,6 +1089,8 @@
         <div class="row mb-60">
           <div class="col-12 d-flex justify-content-center">
             <div class="section-title1 text-center">
+              <img alt="image" class="img-fluid mb-2" src="../../../../public/frontend/assets/images/header1-logo.svg"
+                   style="height: 80px;">
               <h2>How tradelink <span>works</span></h2>
             </div>
           </div>

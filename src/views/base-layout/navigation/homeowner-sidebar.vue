@@ -182,23 +182,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-.highlight {
-  color: #007bff;
-  text-decoration: none;
-}
-.highlight:hover {
-  text-decoration: underline;
-}
-.highlight:focus {
-  outline: none;
-  text-decoration: underline;
-}
-
-.highlight:active {
-  color: var(--primary-color1);
-}
-
-</style>

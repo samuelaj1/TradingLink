@@ -43,7 +43,11 @@
                     <i v-else class="bi bi-person-circle mb-3" style="font-size: 2rem;"></i>
                     <h5 class="card-title">{{ tradesperson.name }}</h5>
                   </router-link>
-                  <p class="card-text fw-bold text-primary-1">New on Trade Link</p>
+                  <p class="card-text fw-bold text-primary-1 cursor-pointer" v-if="!tradesperson.latest_rating">New on Trade Link</p>
+                  <div class="d-flex align-items-center justify-content-center mb-2 cursor-pointer" v-else @click="$router.push(`/user-profile/${tradesperson.id}`)">
+                    <span class="badge bg-primary-1 text-light me-2">★ {{ tradesperson.latest_rating?tradesperson.average_rating:5 }}/5</span>
+                    <span v-if="tradesperson.latest_rating">({{ tradesperson.total_ratings }} reviews)</span>
+                  </div>
                   <p class="card-text fw-lighter">Active within <span class="fw-bold">{{ tradesperson.distance }} miles of {{
                       city_name
                     }}</span>
