@@ -68,10 +68,10 @@
             </div>
 
             <!-- Portfolio -->
-            <div class="mt-2" v-if="portfolio.length >0">
+            <div class="mt-2" v-if="userInfo.portfolio.length >0">
               <h6 class="fw-bold">Portfolio</h6>
               <div class="row g-2">
-                <div class="col-4 col-sm-3 col-md-2" v-for="(item, index) in portfolio" :key="index">
+                <div class="col-4 col-sm-3 col-md-2" v-for="(item, index) in userInfo.portfolio" :key="index">
                   <img :src="item.file || 'https://placehold.co/400x300'" class="img-fluid rounded border"
                        alt="Portfolio image" @click="openGallery(index)"/>
                 </div>
