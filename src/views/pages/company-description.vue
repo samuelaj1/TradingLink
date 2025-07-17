@@ -128,9 +128,10 @@ export default {
 
     async editDescription() {
       this.isLoading = true
-      userService.updatePersonalInfo({
-        description: this.user.description,
-      }).then((res) => {
+      const formData = new FormData();
+      formData.append('description', this.user.description);
+
+      userService.updatePersonalInfo(formData).then((res) => {
         this.isLoading = false
         this.showModal = false
         const {status, message, extra} = res;
