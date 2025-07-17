@@ -48,9 +48,9 @@
             <ul class="list-group list-group-flush" v-else>
               <li class="list-group-item" v-for="(interest,i) in interestedTradespeople" :key="i">
                 <div class="d-flex align-items-center justify-content-between">
-                  <div>
+                  <router-link :to="`/user-profile/${interest.invited_user.id}`" class="highlight">
                     {{ interest.invited_user.name }}
-                  </div>
+                  </router-link>
                   <button class="btn btn-sm btn-primary" @click="acceptInvite(interest)"
                           v-if="interest.status !=='accepted'">Accept
                   </button>
@@ -183,3 +183,22 @@ export default {
 };
 </script>
 
+<style scoped>
+
+.highlight {
+  color: #007bff;
+  text-decoration: none;
+}
+.highlight:hover {
+  text-decoration: underline;
+}
+.highlight:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+.highlight:active {
+  color: var(--primary-color1);
+}
+
+</style>
