@@ -38,7 +38,7 @@
               <li><router-link to="/new-leads">New leads</router-link></li>
               <hr>
               <li>
-                <router-link to="/my-proposals/contacts">Contacts</router-link>
+                <router-link to="/my-proposals/contacts">Jobs</router-link>
               </li>
               <hr>
               <li>
