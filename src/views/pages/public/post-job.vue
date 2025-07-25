@@ -304,7 +304,7 @@ export default {
   name: "PostAJob",
   page: {
     title: "Post a Job | " + appConfig.name,
-    meta: [{name: "description", content: appConfig.description}]
+    meta: [{name: "description", content: appConfig.pageDescriptions.postJob}]
   },
   components: {
     topHeader,

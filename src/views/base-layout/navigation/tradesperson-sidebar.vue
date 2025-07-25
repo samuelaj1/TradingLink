@@ -12,7 +12,10 @@
         </div>
         <div class="flex-grow-1 cursor-pointer" @click="$router.push(`/user-profile/${user.id}`)">
           <h4 class="profile-name">{{ user.name }}</h4>
-          <h5 class="card-title my-1 small">{{ user.city_name }} ~ {{ user.parish_name }}</h5>
+          <div class="fw-lighter mb-0 small">{{ user.email }}</div>
+          <h5 class="card-title my-1 small">
+            {{ user.city_name ? `${user.city_name} ${user.parish_name}` : '' }}
+          </h5>
         </div>
       </div>
       <input type="file" ref="profileImageInput" class="d-none" @change="handleImageUpload" accept="image/*"/>

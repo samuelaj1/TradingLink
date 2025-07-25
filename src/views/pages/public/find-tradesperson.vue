@@ -27,7 +27,7 @@
         <div class="col-md-6 position-relative text-white order-md-last order-first" style="border-radius: 5px;">
           <div class="img-before">
             <div class="overlay position-absolute w-100 h-100 top-0 start-0"></div>
-            <img class="img-fluid w-100 h-100" src="../../../public/frontend/assets/images/bg/carpenter.jpg"
+            <img class="img-fluid w-100 h-100" src="../../../../public/frontend/assets/images/bg/carpenter.jpg"
                  alt="Skilled carpenter at work">
           </div>
         </div>
@@ -48,7 +48,7 @@
             <div class="col-lg-4 col-md-6 d-flex">
               <div class="fancy-card card flex-fill d-flex flex-column">
                 <div class="recent-article-img card-img-top" style="height: 200px;">
-                  <img class="img-fluid" src="../../../public/frontend/assets/images/home/post-job.jpg"
+                  <img class="img-fluid" src="../../../../public/frontend/assets/images/home/post-job.jpg"
                        alt="Post your job">
                 </div>
                 <div class="recent-article-content text-center card-body">
@@ -62,7 +62,7 @@
             <div class="col-lg-4 col-md-6 d-flex">
               <div class="fancy-card card flex-fill d-flex flex-column">
                 <div class="recent-article-img card-img-top" style="height: 200px;">
-                  <img class="img-fluid" src="../../../public/frontend/assets/images/home/tradespeople-respond.jpg"
+                  <img class="img-fluid" src="../../../../public/frontend/assets/images/home/tradespeople-respond.jpg"
                        alt="Trades respond">
                 </div>
                 <div class="recent-article-content card-body text-center">
@@ -77,7 +77,7 @@
             <div class="col-lg-4 col-md-6 d-flex">
               <div class="fancy-card card">
                 <div class="recent-article-img card-img-top" style="height: 200px;">
-                  <img class="img-fluid" src="../../../public/frontend/assets/images/home/step-3.png"
+                  <img class="img-fluid" src="../../../../public/frontend/assets/images/home/step-3.png"
                        alt="Choose and connect">
                 </div>
                 <div class="recent-article-content card-body text-center">
@@ -207,10 +207,10 @@
 </template>
 
 <script>
-import HomeFooter from '../base-layout/footer'
-import topHeader from '../base-layout/header-2'
+import HomeFooter from '../../base-layout/footer'
+import topHeader from '../../base-layout/header-2'
 import {userService} from "@/apis/user.service";
-import appConfig from "../../../app.config.json";
+import appConfig from "../../../../app.config.json";
 
 export default {
   page: {

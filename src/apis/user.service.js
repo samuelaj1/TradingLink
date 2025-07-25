@@ -5,6 +5,12 @@ export const userService = {
     login,
     logout,
     getTrades,
+    getForumQuestions,
+    getForumQuestionDetails,
+    searchForum,
+    askQuestions,
+    submitQuestionComment,
+    submitReply,
     postJobTrades,
     completeJob,
     submitRating,
@@ -562,9 +568,69 @@ function getTrades(limit) {
     });
 }
 
+function getForumQuestions() {
+    return new Promise((resolve) => {
+        axios.get(`/api/forum/threads`, useBearerTokenHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+function getForumQuestionDetails(id) {
+    return new Promise((resolve) => {
+        axios.get(`/api/forum/threads/${id}`, useBearerTokenHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+function searchForum(term) {
+    return new Promise((resolve) => {
+        axios.get(`/api/forum/search?q=${encodeURIComponent(term)}`, useBearerTokenHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
 function postJobTrades() {
     return new Promise((resolve) => {
         axios.get(`/api/post-job-trades`, useBasicAuthHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+function askQuestions(payload) {
+    return new Promise((resolve) => {
+        axios.post(`/api/forum/threads`, payload, useBearerTokenHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+function submitQuestionComment(id, payload) {
+    return new Promise((resolve) => {
+        axios.post(`/api/forum/threads/${id}/comments`, payload, useBearerTokenHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+function submitReply(commentId, payload) {
+    return new Promise((resolve) => {
+        axios.post(`/api/forum/comments/${commentId}/replies`, payload, useBearerTokenHeaders())
             .then((response) => {
                 resolve(response.data);
             })

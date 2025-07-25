@@ -42,12 +42,12 @@ export default [
     {
         path: '/faq',
         name: 'faq',
-        component: () => import('../views/pages/faq'),
+        component: () => import('../views/pages/public/faq'),
     },
     {
         path: '/find-tradesperson',
         name: 'findTradesperson',
-        component: () => import('../views/pages/find-tradesperson'),
+        component: () => import('../views/pages/public/find-tradesperson'),
     },
     {
         path: '/admin',
@@ -304,7 +304,7 @@ export default [
     {
         path: '/',
         name: 'Home',
-        component: () => import('../views/pages/home'),
+        component: () => import('../views/pages/public/index'),
     },
     {
         path: '/post-a-job',
@@ -328,9 +328,24 @@ export default [
                 return next({name: 'unauthorized'});
             },
         },
-        component: () => import('../views/pages/home/post-job'),
+        component: () => import('../views/pages/public/post-job'),
+    },
+    {
+        path: '/review-policy',
+        name: 'ReviewPolicy',
+        component: () => import('../views/pages/public/review-policy'),
+    },
+    {
+        path: '/about-us',
+        name: 'about',
+        component: () => import('../views/pages/public/about-us'),
     },
 
+    {
+        path: '/quality-requirement',
+        name: 'qualityRequirement',
+        component: () => import('../views/pages/public/quality-requirement.vue'),
+    },
 
     {
         path: '/service-request-posted/:id',
@@ -626,6 +641,24 @@ export default [
             authRequired: true,
         },
         component: () => import('../views/pages/ask-a-trade'),
+    },
+
+    {
+        path: '/search',
+        name: 'SearchResults',
+        meta: {
+            authRequired: true,
+        },
+        component: () => import('../views/pages/searchResults'),
+    },
+
+    {
+        path: '/question/:id',
+        name: 'ForumDetails',
+        meta: {
+            authRequired: true,
+        },
+        component: () => import('../views/pages/forum-detail'),
     },
 
     {

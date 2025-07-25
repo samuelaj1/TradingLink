@@ -1,134 +1,151 @@
+<!-- ForumHome.vue -->
 <template>
   <div>
     <homeOwnerHeader v-if="isHomeOwner"/>
     <topHeader v-else/>
-    <div class="job-listing-area pt-120 mb-120">
-      <div class="container">
-        <div class="row g-lg-4 gy-5">
-          <div class="col-lg-8 offset-lg-2 order-lg-2 order-1">
-            <div class="job-listing-wrap">
-              <h1 class="text-center mb-5">Ask a tradesperson</h1>
 
-              <!-- Answer a Question Section -->
-              <div class="card mb-4">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-patch-question-fill me-3"></i>
-                      <h5 class="card-title mb-0">Answer a question</h5>
-                    </div>
-                    <i class="bi bi-chevron-right"></i>
-                  </div>
-                  <p class="card-text mt-3">
-                    Show your skills by answering questions. Strengthen your profile by providing professional answers
-                    to genuine questions from our customers.
-                  </p>
-                </div>
-              </div>
+    <div class="container py-5">
+      <div class="mb-4 position-relative">
+        <form @submit.prevent="goToSearch">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Search questions or answers..."
+                 v-model="searchQuery"/>
+        </form>
+      </div>
 
-              <!-- My Answers Section -->
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                      <i class="bi bi-hand-thumbs-up me-3"></i>
-                      <h5 class="card-title mb-0">My answers</h5>
-                    </div>
-                    <i class="bi bi-chevron-right"></i>
-                  </div>
-                  <p class="card-text mt-3">
-                    Check for new likes on your answers. All customers can like answers. Providing the best answer to a
-                    question increases your chances of being hired.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <h1 class="mb-4">Forum</h1>
+
+      <div class="mb-5 border p-4 rounded bg-white shadow-sm">
+        <textarea v-model="newQuestion" rows="3" class="form-control mb-3"
+                  placeholder="Have a question? Ask here..."></textarea>
+        <button class="btn btn-primary" @click="submitQuestion">
+          <i class="bi bi-question-circle me-2"></i>Post Question
+        </button>
+      </div>
+
+      <div v-for="question in questions" :key="question.id" class="mb-4 border-bottom pb-3">
+        <router-link :to="{ name: 'ForumDetails', params: { id: question.id }, query:{q:question.content} }" class="text-decoration-none">
+          <h5 class="fw-bold">{{ question.content }}</h5>
+        </router-link>
+        <div class="text-muted small">{{ question.user.name }} | {{ formatDate(question.created_at) }}</div>
       </div>
     </div>
   </div>
 </template>
 
+
+
 <script>
-import HomeFooter from '../base-layout/footer';
+import homeOwnerHeader from '../base-layout/navigation/homeowner-menu';
 import topHeader from '../base-layout/navigation/homeowner-menu';
-import SideBar from '../base-layout/navigation/tradesperson-sidebar';
-import MobileFooter from '../../components/mobile-nav';
+import store from "@/store/store";
 import appConfig from "../../../app.config.json";
 import {userService} from "@/apis/user.service";
-import homeOwnerHeader from '../base-layout/navigation/homeowner-menu';
-import store from "@/store/store";
 
 export default {
+  name: "AskForum",
   page: {
-    title: "Ask a trade",
+    title: "Ask a Trade",
     meta: [{name: "description", content: appConfig.description}]
   },
-  name: "AskATrade",
   data() {
     return {
-      user: this.$store.getters.GET_USER_INFO,
-      showSidebar: false,
-      isMobile: false,
-      services: [],
+      user: store.getters.GET_USER_INFO,
+      newQuestion: "",
+      questions: [],
+      questionLoader: false,
+      searchQuery: "",
+      searchResults: [],
+      searchDebounce: null,
+      isDropdownOpen: false
     };
   },
   components: {
-    HomeFooter,
     topHeader,
-    SideBar,
-    MobileFooter,
     homeOwnerHeader
   },
   computed: {
-    loggedIn() {
-      return this.$store.getters.GET_USER_INFO;
-    },
     isHomeOwner() {
-      const loggedUser = store.getters.GET_USER_INFO;
-      if(!loggedUser){
-        return false
-      }
-      const userRole = loggedUser.roles?.[0] || '';
-      return userRole === 'homeowner';
+      const user = store.getters.GET_USER_INFO;
+      return user?.roles?.[0] === 'homeowner';
     }
   },
   methods: {
-    checkScreenSize() {
-      this.isMobile = window.innerWidth < 992;
-      this.showSidebar = !this.isMobile;
+    formatDate(dateStr) {
+      if (!dateStr) return '';
+      return new Intl.DateTimeFormat('en-GB', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      }).format(new Date(dateStr));
     },
-  },
-  created() {
+
+    loadQuestions() {
+      this.questionLoader = true;
+      userService.getForumQuestions().then((res) => {
+        this.questionLoader = false;
+        const {status, message, extra} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message: message, showSwal: true});
+          return;
+        }
+        this.questions = extra.map(q => ({
+          ...q,
+          newAnswer: '',
+          answers: q.comments.map(a => ({
+            ...a,
+            replies: a.replies || [],
+            newReply: '',
+            showReplyInput: false
+          }))
+        }));
+      });
+    },
+
+    submitQuestion() {
+      if (!this.newQuestion.trim()) return;
+      const payload = {content: this.newQuestion};
+
+      userService.askQuestions(payload).then(async (res) => {
+        const {status, message} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message: message, showSwal: true});
+          return;
+        }
+        this.newQuestion = "";
+        this.loadQuestions();
+      });
+    },
+
+
+    handleClickOutside(event) {
+      const wrapper = this.$refs.searchWrapper;
+      if (wrapper && !wrapper.contains(event.target)) {
+        this.isDropdownOpen = false;
+      }
+    },
+    goToSearch() {
+      if (this.searchQuery.trim()) {
+        this.$router.push({ name: 'SearchResults', query: { q: this.searchQuery.trim() } });
+      }
+    }
   },
   mounted() {
-    this.checkScreenSize();
-    window.addEventListener('resize', this.checkScreenSize);
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.checkScreenSize);
+    this.loadQuestions();
   },
 };
 </script>
 
+
 <style scoped>
-.job-listing-area {
-  padding-top: 120px;
-  padding-bottom: 120px;
+textarea {
+  resize: vertical;
 }
 
-.card {
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+.text-muted {
+  font-size: 0.85rem;
 }
 
-.card-body {
-  padding: 20px;
-}
 
-.bi-patch-question-fill, .bi-hand-thumbs-up {
-  font-size: 1.5rem;
-}
 </style>
+

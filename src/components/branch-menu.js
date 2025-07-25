@@ -2,7 +2,7 @@ export const branchMenuItems = [
     {
         label: "branchDashboard",
         icon: "ri-admin-line",
-        link: '/branch/home',
+        link: '/branch/public',
     },
 
     {

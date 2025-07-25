@@ -26,11 +26,17 @@
           </div>
           <div v-if="!userLoader">
             <h6 class="mb-2">{{ userInfo.name }}</h6>
+            <div class="text-muted mb-1 small fw-lighter">
+              <i class="bi bi-envelope"></i> {{ userInfo.email || 'N/A' }}
+            </div>
             <div class="text-muted mb-2">
-              <i class="bi bi-star-fill text-primary-1"></i> {{average_rating}}/5 {{reviews.length?`(${ total_rating } review${total_rating>1?'s':''})`:''}}
+              <i class="bi bi-star-fill text-primary-1"></i> {{ average_rating }}/5
+              {{ reviews.length ? `(${total_rating} review${total_rating > 1 ? 's' : ''})` : '' }}
             </div>
             <div v-if="userInfo.city_name"><i class="bi bi-geo-alt"></i>
-              {{ userInfo.city_name ? `${userInfo.city_name} ~ ${userInfo.parish_name}` : '' }}
+              {{
+                userInfo.city_name ? `${userInfo.city_name} ${userInfo.parish_name ? `~ ${userInfo.parish_name}` : ''}` : ''
+              }}
             </div>
             <div v-else><i class="bi bi-geo-alt"></i> N/A</div>
           </div>
@@ -61,14 +67,15 @@
               <p class="fw-lighter small">
                 {{ userInfo.description || 'No description provided.' }}
               </p>
-              <!--              <p class="fst-italic small">-->
-              <!--                *Trade Lin does not check company descriptions. If you think something is incorrect,-->
-              <!--                <a href="#">let us know</a>.-->
-              <!--              </p>-->
+              <p class="fst-italic small" v-if="userInfo.description">
+                *Trade Link does not check company descriptions. If you think something is incorrect,
+                <router-link to="/contact-us">let us know</router-link>
+                .
+              </p>
             </div>
 
             <!-- Portfolio -->
-            <div class="mt-2" v-if="userInfo.portfolio.length >0">
+            <div class="mt-2" v-if="userInfo?.portfolio?.length >0">
               <h6 class="fw-bold">Portfolio</h6>
               <div class="row g-2">
                 <div class="col-4 col-sm-3 col-md-2" v-for="(item, index) in userInfo.portfolio" :key="index">

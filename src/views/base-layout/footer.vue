@@ -25,8 +25,8 @@
             <div class="menu-container">
               <ul>
                 <li><router-link to="/register">Register as tradesperson <i class='bx bx-up-arrow-alt'></i></router-link></li>
-                <li><router-link to="/faq">Quality requirements <i class='bx bx-up-arrow-alt'></i></router-link></li>
-                <li><a href="#">Reviews policy <i class='bx bx-up-arrow-alt'></i></a></li>
+                <li><router-link to="/quality-requirement">Quality requirements <i class='bx bx-up-arrow-alt'></i></router-link></li>
+                <li><router-link to="/review-policy">Reviews policy <i class='bx bx-up-arrow-alt'></i></router-link></li>
                 <li><router-link to="/new-leads">Browse Leads <i class='bx bx-up-arrow-alt'></i></router-link></li>
               </ul>
             </div>
@@ -40,7 +40,7 @@
             </div>
             <div class="menu-container">
               <ul>
-                <li><a href="#">About us <i class='bx bx-up-arrow-alt'></i></a></li>
+                <li><router-link to="/about-us">About us <i class='bx bx-up-arrow-alt'></i></router-link></li>
                 <li><a href="#">Press and media <i class='bx bx-up-arrow-alt'></i></a></li>
                 <li><a href="#">Vacancies <i class='bx bx-up-arrow-alt'></i></a></li>
               </ul>

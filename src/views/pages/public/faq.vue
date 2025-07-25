@@ -201,10 +201,10 @@
 </template>
 
 <script>
-import HomeFooter from '../base-layout/footer'
-import topHeader from '../base-layout/navigation/home-menu'
-import homeOwnerHeader from '../base-layout/navigation/homeowner-menu'
-import appConfig from "../../../app.config.json";
+import HomeFooter from '../../base-layout/footer'
+import topHeader from '../../base-layout/navigation/home-menu'
+import homeOwnerHeader from '../../base-layout/navigation/homeowner-menu'
+import appConfig from "../../../../app.config.json";
 import {userService} from "@/apis/user.service";
 import store from "@/store/store";
 
