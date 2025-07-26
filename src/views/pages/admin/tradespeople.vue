@@ -3,18 +3,25 @@
     <topHeader/>
     <div class="container">
       <div class="row">
-        <div class="col-lg-12">
-            <div class="title mt-4">
-              <h4 class="fw-bolder">Tradespeople</h4>
+        <div class="col-lg-12 mt-4">
+          <div class="table-wrapper2">
+            <div class="title-and-btn mb-3">
+              <div class="title">
+                <h4>Tradespeople</h4>
+              </div>
             </div>
-              <!-- Table -->
-              <div class="table-wrapper2">
-                <div class="eg-table job-list-table">
-                  <div class="row mb-2">
-                    <!-- Search -->
-                    <div class="col-sm-6 col-md-12 text-end mb-4">
-                      <label class="d-inline-flex align-items-center">
-                        Search:
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <!-- Table -->
+          <div class="table-wrapper2">
+            <div class="eg-table job-list-table">
+              <div class="row mb-2">
+                <!-- Search -->
+                <div class="col-sm-6 col-md-12 text-end mb-4">
+                  <label class="d-inline-flex align-items-center">
+                    Search:
                         <b-form-input
                             v-model="filter"
                             type="search"
@@ -39,8 +46,13 @@
                       @filtered="onFiltered"
                       class="table table-bordered table-hover"
                   >
+
+                    <template #cell(business_name)="data">
+                      <h5 class="mb-0">{{ data.item.business_name || 'N/A' }}</h5>
+                    </template>
+
                     <template #cell(name)="data">
-                      <h5 class="mb-0">{{ data.item.name }}</h5>
+                      <h6 class="mb-0 small">{{ data.item.name }}</h6>
                     </template>
 
                     <template #cell(email)="data">
@@ -55,25 +67,39 @@
                       {{ data.item.city_name ? `${data.item.city_name}, ${data.item.parish_name}` : 'N/A' }}
                     </template>
 
+                    <template #cell(identity_verified)="data">
+                      <span class="text-capitalize badge text-white rounded-pill"
+                            :class="[data.item.identity_verified ==='verified'?'bg-success':'bg-danger']">{{
+                          data.item.identity_verified || 'N/A'
+                        }}</span>
+                    </template>
+
                     <template #cell(status)="data">
                       <span class="text-capitalize">{{ data.item.status }}</span>
                     </template>
 
                     <template #cell(action)="data">
-                      <b-button size="sm" variant="primary" class="me-2" @click="goToDetails(data.item.id)">Details</b-button>
+                      <b-button size="sm" variant="primary" class="me-2" @click="goToDetails(data.item.id)">Details
+                      </b-button>
                       <!-- <b-button size="sm" variant="danger" @click="deleteTrade(data.item.id)">Delete</b-button> -->
                     </template>
                   </b-table>
-                </div>
+              <div v-if="isLoading" class="text-center my-4">
+                <div class="spinner-border" role="status"></div>
               </div>
+
               <!-- Pagination -->
-              <b-pagination
-                  v-model="currentPage"
-                  :total-rows="totalRows"
-                  :per-page="perPage"
-                  align="center"
-                  class="my-3"
-              />
+              <div class="pagination-area">
+                <b-pagination
+                    v-model="currentPage"
+                    :total-rows="totalRows"
+                    :per-page="perPage"
+                    align="center"
+                    class="my-3 pagination"
+                />
+              </div>
+            </div>
+              </div>
         </div>
       </div>
     </div>
@@ -101,11 +127,13 @@ export default {
       isLoading: false,
       tradespeople: [],
       fields: [
+        {key: 'business_name', label: 'Business Name', sortable: true},
         {key: 'name', sortable: true},
         {key: 'email', sortable: true},
         {key: 'phone', sortable: false},
         {key: 'location', label: 'Location', sortable: false},
         {key: 'status', sortable: true},
+        {label: 'Identity Verified', key: 'identity_verified', sortable: true},
         {key: 'action', label: 'Action'}
       ],
       filter: '',

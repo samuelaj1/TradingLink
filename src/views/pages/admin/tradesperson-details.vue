@@ -9,13 +9,27 @@
     </div>
 
     <div class="container py-4">
-      <h3 class="mb-4">Trade Details for {{ trade.name }}</h3>
+      <h3 class="mb-4">Tradesperson - {{ trade.name }}</h3>
 
       <div v-if="loading" class="text-center my-4">
         <div class="spinner-border" role="status"></div>
       </div>
 
       <div v-else>
+
+        <div class="mb-4 d-flex align-items-center ">
+          <img v-if="trade.photo" :src="trade.photo" alt="Company Logo"
+               class="rounded-circle me-3" width="60"
+               height="60" style="object-fit: cover;"/>
+          <div v-else class="profile-image cursor-pointer rounded-circle" style="width: 70px; height: 70px;">
+            <i class="bi bi-person-fill"></i>
+          </div>
+          <div class="text-muted mb-2">
+            <i class="bi bi-star-fill text-primary-1"></i> {{ trade.average_rating }}/5 Rating
+          </div>
+        </div>
+
+        <a :href="`/user-profile/${trade.id}`" target="_blank" class="btn btn-sm btn-dark mb-3">View Public Profile</a>
         <div class="row mb-3">
           <div class="col-md-6 mb-2">
             <strong>Email:</strong> {{ trade.email }}
@@ -44,25 +58,54 @@
           </div>
         </div>
 
+        <div class="row mb-3">
+          <div class="col-md-6 mb-2">
+            <strong>Main Trade:</strong> {{ trade.main_trade?.name || 'N/A' }}
+          </div>
+          <div class="col-md-6 mb-2">
+            <strong>Offers Guarantee:</strong> {{ trade.guarantee ? 'Yes' : 'No' }}
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6 mb-2">
+            <strong>Work Address:</strong> {{ trade.work_address || 'N/A' }}
+          </div>
+          <div class="col-md-6 mb-2">
+            <strong>Travel Radius:</strong> {{ trade.travel_radius || 'N/A' }} miles
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-12 mb-2">
+            <strong>Description:</strong> {{ trade.description || 'N/A' }}
+          </div>
+        </div>
+
         <!-- Identity File -->
         <div class="row mb-4">
           <div class="col-md-12">
             <h5>Identity Document</h5>
             <div v-if="trade.identity_file">
-              <a target="_blank" :href="trade.identity_file" class="btn btn-primary btn-sm"><i class="bi bi-eye"/> View Identity File</a>
-              <b-button
-                  variant="success"
-                  size="sm"
-                  class="ms-2"
-                  :disabled="trade.identity_verified === 'verified'"
-                  @click="verifyIdentity('identity')"
-              >
-                {{ trade.identity_verified === 'verified' ? 'Verified' : 'Verify Identity' }}
-              </b-button>
+              <span class="me-3">Type: {{ trade.identity_type }}</span>
 
+              <a target="_blank" :href="trade.identity_file" class="btn btn-link btn-sm"><i class="bi bi-eye"/> View
+                Identity File</a>
             </div>
             <div v-else>
               <p><em>No identity document uploaded.</em></p>
+            </div>
+
+            <div class="mt-2 mb-3">
+              Status: <span class="badge text-white rounded-pill"
+                            :class="[trade.identity_verified ==='verified'?'bg-success':'bg-danger']">{{
+                trade.identity_verified || 'N/A'
+              }}</span>
+            </div>
+
+            <div v-if="trade.identity_verified !=='verified'">
+              <button class="btn btn-danger btn-sm me-2" v-if="trade.identity_verified !=='rejected'" @click="verifyIdentity('rejected')">Reject</button>
+              <button class="btn btn-primary btn-sm" @click="verifyIdentity('verified')">Approve</button>
             </div>
           </div>
         </div>
@@ -72,16 +115,7 @@
           <div class="col-md-12">
             <h5>Skills Verification</h5>
             <div v-if="trade.skill_verification_file">
-              <a target="_blank" :href="trade.skill_verification_file" class="btn btn-primary btn-sm"><i class="bi bi-eye"/> View Skills File</a>
-              <b-button
-                  variant="success"
-                  size="sm"
-                  class="ms-2"
-                  :disabled="trade.skills_verified === 'verified'"
-                  @click="verifyIdentity('skills')"
-              >
-                {{ trade.skills_verified === 'verified' ? 'Verified' : 'Verify Skills' }}
-              </b-button>
+              <a target="_blank" :href="trade.skill_verification_file" class="btn btn-link btn-sm"><i class="bi bi-eye"/> View Skills File</a>
             </div>
             <div v-else>
               <p><em>No skills verification file uploaded.</em></p>
@@ -96,15 +130,17 @@
 
 <script>
 import topHeader from '../../base-layout/admin-top-nav';
-import { userService } from '@/apis/user.service';
-import appConfig from "../../../../app.config.json"; // your API service
+import {userService} from '@/apis/user.service';
+import appConfig from "../../../../app.config.json";
+import tradespeople from "@/views/pages/admin/tradespeople";
+import {confirm} from "@/utils/functions"; // your API service
 
 export default {
-  components: { topHeader },
-  name:"Tradesperson",
+  components: {topHeader},
+  name: "Tradesperson",
   page: {
     title: "Tradesperson Details",
-    meta: [{ name: "description", content: appConfig.description }]
+    meta: [{name: "description", content: appConfig.description}]
   },
   data() {
     return {
@@ -114,7 +150,6 @@ export default {
   },
   methods: {
     async fetchTradePerson() {
-
       this.loading = true;
       userService.getTradesperson(this.$route.params.id).then((res) => {
         this.loading = false;
@@ -128,32 +163,24 @@ export default {
       });
 
     },
-    viewFile(path) {
-      // Assuming your files are served via public storage or URL
-      const url = `${process.env.VUE_APP_BASE_URL}/${path}`;
-      window.open(url, '_blank');
-    },
+
     async verifyIdentity(type) {
-      try {
-        // API call to verify identity or skills
-        // Replace with your actual service call
-        let res;
-        if(type === 'identity'){
-          res = await userService.verifyIdentityFile(this.trade.id);
-          if(res.status){
-            this.trade.identity_verified = 'verified';
-            alert('Identity verified successfully!');
-          }
-        } else if(type === 'skills'){
-          res = await userService.verifySkillsFile(this.trade.id);
-          if(res.status){
-            this.trade.skills_verified = 'verified';
-            alert('Skills verified successfully!');
-          }
+      confirm("This action cannot be reverted", () => {
+        this.loading = true;
+        const payload = {
+          user_id: this.trade.id,
+          identity_verified: type,
         }
-      } catch (err) {
-        alert('Verification failed');
-      }
+        userService.verifyIdentity(payload).then((res) => {
+          this.loading = false;
+          const {extra, status} = res;
+          if (!status) {
+            this.$store.dispatch('error', {message: message, showSwal: true});
+            return;
+          }
+          this.trade.identity_verified = extra;
+        });
+      });
     }
   },
   mounted() {

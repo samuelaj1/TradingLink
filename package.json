@@ -1,6 +1,6 @@
 {
-  "name": "trading-link",
-  "version": "0.0.9",
+  "name": "trade-link",
+  "version": "0.1.0",
   "private": true,
   "engines": {
     "node": "16.x"

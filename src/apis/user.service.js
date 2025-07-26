@@ -12,6 +12,8 @@ export const userService = {
     submitQuestionComment,
     submitReply,
     postJobTrades,
+    contactFormSubmit,
+    verifyIdentity,
     completeJob,
     submitRating,
     getTradespersonsByTrade,
@@ -358,7 +360,7 @@ function getBusinessDetails() {
 }
 function getUserProfile(userId) {
     return new Promise((resolve) => {
-        axios.get(`/api/user-profile/${userId}`, useBearerTokenHeaders())
+        axios.get(`/api/user-profile/${userId}`, useBasicAuthHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
@@ -367,7 +369,7 @@ function getUserProfile(userId) {
 
 function getTradesperson(userId) {
     return new Promise((resolve) => {
-        axios.get(`/api/tradesperson/${userId}`, useBearerTokenHeaders())
+        axios.get(`/api/tradesperson/${userId}`, useBasicAuthHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
@@ -611,6 +613,27 @@ function searchForum(term) {
 function postJobTrades() {
     return new Promise((resolve) => {
         axios.get(`/api/post-job-trades`, useBasicAuthHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+function contactFormSubmit(payload) {
+    return new Promise((resolve) => {
+        axios.post(`/api/contact-us`, payload, useBasicAuthHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+
+function verifyIdentity(payload) {
+    return new Promise((resolve) => {
+        axios.post(`/api/admin/verify-identity`, payload, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })

@@ -1,13 +1,13 @@
 <template>
   <div>
   <topHeader></topHeader>
-    <div class="mt-4 text-end pe-4">
+    <div class="mt-2 text-end pe-4 mb-5">
       <router-link to="/profile-menu" v-if="isMobile" class="mb-4">
         <i class="bi bi-chevron-left"></i> Back to Menu
       </router-link>
     </div>
     <!-- ========== Job Listing Start============= -->
-    <div class="job-listing-area pt-120 mb-120">
+    <div class="job-listing-area pt-60 mb-120">
       <div class="container">
         <div class="row g-lg-4 gy-5">
           <div class="col-lg-8 offset-lg-2 order-lg-2 order-1">
@@ -93,7 +93,7 @@ import {userService} from "@/apis/user.service";
 export default {
   page: {
     title: "New Leads",
-    meta: [{ name: "description", content: appConfig.description }]
+    meta: [{ name: "description", content: appConfig.pageDescriptions.newLeads }]
   },
   data() {
     return {

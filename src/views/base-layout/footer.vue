@@ -41,8 +41,7 @@
             <div class="menu-container">
               <ul>
                 <li><router-link to="/about-us">About us <i class='bx bx-up-arrow-alt'></i></router-link></li>
-                <li><a href="#">Press and media <i class='bx bx-up-arrow-alt'></i></a></li>
-                <li><a href="#">Vacancies <i class='bx bx-up-arrow-alt'></i></a></li>
+                <li><router-link to="/contact-us">Contact Us <i class='bx bx-up-arrow-alt'></i></router-link></li>
               </ul>
             </div>
           </div>

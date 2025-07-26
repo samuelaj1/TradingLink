@@ -108,7 +108,7 @@
 
               <p class="small text-muted">
                 We're committed to respecting your privacy and will always handle your data fairly and legally.
-                Please see our <a href="#" class="text-decoration-none text-purple">privacy policy</a> for more
+                Please see our <a href="https://docs.google.com/document/d/1q-Nbu-VSv9Gg2oyetR-zuSMv5Lf5FhCN9mUESTN-64c/edit?usp=sharing" target="_blank" class="text-decoration-underline text-primary-1">privacy policy</a> for more
                 information.
               </p>
 

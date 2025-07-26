@@ -348,6 +348,12 @@ export default [
     },
 
     {
+        path: '/contact-us',
+        name: 'contactUs',
+        component: () => import('../views/pages/public/contact-us'),
+    },
+
+    {
         path: '/quality-requirement',
         name: 'qualityRequirement',
         component: () => import('../views/pages/public/quality-requirement.vue'),
