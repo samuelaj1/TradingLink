@@ -39,6 +39,14 @@ Vue.filter('toHumanDayMonthYear', (value) => {
     return moment(value).format('D MMMM YYYY ');
 })
 
+
+Vue.filter('formatDate', (dateStr) => {
+    return new Intl.DateTimeFormat('en-GB', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+    }).format(new Date(dateStr));
+})
+
 Vue.filter('toFormattedDate', (value) => {
     return moment(value).format('YYYY-MM-DD');
 })

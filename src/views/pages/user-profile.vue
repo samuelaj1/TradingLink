@@ -25,6 +25,7 @@
             <i class="bi bi-person-fill"></i>
           </div>
           <div v-if="!userLoader">
+            <h5 class="mb-2" v-if="userInfo.business_name">{{ userInfo.business_name }}</h5>
             <h6 class="mb-2">{{ userInfo.name }}</h6>
             <div class="text-muted mb-1 small fw-lighter">
               <i class="bi bi-envelope"></i> {{ userInfo.email || 'N/A' }}

@@ -35,7 +35,7 @@
                           <div class="name-location">
                             <h5 class="text-capitalize"><router-link :to="'/jobs/'+service.id">{{ service.headline }}</router-link></h5>
                             <p class="fw-light"><i class="bi bi-pin-map"></i> {{ service.city_name }}, <small
-                                class="fw-light">{{service.created_at | toHumanDate()}}</small></p>
+                                class="fw-light">{{service.created_at | formatDate}}</small></p>
                             <p>Posted By: {{service.user.name}}</p>
                           </div>
                         </div>

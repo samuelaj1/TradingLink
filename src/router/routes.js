@@ -84,14 +84,20 @@ export default [
         component: () => import('../views/pages/admin/question-builder'),
     },
     {
-        path: '/admin/homeowners',
+        path: '/admin/clients',
         name: 'homeowners',
-        component: () => import('../views/pages/admin/homeowner'),
+        component: () => import('../views/pages/admin/clients'),
     },
     {
         path: '/admin/tradespeople',
         name: 'tradespeople',
         component: () => import('../views/pages/admin/tradespeople'),
+    },
+
+    {
+        path: '/admin/tradesperson/:id/details',
+        name: 'TradePersonDetails',
+        component: () => import('../views/pages/admin/tradesperson-details'),
     },
     {
         path: '/create-account',

@@ -9,7 +9,10 @@
         </div>
         <div class="flex-grow-1 ms-3" @click="$router.push(`/user-profile/${user.id}`)">
           <h5 class="profile-name mb-0">{{ user.name }}</h5>
-          <small class="text-muted">{{ user.city_name }} ~ {{ user.parish_name }}</small>
+          <div class="fw-lighter mb-0 small">{{ user.email }}</div>
+
+          <small class="text-muted">{{ user.city_name ? `${user.city_name} ${user.parish_name}` : '' }}
+          </small>
         </div>
       </div>
       <input type="file" ref="profileImageInput" class="d-none" @change="handleImageUpload" accept="image/*"/>
@@ -48,6 +51,15 @@
           </div>
           <div>
             <span class="badge bg-danger text-white rounded-pill">{{inboxCount}}</span>
+            <i class="bi bi-chevron-right text-muted"></i>
+          </div>
+        </router-link>
+        <router-link to="/new-leads" class="settings-item d-flex justify-content-between align-items-center p-3">
+          <div>
+            <i class="bi bi-file-text me-3"></i> New leads
+          </div>
+          <div>
+            <span class="badge bg-primary-1 text-white rounded-pill" style="width: 1rem; height: 1rem; display: inline-block; padding: 0;"></span>
             <i class="bi bi-chevron-right text-muted"></i>
           </div>
         </router-link>

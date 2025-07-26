@@ -15,6 +15,7 @@ export const userService = {
     completeJob,
     submitRating,
     getTradespersonsByTrade,
+    getTradesperson,
     getTradeQuestion,
     getParisCities,
     getServiceInvites,
@@ -358,6 +359,15 @@ function getBusinessDetails() {
 function getUserProfile(userId) {
     return new Promise((resolve) => {
         axios.get(`/api/user-profile/${userId}`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function getTradesperson(userId) {
+    return new Promise((resolve) => {
+        axios.get(`/api/tradesperson/${userId}`, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));

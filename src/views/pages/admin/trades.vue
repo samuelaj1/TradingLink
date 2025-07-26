@@ -24,8 +24,8 @@
                         <input type="checkbox" v-model="selectAll" @change="selectAllTrades" />
                       </th>
                       <th scope="col">Name</th>
-                      <th scope="col">Updated Date</th>
                       <th scope="col">Created Date</th>
+                      <th scope="col">Updated Date</th>
                       <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -44,8 +44,8 @@
                         <input type="checkbox" :value="service.id" v-model="selectedTrades" />
                       </td>
                       <td>{{ service.name }}</td>
-                      <td>{{ service.updated_at | toFormattedDateTime }}</td>
-                      <td>{{ service.created_at | toHumanDate() }}</td>
+                      <td>{{ service.created_at | formatDate }}</td>
+                      <td>{{ service.updated_at | formatDate }}</td>
                       <td>
                         <button class="btn btn-primary btn-sm me-2" @click="openEditModal(service)">Edit</button>
                         <button class="btn btn-danger btn-sm" @click="deleteTrade(service.id)">Delete</button>

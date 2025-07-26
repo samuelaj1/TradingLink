@@ -1,6 +1,11 @@
 <template>
   <div>
   <topHeader></topHeader>
+    <div class="mt-4 text-end pe-4">
+      <router-link to="/profile-menu" v-if="isMobile" class="mb-4">
+        <i class="bi bi-chevron-left"></i> Back to Menu
+      </router-link>
+    </div>
     <!-- ========== Job Listing Start============= -->
     <div class="job-listing-area pt-120 mb-120">
       <div class="container">
@@ -37,7 +42,7 @@
                     <small class="fw-light">{{ service.trade.name }}</small>
                     <p class="fw-light mt-3"><i class="bi bi-pin-map"></i> {{ service.city_name }}
                       ({{ service.distance }} miles), <small
-                          class="fw-light">{{ service.created_at | toHumanDate() }}</small></p>
+                          class="fw-light">{{ service.created_at | formatDate }}</small></p>
                   </div>
                   <hr/>
                   <button class="btn btn-primary flex-shrink-1" @click="sendInvite(service)"

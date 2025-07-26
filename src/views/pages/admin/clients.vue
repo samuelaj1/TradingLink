@@ -7,7 +7,7 @@
           <div class="table-wrapper2">
             <div class="title-and-btn">
               <div class="title">
-                <h4>Home Owner</h4>
+                <h4>Clients</h4>
               </div>
             </div>
             <table class="eg-table table job-list-table mb-0">
@@ -16,30 +16,26 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Location</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
               </thead>
               <tbody>
-              <tr v-for="(homeowner,i) in homeowners" :key="i">
+              <tr v-for="(client,i) in homeowners" :key="i">
                 <td>
                   <div class="job-content">
-                    <h5>{{ homeowner.name }}</h5>
+                    <h5>{{ client.name }}</h5>
                   </div>
                 </td>
                 <td>
-                  <span>{{ homeowner.email }}</span>
+                  <span>{{ client.email }}</span>
                 </td>
                 <td>
-                  <span class="total-number light-orange">{{ homeowner.phone }}</span>
-                </td>
-                <td>
-                  <span class="total-number">{{ homeowner.city_name }}</span>
+                  <span class="total-number light-orange">{{ client.phone }}</span>
                 </td>
                 <td>
                   <div class="text-capitalize">
-                    {{ homeowner.status }}
+                    {{ client.status }}
                   </div>
                 </td>
                 <td data-label="Action">
@@ -82,7 +78,7 @@ import {userService} from "@/apis/user.service";
 
 export default {
   page: {
-    title: "Admin My Projects",
+    title: "Admin | Trades",
     meta: [{name: "description", content: appConfig.description}]
   },
   data() {

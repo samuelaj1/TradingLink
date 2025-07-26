@@ -78,6 +78,14 @@
         <span class="badge bg-danger text-white rounded-pill">{{ inboxCount }}</span>
         <i class="bi bi-chevron-right d-lg-none"></i>
       </router-link>
+      <router-link to="/new-leads" id="inbox"
+                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <div>
+          <i class="bi bi-briefcase mr-2"></i> New leads
+        </div>
+        <span class="badge bg-primary-1 text-white rounded-pill" style="width: 1rem; height: 1rem; display: inline-block; padding: 0;"></span>
+        <i class="bi bi-chevron-right d-lg-none"></i>
+      </router-link>
 
     </div>
 
