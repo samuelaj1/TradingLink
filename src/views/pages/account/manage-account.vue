@@ -40,7 +40,7 @@
                     Your profile and personal information will be deleted permanently and you will no longer be able to
                     access your account.<br>
                     For more information about how we handle your data, please read our
-                    <a href="#" class="text-decoration-underline">Privacy Policy</a>.
+                    <a href="https://docs.google.com/document/d/1q-Nbu-VSv9Gg2oyetR-zuSMv5Lf5FhCN9mUESTN-64c" target="_blank" class="text-decoration-underline">Privacy Policy</a>.
                   </small>
                 </label>
               </div>

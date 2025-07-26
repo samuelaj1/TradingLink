@@ -75,7 +75,7 @@
         <p class="small font-weight-lighter">
           Verifying your identity prevents people from setting up fraudulent accounts.
           We will handle your personal data securely and in accordance with our
-          <a href="#" class="text-decoration-underline">privacy policy</a>.
+          <a target="_blank" href="https://docs.google.com/document/d/1q-Nbu-VSv9Gg2oyetR-zuSMv5Lf5FhCN9mUESTN-64c" class="text-decoration-underline">privacy policy</a>.
         </p>
 
         <div class="d-flex justify-content-end gap-2 mt-4">

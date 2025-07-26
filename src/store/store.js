@@ -5,7 +5,6 @@ import notification from "./modules/notification";
 import loader from "./modules/loader";
 import breadcrumb from "./modules/breadcrumb";
 import orders from "./modules/orders"
-import products from "./modules/products";
 import transaction from  './modules/transaction';
 
 Vue.use(Vuex)
@@ -18,7 +17,6 @@ const store = new Vuex.Store({
     loader,
     breadcrumb,
     orders,
-    products,
     transaction
 
   },

@@ -57,7 +57,7 @@
                 <p class="p-small mb-0">By clicking Sign up for free, you agree to MyBuilder <a
                     class="text-decoration-underline" href="#">Terms and Conditions</a>.</p>
                 <p class="p-small">For information on how we process your data, see our <a
-                    class="text-decoration-underline" href="#">Privacy policy</a>.</p>
+                    class="text-decoration-underline" target="_blank" href="https://docs.google.com/document/d/1q-Nbu-VSv9Gg2oyetR-zuSMv5Lf5FhCN9mUESTN-64c">Privacy policy</a>.</p>
 
                 <div class="text-center mt-5 mb-4">
                   <button type="submit"

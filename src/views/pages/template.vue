@@ -16,7 +16,7 @@ export default {
     };
   },
   page: {
-    title: "Mortiply",
+    title: "Trade Link",
     meta: [{ name: "description", content: appConfig.description }],
   },
 };

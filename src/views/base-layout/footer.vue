@@ -77,8 +77,8 @@
           <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
             <div class="footer-btm-menu">
               <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Services</a></li>
+                <li><a href="https://docs.google.com/document/d/1q-Nbu-VSv9Gg2oyetR-zuSMv5Lf5FhCN9mUESTN-64c" target="_blank">Privacy Policy</a></li>
+<!--                <li><a href="#">Terms of Services</a></li>-->
               </ul>
             </div>
           </div>
