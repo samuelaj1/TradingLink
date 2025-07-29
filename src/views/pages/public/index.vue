@@ -5,7 +5,7 @@
     <topHeader v-else/>
 
     <div class="hero2">
-      <div class="hero-wapper">
+      <div class="hero-wapper overflow-visible">
         <div class="container-fluid px-0">
           <div class="row">
             <div class="col-lg-7 d-flex align-items-center">
@@ -15,22 +15,32 @@
                 <div class="job-search-area mt-3">
                   <form @submit.prevent>
                     <div class="form-inner job-title">
-                      <input type="text" placeholder="Search for a tradesperson" v-model="searchQuery" @focus="showDropdown = true" @input="filterCategories" @blur="collapseDropdown">
+                      <input type="text" id="search" placeholder="For example: cleaner" v-model="searchQuery" @input="filterCategories" @focus="showDropdown = true" @blur="collapseDropdown">
+                      <ul v-if="showDropdown" class="list-group dropdown position-absolute w-100 text-start mt-1">
+                        <li v-for="result in filteredCategories"
+                            :key="result.id"
+                            @click="goToPostJob(result)"
+                            class="list-group-item list-group-item-action">
+                          <div class="fw-bold">{{ result.name }}</div>
+                        </li>
+                      </ul>
+
                     </div>
 
-                    <div class="form-inner">
-                      <button type="button" class="primry-btn-2" @click="showDropdown=true"><img
-                          src="../../../../public/frontend/assets/images/icon/search-icon.svg" alt=""> Search
-                      </button>
-                    </div>
+<!--                    <div class="form-inner">-->
+<!--                      <button type="button" class="primry-btn-2" @click="showDropdown=true"><img-->
+<!--                          src="../../../../public/frontend/assets/images/icon/search-icon.svg" alt=""> Search-->
+<!--                      </button>-->
+<!--                    </div>-->
                   </form>
-                  <div class="dropdown" v-show="showDropdown">
-                    <ul>
-                      <li v-for="(category,i) in filteredCategories" :key="i">
-                        <router-link :to="'/post-a-job?category='+category.name">{{ category.name }}</router-link>
-                      </li>
-                    </ul>
-                  </div>
+
+                  <!--                  <div class="dropdown" v-show="showDropdown">-->
+<!--                    <ul>-->
+<!--                      <li v-for="(category,i) in filteredCategories" :key="i">-->
+<!--                        <router-link :to="'/post-a-job?category='+category.name">{{ category.name }}</router-link>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </div>-->
                 </div>
               </div>
             </div>
@@ -1570,6 +1580,9 @@ export default {
       if (!this.$el.contains(event.target)) {
         this.showDropdown = false;
       }
+    },
+    goToPostJob(category){
+      this.$router.push(`/post-a-job?category=${category.name}`)
     }
   },
   created() {
@@ -1678,16 +1691,6 @@ export default {
       $('.menu-close-btn').on("click", function () {
         $('.main-menu').removeClass('show-menu');
       });
-// mobile-search-area
-
-      $('.search-btn').on("click", function () {
-        $('.mobile-search').addClass('slide');
-      });
-
-
-      $('.search-cross-btn').on("click", function () {
-        $('.mobile-search').removeClass('slide');
-      });
     });
     document.addEventListener('click', this.handleClickOutside);
   },
@@ -1715,10 +1718,11 @@ export default {
   background: white;
   border: 1px solid #ddd;
   width: 43%;
-  z-index: 1000;
-  max-height: 170px;
+  z-index: 10;
+  max-height: 400px;
   overflow-x: hidden;
   overflow-y: auto;
+  left: 0;
 }
 
 .dropdown ul {
@@ -1728,13 +1732,15 @@ export default {
 }
 
 .dropdown li {
-  padding: 8px 16px;
+  padding: 18px 16px;
   cursor: pointer;
+  color: #00A7AC;
 }
 
 .dropdown li:hover {
   background-color: #f8f9fa;
 }
+
 
 ::placeholder {
   color: rgba(154, 153, 153, 0.3);
