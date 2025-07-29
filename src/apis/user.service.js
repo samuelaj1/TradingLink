@@ -461,7 +461,7 @@ function deletePortfolio(id) {
 
 function deleteTrades(tradeIds) {
     return new Promise((resolve) => {
-        axios.post('/api/trade/delete', tradeIds, useBearerTokenHeaders())
+        axios.post('/api/trade/delete', tradeIds, useBasicAuthHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
