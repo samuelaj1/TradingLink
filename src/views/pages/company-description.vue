@@ -15,7 +15,9 @@
       </div>
     </div>
 
-    <h5>Guarantee</h5>
+    <h5 class="fw-bolder">Guarantee</h5>
+    <hr/>
+
     <p class="font-weight-lighter">Increase your chances of getting hired by offering a guarantee.</p>
     <small class="font-weight-lighter">
       <i class="bi bi-info-circle"></i> Homeowners are aware guarantees vary and should discuss the terms in advance.

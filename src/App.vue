@@ -5,6 +5,7 @@
 <script>
 import store from "@/store/store";
 import {getDatabase, onValue, ref} from "firebase/database";
+import {userService} from "@/apis/user.service";
 
 export default {
   name: "App",
@@ -48,11 +49,12 @@ export default {
         }
 
 // Emit total unread count once
-        console.log('Total unread messages:', totalUnread)
+//         console.log('Total unread messages:', totalUnread)
         this.$store.dispatch('updateInboxCount', totalUnread);
 
       });
-    }
+    },
+
   },
   created() {
     if (!this.loggedIn) return;

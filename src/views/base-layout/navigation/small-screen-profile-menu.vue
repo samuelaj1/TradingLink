@@ -59,7 +59,7 @@
             <i class="bi bi-file-text me-3"></i> New leads
           </div>
           <div>
-            <span class="badge bg-primary-1 text-white rounded-pill" style="width: 1rem; height: 1rem; display: inline-block; padding: 0;"></span>
+            <span class="badge bg-primary-1 text-white rounded-pill">{{ userStats ? userStats.new_leads : '' }}</span>
             <i class="bi bi-chevron-right text-muted"></i>
           </div>
         </router-link>
@@ -90,12 +90,16 @@
           </div>
           <i class="bi bi-chevron-right text-muted"></i>
         </router-link>
-<!--        <router-link to="/saved-leads" class="settings-item d-flex justify-content-between align-items-center p-3">-->
-<!--          <div>-->
-<!--            <i class="bi bi-bookmark me-3"></i> Saved Leads-->
-<!--          </div>-->
-<!--          <i class="bi bi-chevron-right text-muted"></i>-->
-<!--        </router-link>-->
+        <router-link to="/who-viewed-my-profile" class="settings-item d-flex justify-content-between align-items-center p-3">
+          <div>
+            <i class="bi bi-eye me-3"></i> Profile Views
+          </div>
+          <div>
+            <span class="badge bg-info text-white rounded-pill">{{ userStats?userStats.profile_views:'' }}</span>
+            <i class="bi bi-chevron-right text-muted"></i>
+          </div>
+        </router-link>
+
       </div>
 
       <!-- Lead Settings Section -->
@@ -124,7 +128,7 @@
       <!-- Support Section -->
       <div class="settings-group">
         <div class="settings-header p-3">Support</div>
-        <router-link to="/support" class="settings-item d-flex justify-content-between align-items-center p-3">
+        <router-link to="/contact-us" class="settings-item d-flex justify-content-between align-items-center p-3">
           <div>
             <i class="bi bi-info-circle me-3"></i> Support Centre
           </div>
@@ -155,6 +159,7 @@ export default {
       user: this.$store.getters.GET_USER_INFO || {},
       isMobile: false,
       inboxCount: this.$store.getters.GET_INBOX_COUNT || 0,
+      userStats: null
     };
   },
   computed: {
@@ -238,11 +243,20 @@ export default {
         this.$store.dispatch('updateUserInfo', extra);
       });
 
-    }
+    },
+    getUserStats() {
+      userService.userStats().then((res) => {
+        const {status, extra} = res;
+        if (status) {
+          this.userStats = extra
+        }
+      });
+    },
   },
   mounted() {
     this.checkScreenSize();
     window.addEventListener('resize', this.checkScreenSize);
+    this.getUserStats();
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.checkScreenSize);

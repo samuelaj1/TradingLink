@@ -10,7 +10,7 @@
             <div class="mb-5">
               <h2 class="mb-4">Post a {{ selectedTradeName }} job</h2>
               <p class="fw-lighter mb-4">Get responses from Trade Link's vetted tradespeople near you</p>
-              <h5 class="fw-bold mb-2">What would you like to have done?</h5>
+              <h5 class="fw-bold mb-2">What trades would you like to have done?</h5>
               <select v-model="selectedTrade" class="form-control" @change="resetForms" :disabled="isLoading">
                 <option value="" v-if="isLoading">Please wait...</option>
                 <option disabled value="">Please select</option>
@@ -400,10 +400,7 @@ export default {
       // alert('You can only upload one file at a time.');
     },
     resetForms() {
-      if (this.currentQuestionIndex < 1) {
-        this.loadFirstStep()
-        return;
-      }
+      this.loadFirstStep();
       this.selectedTradeName = '';
       this.questions = [];
       this.currentQuestionIndex = 0;
@@ -440,7 +437,6 @@ export default {
       userService.getTradeQuestion(this.selectedTrade).then((res) => {
         this.questionLoader = false
         this.questions = Array.isArray(res.extra) ? res.extra : [res.extra];
-        this.currentQuestionIndex = 0;
         setTimeout(() => {
           const el = this.$refs['question-' + this.currentQuestionIndex];
           if (el && el[0]) {

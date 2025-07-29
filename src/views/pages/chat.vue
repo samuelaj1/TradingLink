@@ -124,6 +124,14 @@
                   <div class="col-md-8 text-left">{{ serviceSelected.id }}</div>
                 </div>
                 <div class="row mt-3">
+                  <div class="col-md-4">Job Reference:</div>
+                  <div class="col-md-8 text-left">{{ serviceSelected.job_reference || 'N/A' }}</div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-4">Job Reference:</div>
+                  <div class="col-md-8 text-left">{{ serviceSelected.job_reference ||'N/A' }}</div>
+                </div>
+                <div class="row mt-3">
                   <div class="col-md-4">Job type:</div>
                   <div class="col-md-8 text-left">
                     {{ serviceSelected.trade ? serviceSelected.trade.name : 'N/A' }}

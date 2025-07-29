@@ -29,7 +29,7 @@
             <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>
             <small class="mr-3">Profile Views</small>
           </div>
-          <div class="text-primary-1 fw-bold">46</div>
+          <div class="text-primary-1 fw-bold">{{ userStats ? userStats.profile_views : '' }}</div>
         </div>
       </router-link>
     </div>
@@ -83,7 +83,7 @@
         <div>
           <i class="bi bi-briefcase mr-2"></i> New leads
         </div>
-        <span class="badge bg-primary-1 text-white rounded-pill" style="width: 1rem; height: 1rem; display: inline-block; padding: 0;"></span>
+        <span class="badge bg-primary-1 text-white rounded-pill">{{ userStats ? userStats.new_leads : '' }}</span>
         <i class="bi bi-chevron-right d-lg-none"></i>
       </router-link>
 
@@ -145,7 +145,7 @@
 
     <div class="list-group mt-4">
       <h6 class="font-weight-bold">Support</h6>
-      <router-link to="/support" id="support"
+      <router-link to="/contact-us" id="support"
                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
         <div>
           <i class="bi bi-info-circle mr-2"></i> Support centre
@@ -174,6 +174,7 @@ export default {
     return {
       user: this.$store.getters.GET_USER_INFO || {},
       inboxCount: this.$store.getters.GET_INBOX_COUNT || 0,
+      userStats: null
     };
   },
   computed: {
@@ -250,8 +251,20 @@ export default {
         this.$store.dispatch('updateUserInfo', extra);
       });
 
-    }
+    },
+    getUserStats() {
+      userService.userStats().then((res) => {
+        const {status, extra} = res;
+        if (status) {
+          this.userStats = extra
+        }
+      });
+    },
   },
+
+  created() {
+    this.getUserStats();
+  }
 };
 </script>
 

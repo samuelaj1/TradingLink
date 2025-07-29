@@ -6,12 +6,14 @@ export const userService = {
     logout,
     getTrades,
     getForumQuestions,
+    getProfileViews,
     getForumQuestionDetails,
     searchForum,
     askQuestions,
     submitQuestionComment,
     submitReply,
     postJobTrades,
+    postProfileView,
     contactFormSubmit,
     verifyIdentity,
     completeJob,
@@ -43,6 +45,7 @@ export const userService = {
     getPostedServices,
     getJobPosts,
     getJobsNearMe,
+    userStats,
     getTradePeople,
     getHomeowners,
     updateGuarantee,
@@ -272,6 +275,15 @@ function getJobPosts() {
 function getJobsNearMe() {
     return new Promise((resolve) => {
         axios.get(`/api/get-jobs-near-me`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function userStats() {
+    return new Promise((resolve) => {
+        axios.get(`/api/user-stats`, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
@@ -590,6 +602,16 @@ function getForumQuestions() {
     });
 }
 
+function getProfileViews(userId) {
+    return new Promise((resolve) => {
+        axios.get(`/api/profile-views/${userId}`, useBearerTokenHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
 function getForumQuestionDetails(id) {
     return new Promise((resolve) => {
         axios.get(`/api/forum/threads/${id}`, useBearerTokenHeaders())
@@ -613,6 +635,16 @@ function searchForum(term) {
 function postJobTrades() {
     return new Promise((resolve) => {
         axios.get(`/api/post-job-trades`, useBasicAuthHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+function postProfileView(payload) {
+    return new Promise((resolve) => {
+        axios.post(`/api/profile-views`, payload, useBearerTokenHeaders())
             .then((response) => {
                 resolve(response.data);
             })

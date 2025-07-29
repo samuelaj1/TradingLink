@@ -1147,7 +1147,7 @@
           <div class="col-12 d-flex flex-wrap align-items-end justify-content-md-between justify-content-start gap-3">
             <div class="section-title1">
               <h2>Popular <span>Categories</span></h2>
-              <p>To much valuable feed from our trusted users in world-wide.</p>
+              <p>Find top-rated professionals and services from trusted users across Jamaica, island-wide.</p>
             </div>
             <div class="explore-btn">
               <a href="#">Explore More
@@ -1245,19 +1245,18 @@
       <div class="container">
         <div class="row mb-5">
           <div class="section-title3">
-            <h2 class="text-light">Our happy clients</h2>
-            <p class="text-light">Connect with skilled professionals to bring your project to life with confidence.</p>
+            <h2 class="text-light">Find Trusted Tradespeople for Your Project</h2>
+            <p class="text-light">Join thousands of happy clients. Post your job and get quotes from verified professionals today.</p>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-3">
             <div class="card card-cut bg-primary-1 text-light mb-sm-2 mb-3">
               <div class="card-body py-5" style="margin-bottom: 1rem">
-                <h3 class="">Millions of genuine reviews</h3>
-                <p class="fw-lighter text-light mt-3" style="font-size: 18px">Reviews on Trade Link are written by
-                  customers like you</p>
+                <h3 class="">Verified Reviews from Real Customers</h3>
+                <p class="fw-lighter text-light mt-3" style="font-size: 18px">Authentic feedback from homeowners like you</p>
                 <div class="text-center mt-5">
-                  <router-link to="/post-a-job" class="btn btn-light text-center py-3 btn-block">Post your job</router-link>
+                  <router-link to="/post-a-job" class="btn btn-light text-center py-3 btn-block">Get Free Quotes</router-link>
                 </div>
               </div>
             </div>

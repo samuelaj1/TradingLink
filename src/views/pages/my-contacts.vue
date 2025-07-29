@@ -1,6 +1,12 @@
 <template>
   <div>
     <topHeader/>
+    <div class="mt-4 text-end pe-4">
+      <router-link to="/profile-menu" v-if="isMobile" class="mb-4">
+        <i class="bi bi-chevron-left"></i> Back to Menu
+      </router-link>
+    </div>
+
     <div class="container mt-5">
       <!-- Header with Tabs -->
       <h1 class="mb-4 text-center">Contacts</h1>

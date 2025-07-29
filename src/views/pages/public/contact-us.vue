@@ -77,6 +77,11 @@ export default {
       isLoading: false
     }
   },
+  components: {
+    HomeFooter,
+    topHeader,
+    homeOwnerHeader
+  },
   computed: {
     isHomeOwner() {
       const loggedUser = store.getters.GET_USER_INFO;
@@ -98,11 +103,28 @@ export default {
 
     }
   },
-  components: {
-    HomeFooter,
-    topHeader,
-    homeOwnerHeader
-  }
+  mounted() {
+    this.$nextTick(() => {
+      $('.sidebar-button').on("click", function () {
+        $('.main-menu').addClass('show-menu');
+      });
+
+      $('.menu-close-btn').on("click", function () {
+        $('.main-menu').removeClass('show-menu');
+      });
+// mobile-search-area
+
+      $('.search-btn').on("click", function () {
+        $('.mobile-search').addClass('slide');
+      });
+
+
+      $('.search-cross-btn').on("click", function () {
+        $('.mobile-search').removeClass('slide');
+      });
+    });
+  },
+
 }
 </script>
 

@@ -232,6 +232,14 @@ export default {
         this.userInfo = extra;
       });
     },
+
+    postProfileView() {
+      const payload = {
+        viewed_id: this.userId
+      }
+      userService.postProfileView(payload).then(() => {
+      });
+    },
     getRatings() {
       this.userLoader = true;
       userService.getRatings(this.userId).then((res) => {
@@ -257,6 +265,7 @@ export default {
     }
     this.getUserProfile();
     this.getRatings();
+    this.postProfileView();
   },
   mounted() {
   }

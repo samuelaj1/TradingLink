@@ -24,7 +24,11 @@
               <div class="fw-lighter">
                 <div class="row mt-3">
                   <div class="col-md-4">Job ID:</div>
-                  <div class="col-md-8 text-left">{{ project.id }}</div>
+                  <div class="col-md-8 text-left">{{ project.id}}</div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-4">Job Reference:</div>
+                  <div class="col-md-8 text-left">{{ project.job_reference || 'N/A' }}</div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-4">Job type:</div>

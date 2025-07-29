@@ -1,19 +1,19 @@
 <template>
   <nav class="bottom-nav navbar navbar-expand navbar-light bg-light justify-content-around d-md-none"
        v-if="isMobile && loggedIn">
-    <router-link class="nav-link" to="/new-leads">
+    <router-link class="nav-link" id="new-leads" to="/new-leads">
       <i class="bi bi-house-door-fill d-block"></i>
       <small>New Leads</small>
     </router-link>
-    <router-link class="nav-link" to="/new-leads">
-      <i class="bi bi-briefcase d-block"></i>
-      <small>Leads</small>
+    <router-link class="nav-link" id="inbox" to="/inbox">
+      <i class="bi bi-envelope d-block"></i>
+      <small>Inbox</small>
     </router-link>
-    <router-link class="nav-link" to="/contact-details">
+    <router-link class="nav-link" id="contacts" to="/my-proposals/contacts">
       <i class="bi bi-people d-block"></i>
       <small>Contacts</small>
     </router-link>
-    <router-link class="nav-link active" to="/profile-menu">
+    <router-link class="nav-link" id="profile" to="/profile-menu">
       <i class="bi bi-person-circle d-block"></i>
       <small>Profile</small>
     </router-link>
@@ -51,3 +51,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.nav-link.router-link-exact-active {
+  color: #00A7AC;
+}
+
+</style>

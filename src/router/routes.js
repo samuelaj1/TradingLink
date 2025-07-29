@@ -638,15 +638,6 @@ export default [
         component: () => import('../views/pages/lead-settings/notifications'),
     },
     {
-        path: '/support',
-        name: 'support',
-        meta: {
-            authRequired: true,
-            roles: ['tradesperson']
-        },
-        component: () => import('../views/pages/support/support'),
-    },
-    {
         path: '/ask-a-trade',
         name: 'AskATrade',
         meta: {
