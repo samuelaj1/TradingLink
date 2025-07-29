@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="header-area style-3 mt-4">
+    <header class="header-area style-3">
       <!-- Header content -->
       <div class="menu-area">
         <div class="header-logo">

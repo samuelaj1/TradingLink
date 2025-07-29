@@ -7,7 +7,7 @@
           <div class="col-lg-12">
             <div class="form-wrapper">
               <div class="form-title mb-25">
-                <h3>Log to TradeLink</h3>
+                <h3>Log in to TradeLink</h3>
                 <span></span>
               </div>
 
@@ -26,7 +26,7 @@
 
                     </div>
                     <div class="form-inner mb-20">
-                      <label class="large-font" for="email">Password</label>
+                      <label class="large-font" for="password">Password</label>
                       <input v-model="password"
                              :type="obscurePassword ? 'password': 'text'"
                              id="password"/>
@@ -44,13 +44,21 @@
                       </button>
                     </div>
                   </div>
+
+                  <div class="text-center mb-4">
+                    <router-link to="/forgot-password" class="text-primary-1 text-decoration-underline mb-3"
+                                 style="font-size: 14px">Forgot your password?
+                    </router-link>
+                  </div>
                   <hr/>
                   <h6 class="mb-3 mt-2">New to TradeLink?</h6>
-                  <p style="font-size: 14px" class="mb-1"><a class="text-decoration-underline" href="/post-a-job">Post
-                    your job</a> to find a
-                    tradesperson</p>
-                  <p style="font-size: 14px" class=""><a class="text-decoration-underline" href="/post-a-job">Sign
-                    up</a> to join a tradesperson</p>
+                  <router-link to="/post-a-job" style="font-size: 14px" class="mb-1"><span
+                      class="text-decoration-underline">Post
+                    your job</span> to find a tradesperson
+                  </router-link>
+                  <router-link to="/register" style="font-size: 14px"> <span class="text-decoration-underline">Sign
+                    up</span> to join as a tradesperson
+                  </router-link>
                 </div>
               </form>
             </div>
@@ -62,11 +70,9 @@
 </template>
 
 <script>
-import Auth from "../../layouts/auth";
 import appConfig from "../../../../app.config.json";
 import topHeader from '../../base-layout/header-2'
 
-import {required, email} from "vuelidate/lib/validators";
 import store from "@/store/store";
 
 /**
@@ -88,7 +94,6 @@ export default {
     };
   },
   components: {
-    Auth,
     topHeader
   },
 
@@ -120,5 +125,24 @@ export default {
       this.$store.dispatch("clear");
     }
   },
+  mounted() {
+    $('.sidebar-button').on("click", function () {
+      $('.main-menu').addClass('show-menu');
+    });
+
+    $('.menu-close-btn').on("click", function () {
+      $('.main-menu').removeClass('show-menu');
+    });
+
+    $('body').removeClass('bg-wight');
+
+
+  }
 };
 </script>
+
+<style scoped>
+.bg-wight {
+  background: #F8F8F8 !important;
+}
+</style>

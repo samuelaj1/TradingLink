@@ -10,7 +10,7 @@
           <div class="row">
             <div class="col-lg-7 d-flex align-items-center">
               <div class="hero-content">
-                <h1>Find the perfect expert for your <span>project.</span></h1>
+                <h1>What type of service do you <span>need?</span></h1>
                 <h4 class="text-light mt-5">What is your job?</h4>
                 <div class="job-search-area mt-3">
                   <form @submit.prevent>

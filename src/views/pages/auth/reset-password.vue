@@ -1,90 +1,92 @@
 <template>
-  <Auth>
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6 col-xl-5">
-        <div class="card">
-          <div class="card-body p-4">
-            <div class="text-center w-75 m-auto">
-              <div class="auth-logo">
-                <router-link to="/" class="logo logo-dark text-center">
-                  <span class="logo-lg">
-                    <img
-                        src="@/assets/images/mortiply-logo-red.png"
-                        alt=""
-                        height="40"
-                    />
-                  </span>
-                </router-link>
-              </div>
-            </div>
-            <h3 class="text-center">Set your password</h3>
-            <form @submit.prevent="tryToReset">
-              <b-alert
-                  v-model="isResetError"
-                  class="mb-4"
-                  variant="danger"
-                  dismissible
-              >{{ error }}
-              </b-alert>
+  <div>
+    <topHeader></topHeader>
+    <div class="login-area mt-50 mb-120">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-wrapper">
 
-              <!-- Password Field with Popover -->
-              <div class="form-group mb-3 position-relative">
-                <label for="password">New Password</label>
-                <div class="input-group input-group-merge">
-                  <input
-                      required
-                      v-model="password"
-                      :type="obscurePassword ? 'password' : 'text'"
-                      id="password"
-                      class="form-control"
-                      placeholder=""
-                      @input="validatePassword"
-                  />
-                  <div class="input-group-append" data-password="false">
-                    <div class="input-group-text" @click="obscurePassword = !obscurePassword">
-                      <span class="password-eye"></span>
-                    </div>
-                  </div>
+
+
+              <form @submit.prevent="tryToReset">
+                <div class="text-center mb-3">
+                  <router-link to="/">
+                    <img
+                        src="../../../../public/frontend/assets/images/header1-logo.svg"
+                        alt=""
+                        height="60"
+                    />
+                  </router-link>
                 </div>
 
-                <!-- Popover for Password Requirements -->
-                <b-popover
-                    target="password"
-                    triggers="focus"
-                    placement="top"
-                    :show="showPopover"
-                    class="popover-custom"
-                >
-                  <ul>
-                    <li :class="{'text-success': isLengthValid}">At least 8 characters</li>
-                    <li :class="{'text-success': hasLowercase}">At least one lowercase letter</li>
-                    <li :class="{'text-success': hasUppercase}">At least one uppercase letter</li>
-                    <li :class="{'text-success': hasNumber}">At least one number</li>
-                    <li :class="{'text-success': hasSpecialChar}">At least one special character (e.g. 1@#$%^&*)</li>
+                <div v-if="isResetError" class="alert alert-danger alert-dismissible">
+                  <ul class="mb-0">
+                    <li>{{ error }}</li>
                   </ul>
-                </b-popover>
-              </div>
+                </div>
 
-              <div class="form-group mb-0 text-center">
-                <button class="btn btn-dark btn-block" :disabled="!isPasswordValid" v-if="!loading" type="submit">
-                  Update password and login
-                </button>
-                <b-button variant="dark" disabled class="btn-dark btn-block ml-1" v-else>
-                  <b-spinner small class="mr-1"></b-spinner>&nbsp;Loading...
-                </b-button>
-              </div>
-            </form>
+                <!-- Password Field with Popover -->
+                <div class="form-inner mb-3">
+                  <label for="password">New Password</label>
+                  <input v-model="password"
+                         :type="obscurePassword ? 'password': 'text'"
+                         id="password"
+                         @input="validatePassword"
+                  />
+                  <i class="bi bi-eye-slash" id="togglePassword" @click="obscurePassword = !obscurePassword"
+                     v-if="!obscurePassword"></i>
+                  <i class="bi bi-eye" id="togglePassword" @click="obscurePassword = !obscurePassword" v-else></i>
+                  <!-- Popover for Password Requirements -->
+                  <b-popover
+                      target="password"
+                      triggers="focus"
+                      placement="top"
+                      :show="showPopover"
+                      class="popover-custom"
+                  >
+                    <ul>
+                      <li :class="{'text-success': isLengthValid}">At least 8 characters</li>
+                      <li :class="{'text-success': hasLowercase}">At least one lowercase letter</li>
+                      <li :class="{'text-success': hasUppercase}">At least one uppercase letter</li>
+                      <li :class="{'text-success': hasNumber}">At least one number</li>
+                      <li :class="{'text-success': hasSpecialChar}">At least one special character (e.g. 1@#$%^&*)</li>
+                    </ul>
+                  </b-popover>
+                </div>
+                <div class="form-group mb-0 text-center">
+                  <button class="btn btn-dark btn-block" :disabled="!isPasswordValid" v-if="!loading" type="submit">
+                    Update password and login
+                  </button>
+                  <b-button variant="dark" disabled class="btn-dark btn-block ml-1" v-else>
+                    <b-spinner small class="mr-1"></b-spinner>&nbsp;Loading...
+                  </b-button>
+                </div>
+
+              </form>
+
+            </div>
           </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12 text-center">
+            <router-link to="/login" class="text-primary-1 font-weight-medium ml-1"><i class="fa fa-arrow-left"/> Back
+              to
+              Log in
+            </router-link>
+          </div>
+          <!-- end col -->
         </div>
       </div>
     </div>
-  </Auth>
+  </div>
 </template>
 
 <script>
-import Auth from "../../layouts/auth";
 import appConfig from "../../../../app.config.json";
 import {userService} from "@/apis/user.service";
+import topHeader from '../../base-layout/header-2'
+import store from "@/store/store";
 
 export default {
   page: {
@@ -109,13 +111,13 @@ export default {
     };
   },
   components: {
-    Auth,
+    topHeader
   },
   computed: {
     isPasswordValid() {
       return (
           this.isLengthValid &&
-          [this.hasLowercase, this.hasUppercase, this.hasNumber, this.hasSpecialChar].filter(Boolean).length >= 3
+          [this.hasLowercase, this.hasUppercase, this.hasNumber, this.hasSpecialChar].filter(Boolean).length >= 1
       );
     },
   },
@@ -140,7 +142,6 @@ export default {
         const {status, message} = response
         if (!status) {
           this.error = message;
-          this.isResetError = true
         } else {
           this.LogIn();
         }
@@ -152,7 +153,15 @@ export default {
         email: this.email,
         password: this.password,
       }).then(()=>{
-        this.$router.push('/');
+        const loggedUser = store.getters.GET_USER_INFO;
+        const userRole = loggedUser.roles?.[0] || '';
+        if (userRole === 'tradesperson') {
+          this.$router.push('/profile');
+        } else if (userRole === 'homeowner') {
+          this.$router.push('/homeowner/my-projects');
+        } else {
+          this.$router.push('/');
+        }
       }).catch(()=>{});
       this.$store.dispatch("clear");
     },

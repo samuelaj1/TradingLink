@@ -54,7 +54,7 @@
                          v-model="email" placeholder="Your email to receive leads" required>
                 </div>
 
-                <p class="p-small mb-0">By clicking Sign up for free, you agree to MyBuilder <a
+                <p class="p-small mb-0">By clicking Sign up for free, you agree to Trade Link <a
                     class="text-decoration-underline" href="#">Terms and Conditions</a>.</p>
                 <p class="p-small">For information on how we process your data, see our <a
                     class="text-decoration-underline" target="_blank" href="https://docs.google.com/document/d/1q-Nbu-VSv9Gg2oyetR-zuSMv5Lf5FhCN9mUESTN-64c">Privacy policy</a>.</p>
@@ -329,24 +329,7 @@ export default {
     $('.menu-close-btn').on("click", function () {
       $('.main-menu').removeClass('show-menu');
     });
-// mobile-search-area
 
-    $('.search-btn').on("click", function(){
-      $('.mobile-search').addClass('slide');
-    });
-
-    $('.search-cross-btn').on("click", function(){
-      $('.mobile-search').removeClass('slide');
-    });
-    this.$nextTick(() => {
-      $('.select1').select2({
-        width: '100%',
-        multiple: false,
-        tags:false,
-        allowClear: true,
-      });
-
-    });
   }
 
 }

@@ -785,7 +785,7 @@ function verifyHomeOwner(payload) {
 
 function forgotPassword(payload) {
     return new Promise((resolve) => {
-        axios.post("/customer/api/forgot-password", payload, useBasicAuthHeaders())
+        axios.post("/api/forgot-password", payload, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -795,7 +795,7 @@ function forgotPassword(payload) {
 
 function resetPassword(payload) {
     return new Promise((resolve) => {
-        axios.post("/customer/api/reset-password", payload, useBasicAuthHeaders())
+        axios.post("/api/reset-password", payload, useBasicAuthHeaders())
             .then((response) => {
                 resolve(response.data);
             })

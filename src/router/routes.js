@@ -681,6 +681,29 @@ export default [
         component: () => import('../views/pages/error/logout'),
     },
     {
+        path: '/forgot-password',
+        name: 'forgotPassword',
+        component: () => import('../views/pages/auth/forgot-password'),
+    },
+    {
+        path: '/reset-password',
+        name: 'Reset-password',
+        component: () => import('../views/pages/auth/reset-password'),
+        meta: {
+            beforeResolve(routeTo, routeFrom, next) {
+                // If the user is already logged in
+                if (store.getters.GET_USER_INFO) {
+                    next({name: 'Home'});
+                } else {
+                    // Continue to the login page
+                    next()
+                }
+
+            },
+        },
+    },
+
+    {
         path: '/extras/maintenance',
         name: 'extras-maintenance',
         meta: {
