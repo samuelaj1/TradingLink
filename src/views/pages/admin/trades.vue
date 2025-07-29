@@ -17,6 +17,15 @@
                   <button class="btn btn-danger btn-sm mb-3" @click="deleteSelectedTrades" :disabled="selectedTrades.length === 0">
                     Delete Selected
                   </button>
+                  <div class="mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search trades by name..."
+                        v-model="searchQuery"
+                    />
+                  </div>
+
                   <table class="table table-striped">
                     <thead>
                     <tr>
@@ -39,7 +48,7 @@
                     </tr>
                     </tbody>
                     <tbody v-else>
-                    <tr v-for="(service, i) in services" :key="i">
+                    <tr v-for="(service, i) in filteredServices" :key="i">
                       <td>
                         <input type="checkbox" :value="service.id" v-model="selectedTrades" />
                       </td>
@@ -122,13 +131,18 @@ export default {
         name: ''
       },
       selectedTrades: [],
-      selectAll: false
+      selectAll: false,
+      searchQuery: '',
     };
   },
   computed: {
     loggedIn() {
       return this.$store.getters.GET_USER_INFO;
     },
+    filteredServices() {
+      const q = this.searchQuery.toLowerCase();
+      return this.services.filter(service => service.name.toLowerCase().includes(q));
+    }
   },
   methods: {
     getTrades() {
