@@ -389,7 +389,7 @@ export default {
       const normalized = label.toString().toLowerCase();
       if (normalized.includes('immediately')) return 'text-danger';
       if (normalized.includes('1–2 weeks')) return 'text-warning';
-      if (normalized.includes('within a month')) return 'text-info';
+      if (normalized.includes('within a month')) return 'text-primary-1';
       if (normalized.includes('flexible') || normalized.includes('not urgent')) return 'text-secondary';
       return 'bg-light';
     },
