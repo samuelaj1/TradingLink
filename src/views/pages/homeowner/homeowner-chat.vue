@@ -167,7 +167,7 @@
                     <div class="accordion-body">
                       <div v-for="(question,i) in jobDetails.questions" :key="i">
                         <h6>{{ question.formLabel }}</h6>
-                        <p class="fw-light">{{ question.answers }}</p>
+                        <p class="fw-light">{{ question.answers?.toString().toLowerCase()==='other'?question.other_answer:question.answers }}</p>
                       </div>
                     </div>
                   </div>

@@ -50,11 +50,11 @@
                              :required="question.required"
                              v-model="question.answers"
                              @change="onOptionSelected(option,i)">
-                      <span>{{ option.formLabel }}</span>
-                      <div v-if="isOtherSelected(option)">
+                      <span :class="getTimeframeClass(option.formLabel)">{{ option.formLabel }}</span>
+                      <div v-if="isOtherSelected(question,option)">
                         <input type="text"
                                class="form-control mt-2"
-                               v-model="question.answers"
+                               v-model="question.other_answer"
                                placeholder="Please specify"/>
                       </div>
                     </label>
@@ -384,6 +384,14 @@ export default {
     }
   },
   methods: {
+    getTimeframeClass(label) {
+      const normalized = label.toString().toLowerCase();
+      if (normalized.includes('immediately')) return 'text-danger';
+      if (normalized.includes('1–2 weeks')) return 'text-warning';
+      if (normalized.includes('within a month')) return 'text-info';
+      if (normalized.includes('flexible') || normalized.includes('not urgent')) return 'text-secondary';
+      return 'bg-light';
+    },
     setPlace() {
       const autocomplete = this.$refs.autocomplete.$autocomplete;
       if (autocomplete) {
@@ -445,9 +453,9 @@ export default {
         }, 200);
       });
     },
-    isOtherSelected(option) {
+    isOtherSelected(question,option) {
       return option.formLabel.toLowerCase() === 'other' &&
-          this.answers[this.question.id] === option.formLabel;
+          question.answers?.toString().toLowerCase() === 'other';
     },
     isCheckboxOtherSelected(option) {
       return option.formLabel.toLowerCase() === 'other' &&
@@ -614,6 +622,19 @@ export default {
     },
 
     loginHomeOwner() {
+      this.submitLoading = true;
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password,
+      }).then((res) => {
+        this.submitLoading = false;
+        const {status, message, extra} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message: message, showSwal: true});
+          return;
+        }
+        this.submitForm()
+      });
     },
     registerHomeOwner() {
       this.submitLoading = true;
