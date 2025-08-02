@@ -7,6 +7,7 @@ export const userService = {
     adminRegister,
     logout,
     getTrades,
+    homeOwnerJobPosts,
     getForumQuestions,
     getProfileViews,
     getForumQuestionDetails,
@@ -295,6 +296,15 @@ function getPostedServices() {
 function getJobPosts() {
     return new Promise((resolve) => {
         axios.get(`/admin/api/job-posts`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function homeOwnerJobPosts(id) {
+    return new Promise((resolve) => {
+        axios.get(`/admin/api/job-posts-by-homeowner/${id}`, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));

@@ -150,15 +150,8 @@ export default {
         }
       });
     },
-    viewJobs() {
-      this.isLoading = true;
-      userService.getHomeowners().then((res) => {
-        this.isLoading = false;
-        const {extra, status} = res;
-        if (status) {
-          this.homeowners = extra;
-        }
-      });
+    viewJobs(userId) {
+      this.$router.push({name: 'homeOwnerJobs', params: {id: userId}});
     },
   },
   created() {

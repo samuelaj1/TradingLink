@@ -108,6 +108,16 @@ export default [
         component: () => import('../views/pages/admin/jobs'),
     },
     {
+        path: '/admin/homeowner/:id/posts',
+        name: 'homeOwnerJobs',
+        meta: {
+            authRequired: true,
+            roles: ['admin'],
+
+        },
+        component: () => import('../views/pages/admin/jobs-by-homeowner'),
+    },
+    {
         path: '/admin/trades',
         name: 'adminTrades',
         meta: {
