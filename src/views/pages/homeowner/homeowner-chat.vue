@@ -28,11 +28,8 @@
             <div class="card-body">
               <div class=" media mb-3">
                 <div class="media-body d-flex justify-content-start align-items-center">
-                  <h5 class="mt-0 mb-0">
-                    <router-link to="/contacts/profile" class="text-capitalize me-2"
-                    >{{ user.name }}
-                    </router-link
-                    >
+                  <h5 class="text-capitalize me-2 mt-0 mb-0">
+                    {{ user.name }}
                   </h5>
                   <div><small>(Online)</small></div>
                 </div>
@@ -233,9 +230,7 @@ export default {
         this.showChatList = false;
       }
       this.listenToMessages(jobId, this.selectedTradesperson);
-
     },
-
 
     listenToMessages(jobId, tradespersonId) {
       const db = getDatabase();
@@ -305,7 +300,6 @@ export default {
         this.jobDetails = extra;
       });
     },
-
 
     scrollToBottom() {
       this.$nextTick(() => {

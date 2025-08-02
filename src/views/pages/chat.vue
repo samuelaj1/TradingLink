@@ -1,27 +1,36 @@
 <template>
   <div class="container">
     <top-header/>
-    <div class="mt-4 text-end pe-4">
+    <div class="text-end pe-4 d-none d-sm-block">
       <a @click="$router.go(-1)" class="cursor-pointer mb-4">
         <i class="bi bi-chevron-left"></i> Go Back
       </a>
     </div>
 
+    <!-- Mobile toggle navigation -->
+    <div class="my-4 text-end pe-4 d-sm-none">
+      <a v-if="isMobile && !showChatList" @click="showChatList = true" class="cursor-pointer">
+        <i class="bi bi-chevron-left"></i> Chats
+      </a>
+
+      <a v-if="isMobile && showChatList" @click="$router.go(-1)" class="cursor-pointer">
+        <i class="bi bi-chevron-left"></i> Go Back
+      </a>
+    </div>
+
+
     <h4 class="title mb-5 font-weight-bold mt-5">Messages</h4>
 
     <div class="row mt-4 mb-5">
 
-      <div class="col-md-3">
+      <div class="col-md-3" v-if="!isMobile || showChatList">
         <div class="card">
           <div class="" style="height: 550px; overflow-y: auto;">
             <div class="card-body">
               <div class="media mb-3">
                 <div class="media-body d-flex justify-content-start align-items-center">
-                  <h5 class="mt-0 mb-0">
-                    <router-link to="/contacts/profile" class="text-capitalize me-2"
-                    >{{ user.name }}
-                    </router-link
-                    >
+                  <h5 class="text-capitalize me-2 mt-0 mb-0">
+                    {{ user.name }}
                   </h5>
                   <div><small>(Online)</small></div>
                 </div>
@@ -70,7 +79,7 @@
         <!-- end card-->
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6" v-if="!isMobile || !showChatList">
         <!-- Chat area -->
         <div class="card">
           <div class="card-header bg-primary-1 text-white">
@@ -211,6 +220,8 @@ export default {
       serviceSelected: '',
       messages: [],
       newMessage: '',
+      isMobile: false,
+      showChatList: true,
     };
   },
   components: {
@@ -218,13 +229,14 @@ export default {
     topHeader
   },
   methods: {
-
     chatJobOwner(service) {
       this.serviceSelected = service
       const jobId = this.serviceSelected.id;
+      if (this.isMobile) {
+        this.showChatList = false;
+      }
       this.listenToMessages(jobId);
     },
-
 
     listenToMessages(jobId) {
       const db = getDatabase();
@@ -265,7 +277,6 @@ export default {
         off(messagesRef, 'child_added', handleNewMessage);
       };
     },
-
 
     getServiceInvites() {
       this.isLoading = true;
@@ -317,17 +328,24 @@ export default {
       });
     },
 
+    checkScreenSize() {
+      this.isMobile = window.innerWidth < 768;
+    },
   },
   created() {
     this.getServiceInvites();
   },
   mounted() {
-    $('#inbox').addClass('active')
+    $('#inbox').addClass('active');
+    this.isMobile = window.innerWidth < 768;
+    window.addEventListener('resize', this.checkScreenSize);
   },
   beforeDestroy() {
     if (this.unsubscribeMessages) {
-      this.unsubscribeMessages(); // Detach the Firebase listener
+      this.unsubscribeMessages();
     }
+    window.removeEventListener('resize', this.checkScreenSize);
+
   },
 };
 </script>
