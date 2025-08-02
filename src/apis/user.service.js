@@ -4,6 +4,7 @@ import axios from "../axios/axios-kaqadmin";
 export const userService = {
     login,
     adminLogin,
+    adminRegister,
     logout,
     getTrades,
     getForumQuestions,
@@ -113,6 +114,15 @@ function adminLogin(email, password) {
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function adminRegister(payload) {
+    return new Promise((resolve) => {
+        axios.post('/admin/api/sign-up', payload, useBasicAuthHeaders())
+            .then(response => {
+                 resolve(response.data)
+        }).catch(err => resolve({status: false, message: err}));
     })
 }
 

@@ -28,7 +28,12 @@
           <!-- Mobile menu items -->
           <ul>
             <li>
-              <router-link to="/register">Visit website <i class="bi bi-globe2 ms-2"></i>
+              <router-link to="/admin">Dashboard <i class="bi bi-speedometer2 ms-2" />
+              </router-link>
+            </li>
+            <hr/>
+            <li>
+              <router-link to="/">Visit website <i class="bi bi-globe2 ms-2"></i>
               </router-link>
             </li>
             <hr />
@@ -47,13 +52,16 @@
         <!-- Navigation right content -->
         <ul>
           <li class="d-md-flex d-none">
-            <router-link to="/logout">Logout</router-link>
+            <router-link to="/admin">Dashboard <i class="bi bi-speedometer2 ms-2" /></router-link>
           </li>
 
           <li class="d-md-flex d-none">
             <div class="sign-in-btn">
               <router-link to="/" class="primry-btn-1 lg-btn">Visit website <i class="bi bi-globe2 ms-2"/></router-link>
             </div>
+          </li>
+          <li class="d-md-flex d-none">
+            <router-link to="/logout" class="text-danger">Logout <i class="bi bi-box-arrow-right ms-2 text-danger"/></router-link>
           </li>
         </ul>
         <div class="sidebar-button mobile-menu-btn">

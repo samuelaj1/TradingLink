@@ -69,6 +69,25 @@ export default [
         component: () => import('../views/pages/auth/admin-login'),
     },
     {
+        path: '/admin-register',
+        name: 'adminRegister',
+        meta: {
+            beforeResolve(routeTo, routeFrom, next) {
+                // If the user is already logged in
+                const loggedUser = store.getters.GET_USER_INFO;
+                if (loggedUser && loggedUser.roles.includes('admin')) {
+                    next({name: 'admin'});
+                } else {
+                    // Continue to the login page
+                    next()
+                }
+
+            },
+        },
+
+        component: () => import('../views/pages/auth/admin-register'),
+    },
+    {
         path: '/admin',
         name: 'admin',
         meta: {
