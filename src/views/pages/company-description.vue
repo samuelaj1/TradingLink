@@ -87,10 +87,21 @@
 
         </p>
 
-        <div v-if="qualification.approved" class="alert alert-success d-flex align-items-center gap-2" role="alert">
+        <div v-if="qualification.status ==='approved'" class="alert alert-success d-flex align-items-center gap-2" role="alert">
           <i class="bi bi-patch-check-fill text-primary-1"></i>
           <span>Qualifications approved</span>
         </div>
+
+        <div v-if="qualification.status ==='rejected'" class="alert alert-danger d-flex align-items-center gap-2" role="alert">
+          <i class="bi bi-x-circle-fill text-danger"></i>
+          <span>Qualifications rejected.</span>
+        </div>
+
+        <div v-if="qualification.status === 'pending'" class="alert alert-warning d-flex align-items-center gap-2" role="alert">
+          <i class="bi bi-hourglass-split text-warning"></i>
+          <span>Qualifications pending review.</span>
+        </div>
+
 
         <div v-if="qualification.documents.length">
           <ul class="list-group mb-3">
@@ -104,9 +115,9 @@
           </ul>
         </div>
 
-        <div v-if="!qualification.approved">
+        <div v-if="qualification.status !=='approved'">
           <div class="mb-3">
-            <input type="file" class="form-control" multiple @change="handleFileUpload">
+            <input type="file" class="form-control" ref="fileInput" multiple @change="handleFileUpload">
           </div>
           <button class="btn btn-primary" :disabled="isUploading || !newQualifications.length"
                   @click="submitQualifications">
@@ -172,7 +183,7 @@ export default {
       newQualifications: [],
       qualification: {
         documents: [],
-        approved: false
+        status: false
       },
 
     };
@@ -190,7 +201,7 @@ export default {
           return;
         }
         this.qualification.documents = extra.documents;
-        this.qualification.approved = extra.approved;
+        this.qualification.status = extra.status;
       });
 
     },
@@ -208,7 +219,7 @@ export default {
 
       userService.uploadQualifications(formData).then((res) => {
         this.isUploading = false;
-        const {status, message, extra} = res;
+        const {status, message} = res;
         if (!status) {
           this.$store.dispatch('error', {message, showSwal: true});
           return;
@@ -217,6 +228,7 @@ export default {
         this.$store.dispatch('success', {message, showSwal: true});
         this.getQualifications();
         this.newQualifications = [];
+        this.$refs.fileInput.value = '';
       });
 
     },
