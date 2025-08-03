@@ -6,7 +6,7 @@
 
     <div class="row" style="margin-bottom: 6rem">
       <div class="col-md-8">
-        <p class="fw-lighter">This is the area you are prepared to travel for work and ensures you receive relevant leads.</p>
+        <p class="text-muted">This is the area you are prepared to travel for work and ensures you receive relevant leads.</p>
 
         <div class="card mb-4">
           <div class="card-body">

@@ -6,11 +6,11 @@
 
     <div class="row">
       <div class="col-md-8">
-        <p class="fw-lighter">We'll show you leads based on the services you offer.</p>
+        <p class="text-muted">We'll show you leads based on the services you offer.</p>
         <small class="fw-bold">Main Trade</small>
         <h5 class="my-4 fw-bold">{{user.main_trade}}</h5>
         <hr>
-        <p class="fw-lighter">To change or add trades, <a href="#" class="text-decoration-underline text-primary-1">contact us</a>.</p>
+        <p class="text-muted">To change or add trades, <a href="#" class="text-decoration-underline text-primary-1">contact us</a>.</p>
       </div>
     </div>
 

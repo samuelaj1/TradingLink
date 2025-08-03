@@ -12,7 +12,7 @@
         <div @click="$router.go(-1)" class="text-muted mb-5 cursor-pointer"><i class="bi bi-arrow-left"></i> Back</div>
 
         <div class="alert bg-primary-1 mb-5 py-1" v-if="checkIfUser">
-          <p class="fw-lighter text-light small mb-0"><i class="bi bi-info-circle"/> Viewing profile as a customer</p>
+          <p class=" text-light small mb-0"><i class="bi bi-info-circle"/> Viewing profile as a customer</p>
           <router-link to="/profile" class="small text-light">Edit Profile <i class="bi bi-arrow-right"/></router-link>
         </div>
 
@@ -32,7 +32,7 @@
                      class="bi bi-patch-check-fill text-primary-1"></i></h5>
             </div>
 
-            <div class="text-muted mb-1 small fw-lighter">
+            <div class="text-muted mb-1 small ">
               <i class="bi bi-envelope"></i> {{ userInfo.email || 'N/A' }}
             </div>
             <div class="text-muted mb-2">
@@ -70,7 +70,7 @@
             <!-- About -->
             <div class="mb-4" v-if="userInfo.description">
               <h6 class="fw-bold">About this company *</h6>
-              <p class="fw-lighter small">
+              <p class="text-muted small">
                 {{ userInfo.description || 'No description provided.' }}
               </p>
               <p class="fst-italic small" v-if="userInfo.description">
@@ -124,7 +124,7 @@
           </b-tab>
 
           <b-tab title="Reviews">
-            <p class="mt-4 fw-lighter small" v-if="reviews.length < 1">Customer reviews will be displayed here.</p>
+            <p class="mt-4 text-muted small" v-if="reviews.length < 1">Customer reviews will be displayed here.</p>
             <div v-for="(review, index) in reviews" :key="index" class="mb-5 mt-4 border-bottom pb-3">
               <h6 class="mb-1 text-capitalize small">{{ review.rater.name }}, {{ review.service_request.city_name }}</h6>
               <div class="text-warning mb-2">
@@ -133,7 +133,7 @@
               </div>
 
               <h6 class="fw-bold text-decoration-underline mb-2 text-capitalize">{{ review.service_request.headline }}</h6>
-              <p class="fw-lighter">{{ review.comment }}</p>
+              <p class="text-muted">{{ review.comment }}</p>
 
               <!-- Tradesperson Reply -->
               <div v-if="review.reply" class="mt-3 border-start border-3 ps-3">

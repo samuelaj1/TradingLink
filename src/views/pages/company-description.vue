@@ -11,7 +11,7 @@
             <i class="bi bi-pencil-square"></i> Edit
           </button>
         </div>
-        <p class="fw-lighter small">{{ user.description }}</p>
+        <p class="text-muted small">{{ user.description }}</p>
       </div>
     </div>
 
@@ -133,7 +133,7 @@
     <b-modal v-model="showModal" title="Edit your company description" hide-footer>
       <div class="d-flex justify-content-center align-items-start mb-2">
         <i class="bi bi-info-circle me-1"/>
-        <p class="fw-lighter">
+        <p class="text-muted">
           Please do not include contact details, such as your phone number, email or website.
         </p>
       </div>

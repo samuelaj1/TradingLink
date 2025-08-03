@@ -17,7 +17,7 @@
             <!-- Step 0: Select trade -->
             <div class="mb-5">
               <h2 class="mb-4">Post a {{ selectedTradeName }} job</h2>
-              <p class="fw-lighter mb-4">Get responses from Trade Link's vetted tradespeople near you</p>
+              <p class="text-muted mb-4">Get responses from Trade Link's vetted tradespeople near you</p>
               <h5 class="fw-bold mb-2">What trades would you like to have done?</h5>
               <select v-model="selectedTrade" class="form-control" @change="resetForms" :disabled="isLoading">
                 <option value="" v-if="isLoading">Please wait...</option>
@@ -38,7 +38,7 @@
             <div v-if="questionLoader">
               <div class="text-center">
                 <b-spinner small></b-spinner>
-                <p class="fw-lighter">Loading questions...</p>
+                <p class="text-muted">Loading questions...</p>
               </div>
             </div>
 
@@ -84,7 +84,7 @@
                     </label>
                     <!-- Textarea Option -->
                     <div v-else-if="option.type === 'StandardTextAreaOption'">
-                      <p class="fw-lighter">{{ option.formLabel }}</p>
+                      <p class="text-muted">{{ option.formLabel }}</p>
                       <textarea :id="'textarea-' + question.id + '-' + index"
                                 class="form-control mt-2"
                                 v-model="question.answers"
@@ -109,7 +109,7 @@
             <div v-if="lastQuestion" class="mt-5">
               <form v-if="showHeadline" @submit.prevent="showHeadlineNextBtn">
                 <h5 class="fw-bold mb-2" ref="showHeadline">Give your job a headline</h5>
-                <p class="fw-lighter">More tradespeople express interest in jobs that have a descriptive name.</p>
+                <p class="text-muted">More tradespeople express interest in jobs that have a descriptive name.</p>
                 <input type="text" class="form-control" v-model="headline"
                        @click="showSection('showHeadline')" required>
 
@@ -126,7 +126,7 @@
               </form>
               <form v-if="showAddPhoto" ref="showAddPhoto" class="mt-5" @submit.prevent="showAddPhotoNextBtn">
                 <h5 class="fw-bold mb-2">Would you like to add any photos or plans? (Optional)</h5>
-                <p class="fw-lighter">Photos give tradespeople more context and details to understand the job and
+                <p class="text-muted">Photos give tradespeople more context and details to understand the job and
                   provide a more accurate quote.</p>
                 <label class="option-box">
                   <input type="radio"
@@ -141,7 +141,7 @@
                 </label>
 
                 <div v-if="photo ==='Yes'">
-                  <p class="fw-lighter">Add up to 5 files up to 15 MB each</p>
+                  <p class="text-muted">Add up to 5 files up to 15 MB each</p>
                   <vue-dropzone
                       id="certificateDropzone"
                       ref="dropzone"
@@ -182,7 +182,7 @@
               <form v-if="showLocationView" ref="showLocationView" class="mt-5"
                     @submit.prevent="showLocationViewNextBtn">
                 <h5 class="fw-bold mb-2">Location for the job</h5>
-                <p class="fw-lighter">To find {{ selectedTradeName }}s near you we need to know where the job is.</p>
+                <p class="text-muted">To find {{ selectedTradeName }}s near you we need to know where the job is.</p>
                 <GmapAutocomplete
                     @place_changed="setPlace"
                     @click="showSection('showLocationView'); locationError =''"
@@ -212,7 +212,7 @@
               <form v-if="showAuthView" ref="showAuthView" style="margin-top: 4rem"
                     @submit.prevent="verifyHomeOwnerEmail">
                 <h5 class="fw-bold mb-2">Get responses from tradespeople near you</h5>
-                <p class="fw-lighter">We will only share your contact details with tradespeople you choose to talk
+                <p class="text-muted">We will only share your contact details with tradespeople you choose to talk
                   to.</p>
                 <label for="email">Email</label>
                 <input type="text" @click="showSection('showAuthView');" id="email" class="form-control" v-model="email" required>
@@ -237,7 +237,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <h5 class="fw-bold mb-2">Log in</h5>
-                    <p class="fw-lighter">{{ email }} <span class="text-decoration-underline cursor-pointer"
+                    <p class="text-muted">{{ email }} <span class="text-decoration-underline cursor-pointer"
                                                             @click="goToAuthView">Change</span></p>
                     <label for="password">Password</label>
                     <input type="password" id="password" class="form-control" v-model="password" required @click="showSection('showLoginView');">
@@ -259,7 +259,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <h5 class="fw-bold mb-2">Create an account to track your job</h5>
-                    <p class="fw-lighter">We will only share your contact details with tradespeople you choose to talk
+                    <p class="text-muted">We will only share your contact details with tradespeople you choose to talk
                       to.</p>
 
                     <div class="form-group">
@@ -277,7 +277,7 @@
 
                     <div class="form-group form-check mt-3">
                       <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="marketing_consent" @click="showSection('showRegisterView')">
-                      <label class="form-check-label fw-lighter cursor-pointer font-14" for="exampleCheck1">I would like
+                      <label class="form-check-label text-muted cursor-pointer font-14" for="exampleCheck1">I would like
                         to receive marketing
                         communications about Trade Link's services by email, SMS and/or phone and understand that I can
                         unsubscribe at any time.</label>

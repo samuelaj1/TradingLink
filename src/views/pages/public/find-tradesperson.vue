@@ -53,7 +53,7 @@
                 </div>
                 <div class="recent-article-content text-center card-body">
                   <h5 class="fw-bold">Post your job for free</h5>
-                  <p class="fw-lighter">Tell us what you need done. Whether it's plumbing, painting, or gardening — give
+                  <p class="text-muted">Tell us what you need done. Whether it's plumbing, painting, or gardening — give
                     as much detail as you can so tradespeople understand the job clearly.
                   </p>
                 </div>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="recent-article-content card-body text-center">
                   <h5 class="fw-bold">Tradespeople respond</h5>
-                  <p class="fw-lighter">Skilled tradespeople will reply with quotes, questions, and links to their
+                  <p class="text-muted">Skilled tradespeople will reply with quotes, questions, and links to their
                     profiles.
                     You can compare
                     their experience, reviews, and portfolios before making a decision.</p>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="recent-article-content card-body text-center">
                   <h5 class="fw-bold">Choose and connect</h5>
-                  <p class="fw-lighter">When you're ready, select the tradesperson who best fits your job. Once you
+                  <p class="text-muted">When you're ready, select the tradesperson who best fits your job. Once you
                     confirm,
                     you’ll be
                     connected directly to make arrangements and get started.</p>
@@ -142,19 +142,19 @@
                     </div>
                   </div>
                 </div>
-                <p class="card-text line-clamp small fw-lighter">{{tradesperson.description ? tradesperson.description : 'No description available' }}</p>
+                <p class="card-text line-clamp small text-muted">{{tradesperson.description ? tradesperson.description : 'No description available' }}</p>
                 <button class="btn btn-outline-primary-1 w-100 ">Get in touch</button>
               </div>
               <!-- Card Footer with fixed height -->
               <div class="card-footer text-muted d-flex flex-column" style="min-height: 70px; overflow:hidden">
                 <div v-if="tradesperson.latest_rating">
-                  <p class="fw-lighter mb-1 small"><i class="bi bi-chat-dots"/> Latest review:</p>
-                  <p class="small mb-1 fw-lighter"><span class="text-decoration-underline">{{ tradesperson.latest_rating?.service_request?.headline }}</span> - {{tradesperson.latest_rating?.created_at | toHumanDayMonthYear}}</p>
-                  <p class="small line-clamp fw-lighter">{{tradesperson.latest_rating?.comment ? tradesperson.latest_rating?.comment : 'No reviews yet' }}</p>
+                  <p class="text-muted mb-1 small"><i class="bi bi-chat-dots"/> Latest review:</p>
+                  <p class="small mb-1 text-muted"><span class="text-decoration-underline">{{ tradesperson.latest_rating?.service_request?.headline }}</span> - {{tradesperson.latest_rating?.created_at | toHumanDayMonthYear}}</p>
+                  <p class="small line-clamp text-muted">{{tradesperson.latest_rating?.comment ? tradesperson.latest_rating?.comment : 'No reviews yet' }}</p>
                 </div>
                 <div v-else>
-                  <p class="fw-lighter mb-1 small"><i class="bi bi-chat-dots"/> Latest review:</p>
-                  <p class="small mb-1 fw-lighter">No reviews yet</p>
+                  <p class="text-muted mb-1 small"><i class="bi bi-chat-dots"/> Latest review:</p>
+                  <p class="small mb-1 text-muted">No reviews yet</p>
                 </div>
 
               </div>

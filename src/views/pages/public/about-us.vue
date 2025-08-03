@@ -26,7 +26,7 @@
             <i class="bi bi-house-check text-primary me-2"></i>
             About Tradelink
           </h2>
-          <p class="lead fw-lighter">
+          <p class="lead text-muted">
             Tradelink was founded with a clear purpose: to raise the standard of workmanship across Jamaica and bring
             greater trust to the trades industry.
           </p>

@@ -9,8 +9,8 @@
       <h3 class="mb-4 text-center">{{query}}</h3>
       <div v-if="question" class="mb-5 border p-4 rounded bg-white shadow-sm">
         <div class="mb-3">
-          <h5 class="fw-lighter small">{{ question.user.name }}</h5>
-          <div class="text-muted small fw-lighter">{{ formatDate(question.created_at) }}</div>
+          <h5 class="text-muted small">{{ question.user.name }}</h5>
+          <div class="text-muted small ">{{ formatDate(question.created_at) }}</div>
           <p class="mt-2">{{ question.content }}</p>
         </div>
 
@@ -28,8 +28,8 @@
           <h4 class="text-muted mb-3">Answers</h4>
           <div v-for="answer in question.answers" :key="answer.id" class="mb-4 ps-3 border-start">
 
-            <p class="mb-1 small fw-lighter">{{ answer.user.name }}</p>
-            <div class="text-muted small fw-lighter">answered {{ formatDate(answer.created_at) }}</div>
+            <p class="mb-1 small text-muted">{{ answer.user.name }}</p>
+            <div class="text-muted small text-muted">answered {{ formatDate(answer.created_at) }}</div>
             <p class="mt-2">{{ answer.content }}</p>
 
             <!-- Reply Button -->
@@ -52,7 +52,7 @@
               <div v-for="reply in answer.replies" :key="reply.id" class="text-muted small mb-2">
                 <strong>{{ reply.user.name }}</strong>:
                 {{ reply.content }} <br>
-                <span class="text-muted small fw-lighter">{{ formatDate(reply.created_at) }}</span>
+                <span class="text-muted small ">{{ formatDate(reply.created_at) }}</span>
                 <hr>
               </div>
             </div>

@@ -31,7 +31,7 @@
 
 
             <div class="d-flex align-items-center mt-4" v-if="!project.invite && !isLoading">
-              <h6 class="fw-lighter mb-0 me-3">Are you interested in this job?</h6>
+              <h6 class="text-muted mb-0 me-3">Are you interested in this job?</h6>
               <button class="btn btn-primary flex-shrink-1" @click="sendInvite()">
                 <i class="bi bi-envelope"></i> I'm interested in this job
               </button>
@@ -63,7 +63,7 @@
             </div>
             <div class="card-body">
               <h4 class="card-title">Job Description</h4>
-              <div class="fw-lighter">
+              <div class="text-muted">
                 <div class="row mt-3">
                   <div class="col-md-4">Job ID:</div>
                   <div class="col-md-8 text-left">{{ project.id }}</div>
@@ -116,7 +116,7 @@
             </div>
             <div class="card-body">
               <h4 class="card-title">Job Description</h4>
-              <div class="fw-lighter">
+              <div class="text-muted">
                 <div class="lines shine"></div>
                 <div class="lines shine"></div>
                 <div class="lines shine"></div>
@@ -126,7 +126,7 @@
               </div>
               <hr/>
               <div class="row mt-3">
-                <div class="col-md-12 fw-lighter">Customer description:</div>
+                <div class="col-md-12 text-muted">Customer description:</div>
                 <div class="col-md-12">
                   <p class="lines shine"></p>
                   <p class="lines shine"></p>

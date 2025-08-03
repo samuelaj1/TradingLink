@@ -25,7 +25,7 @@
                        value="keep">
                 <label class="form-check-label" for="keepAccount">
                   <div class="fw-bold">Keep my account but stop notifications</div>
-                  <small class="fw-lighter">
+                  <small class="text-muted">
                     Got enough work at the moment? You can turn off notifications and come back when you need us later.
                   </small>
                 </label>
@@ -36,7 +36,7 @@
                        id="deleteAccount" value="delete">
                 <label class="form-check-label" for="deleteAccount">
                   <div class="fw-bold">Delete my account</div>
-                  <small class="fw-lighter">
+                  <small class="text-muted">
                     Your profile and personal information will be deleted permanently and you will no longer be able to
                     access your account.<br>
                     For more information about how we handle your data, please read our

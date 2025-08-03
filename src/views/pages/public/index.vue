@@ -174,7 +174,7 @@
               </div>
               <div class="text-center card-body" style="background: white;">
                 <h5 class="fw-bold">Post your job</h5>
-                <p class="fw-lighter">Tell us what you need done. Whether it's plumbing, painting, or gardening — give
+                <p class="text-muted">Tell us what you need done. Whether it's plumbing, painting, or gardening — give
                   as much detail as you can so tradespeople understand the job clearly.
                 </p>
               </div>
@@ -187,7 +187,7 @@
               </div>
               <div class="card-body text-center" style="background: white;">
                 <h5 class="fw-bold">Trades respond</h5>
-                <p class="fw-lighter">Skilled tradespeople will reply with quotes, questions, and links to their
+                <p class="text-muted">Skilled tradespeople will reply with quotes, questions, and links to their
                   profiles.
                   You can compare
                   their experience, reviews, and portfolios before making a decision.</p>
@@ -201,7 +201,7 @@
               </div>
               <div class="card-body text-center" style="background: white;">
                 <h5 class="fw-bold">Choose and connect</h5>
-                <p class="fw-lighter">When you're ready, select the tradesperson who best fits your job. Once you confirm, you’ll be connected directly to make arrangements and get started.</p>
+                <p class="text-muted">When you're ready, select the tradesperson who best fits your job. Once you confirm, you’ll be connected directly to make arrangements and get started.</p>
               </div>
             </div>
           </div>
@@ -267,10 +267,10 @@
           <div class="col-12 col-md-6">
             <h5 class="mb-3 mt-3 mt-md-2">Tradelink helps you find the kind of jobs you actually want, quickly and reliably.</h5>
 
-            <p class="font-weight-lighter mb-3">Sign up for free to receive a steady stream
+            <p class="text-muted mb-3">Sign up for free to receive a steady stream
               of local job opportunities that match your skills.</p>
 
-            <p class="font-weight-lighter">Take on big jobs or smaller gap fillers - it’s up to you.</p>
+            <p class="text-muted">Take on big jobs or smaller gap fillers - it’s up to you.</p>
 
           </div>
 
@@ -309,7 +309,7 @@
             <div class="card card-cut bg-primary-1 text-light mb-sm-2 mb-3">
               <div class="card-body py-5" style="margin-bottom: 1rem">
                 <h3 class="">Verified Reviews from Real Customers</h3>
-                <p class="fw-lighter text-light mt-3" style="font-size: 18px">Authentic feedback from homeowners like you</p>
+                <p class="text-muted text-light mt-3" style="font-size: 18px">Authentic feedback from homeowners like you</p>
                 <div class="text-center mt-5">
                   <router-link to="/post-a-job" class="btn btn-light text-center py-3 btn-block">Get Free Quotes</router-link>
                 </div>

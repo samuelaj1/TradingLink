@@ -14,7 +14,7 @@
     <div class="container my-5">
       <div class="text-center mb-5">
         <h1 class="display-5 fw-bold mb-3">Tradespeople Quality Requirements</h1>
-        <p class="lead text-muted fw-lighter text-center">
+        <p class="lead text-muted  text-center">
           At Tradelink, we're raising the bar for trades in Jamaica. Every tradesperson must meet essential standards to
           ensure trust, safety, and quality in every job.
         </p>

@@ -22,13 +22,13 @@
 
       <div v-else>
         <div v-for="result in results" :key="result.id" class="border rounded p-3 mb-3 bg-white shadow-sm">
-          <h5 class="small fw-lighter">{{ result.user?.name }}</h5>
+          <h5 class="small text-muted">{{ result.user?.name }}</h5>
           <router-link :to="{ name: 'ForumDetails', params: { id: result.id }, query:{q:result.content} }"
                        class="text-decoration-none">
             <div class="mb-2">{{ result.content }}</div>
           </router-link>
 
-          <div class="text-muted small fw-lighter">{{ formatDate(result.created_at) }}</div>
+          <div class="text-muted small ">{{ formatDate(result.created_at) }}</div>
         </div>
       </div>
     </div>

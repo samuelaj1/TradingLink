@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-8 offset-md-2 text-center mb-4">
           <div class="alert bg-primary-1 diamond">
-            <p class="fw-lighter mb-0 text-light">Invite 10 tradespeople to give you a quote. It's the fastest way to
+            <p class="text-muted mb-0 text-light">Invite 10 tradespeople to give you a quote. It's the fastest way to
               start a conversation!</p>
           </div>
         </div>
@@ -48,7 +48,7 @@
                     <span class="badge bg-primary-1 text-light me-2">★ {{ tradesperson.latest_rating?tradesperson.average_rating:5 }}/5</span>
                     <span v-if="tradesperson.latest_rating">({{ tradesperson.total_ratings }} reviews)</span>
                   </div>
-                  <p class="card-text fw-lighter">Active within <span class="fw-bold">{{ tradesperson.distance }} miles of {{
+                  <p class="card-text text-muted">Active within <span class="fw-bold">{{ tradesperson.distance }} miles of {{
                       city_name
                     }}</span>
                   </p>
@@ -85,7 +85,7 @@
             </div>
           </div>
           <div class="text-center mt-4" v-if="tradespersons.length ===0">
-            <p class="fw-lighter">Our algorithm is still locating the tradespersons around you, We recommend
+            <p class="text-muted">Our algorithm is still locating the tradespersons around you, We recommend
               tradespeople based on your location and the service you need. If you want to
               see more tradespeople, please change your location or service.</p>
           </div>

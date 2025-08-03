@@ -7,7 +7,7 @@
           <div class="fm-margin m-md-0" style="margin: 0 20px;">
             <div class="mb-5">
               <h1 class="mb-4">Congratulations!</h1>
-              <p class="fw-lighter mb-4">Your job has been posted successfully. Thank you!</p>
+              <p class="text-muted mb-4">Your job has been posted successfully. Thank you!</p>
               <h5 class="fw-bold mb-2">What happens now?</h5>
               <p>We will notify tradespeople about your job shortly. If someone is interested, you'll receive a notification by email.</p>
               <router-link :to="'/my-projects/'+project_id" class="btn btn-primary mt-4 mb-5 custom-block-btn" style="height: 3rem">View your job</router-link>

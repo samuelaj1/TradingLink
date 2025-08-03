@@ -18,7 +18,7 @@
                 class="bi bi-patch-check-fill text-primary-1"
             ></i>
           </h4>
-          <div class="fw-lighter mb-0 small">{{ user.email }}</div>
+          <div class="text-muted mb-0 small">{{ user.email }}</div>
           <h5 class="card-title my-1 small">
             {{ user.city_name ? `${user.city_name} ${user.parish_name}` : '' }}
           </h5>

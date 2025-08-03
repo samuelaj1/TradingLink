@@ -38,7 +38,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="p-2 text-light fw-lighter" style="border-radius: 10px; background: #2d5657"><span
+                    <div class="p-2 text-light text-muted" style="border-radius: 10px; background: #2d5657"><span
                         class="text-decoration-underline fw-bold">Send invite</span> to 10 more tradespeople to get more
                       responses
                     </div>

@@ -46,7 +46,7 @@
                 </div>
                 <div v-if="step===2" class="text-center">
                   <h4>Please check your email</h4>
-                  <p class="fw-lighter small mb-4">We just sent a reset link to {{ email }}. If you haven’t received it after a few minutes, check your
+                  <p class="text-muted small mb-4">We just sent a reset link to {{ email }}. If you haven’t received it after a few minutes, check your
                     spam folder. If it’s not there, you may have signed up with a different email.</p>
                   <button class="btn btn-dark btn-block mt-3" @click="tryToReset" v-if="!loading" type="submit">
                     Resend email

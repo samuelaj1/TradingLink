@@ -41,7 +41,7 @@
                 </div>
               </div>
 
-              <small class="text-muted text-uppercase fw-lighter">Chats</small>
+              <small class="text-muted text-uppercase text-muted">Chats</small>
             </div>
             <!-- users -->
             <div class="">
@@ -56,7 +56,7 @@
                     <h5 class="mt-0 mb-0 font-14">
                       <span class="text-capitalize">{{ item.service.headline }}</span>
                     </h5>
-                    <p class="mt-1 mb-0 text-muted fw-lighter">
+                    <p class="mt-1 mb-0 text-muted text-muted">
                       <span class="w-75">{{ !item.lastMessage ? 'Click to start chatting' : item.lastMessage }}</span>
                     </p>
                   </div>
@@ -100,7 +100,7 @@
               </div>
             </div>
             <div v-if="!messages.length">
-              <h6 class="text-center fw-lighter">Be the first to send a message</h6>
+              <h6 class="text-center text-muted">Be the first to send a message</h6>
             </div>
             <!-- Persistent Notice -->
           </div>
@@ -137,7 +137,7 @@
             <div class="mb-3">
               <h6 class="card-title">Job Description</h6>
 
-              <div class="fw-lighter">
+              <div class="text-muted">
                 <div class="row mt-3">
                   <div class="col-md-4">Job ID:</div>
                   <div class="col-md-8 text-left">{{ serviceSelected.id }}</div>

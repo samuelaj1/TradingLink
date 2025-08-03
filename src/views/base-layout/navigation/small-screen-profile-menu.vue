@@ -9,7 +9,7 @@
         </div>
         <div class="flex-grow-1 ms-3" @click="$router.push(`/user-profile/${user.id}`)">
           <h5 class="profile-name mb-0">{{ user.name }} <i v-if="user.qualification_status ==='approved'" class="bi bi-patch-check-fill text-primary-1"></i></h5>
-          <div class="fw-lighter mb-0 small">{{ user.email }}</div>
+          <div class="text-muted mb-0 small">{{ user.email }}</div>
 
           <small class="text-muted">{{ user.city_name ? `${user.city_name} ${user.parish_name}` : '' }}
           </small>

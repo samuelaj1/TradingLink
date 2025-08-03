@@ -12,7 +12,7 @@
         <div class="d-flex justify-content-between align-items-center border-bottom py-3">
           <div>
             <div class="fw-bold mb-3">New leads</div>
-            <div class="fw-lighter small">Relevant leads as soon as they are posted.</div>
+            <div class="text-muted small">Relevant leads as soon as they are posted.</div>
             <div class="mt-2">Email</div>
           </div>
           <div class="form-check form-switch">
@@ -24,7 +24,7 @@
         <div class="d-flex justify-content-between align-items-center border-bottom py-3">
           <div>
             <div class="fw-bold mb-3">Daily lead summary</div>
-            <div class="fw-lighter small">Summary of relevant leads in the last 24 hours.</div>
+            <div class="text-muted small">Summary of relevant leads in the last 24 hours.</div>
             <div class="mt-2">Email</div>
           </div>
           <div class="form-check form-switch">
@@ -35,7 +35,7 @@
         <!-- Invites from customers -->
         <div class="border-bottom py-3">
           <div class="fw-bold mb-3 mb-1">Invites from customers</div>
-          <div class="fw-lighter small mb-2">A customer invites you to talk about a lead.</div>
+          <div class="text-muted small mb-2">A customer invites you to talk about a lead.</div>
 
           <div class="d-flex justify-content-between align-items-center mb-2">
             <div>Email</div>
@@ -49,7 +49,7 @@
         <!-- Messages and job status -->
         <div class="py-3">
           <div class="fw-bold mb-3 mb-1">Messages and job status</div>
-          <div class="fw-lighter small mb-2">New messages, new contacts, being hired, job completion and reviews.</div>
+          <div class="text-muted small mb-2">New messages, new contacts, being hired, job completion and reviews.</div>
 
           <div class="d-flex justify-content-between align-items-center">
             <div>Email</div>
@@ -62,7 +62,7 @@
         <!-- Marketing -->
         <div class="py-3">
           <div class="fw-bold mb-3 mb-1">Marketing communications</div>
-          <div class="fw-lighter small mb-2">Receive marketing communications.</div>
+          <div class="text-muted small mb-2">Receive marketing communications.</div>
 
           <div class="d-flex justify-content-between align-items-center">
             <div>Email</div>
