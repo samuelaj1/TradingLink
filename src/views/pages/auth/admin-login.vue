@@ -45,11 +45,6 @@
                     </div>
                   </div>
 
-                  <div class="text-center mb-4">
-                    <router-link to="/forgot-password" class="text-primary-1 text-decoration-underline mb-3"
-                                 style="font-size: 14px">Forgot your password?
-                    </router-link>
-                  </div>
                 </div>
               </form>
             </div>

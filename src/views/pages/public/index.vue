@@ -9,7 +9,7 @@
             <div class="col-lg-7 d-flex align-items-center">
               <div class="hero-content">
                 <h1>Find Trusted Tradespeople Across Jamaica - Fast, Reliable, <span>Secure</span></h1>
-                <h4 class="text-light mt-5">Postyour job and get connected with eartined professionals today</h4>
+                <h4 class="text-light mt-5">Post your job and get connected with certified professionals today</h4>
                 <div class="job-search-area mt-3">
                   <form @submit.prevent>
                     <div class="form-inner job-title">
@@ -25,21 +25,8 @@
                       </ul>
 
                     </div>
-
-<!--                    <div class="form-inner">-->
-<!--                      <button type="button" class="primry-btn-2" @click="showDropdown=true"><img-->
-<!--                          src="../../../../public/frontend/assets/images/icon/search-icon.svg" alt=""> Search-->
-<!--                      </button>-->
-<!--                    </div>-->
                   </form>
 
-                  <!--                  <div class="dropdown" v-show="showDropdown">-->
-<!--                    <ul>-->
-<!--                      <li v-for="(category,i) in filteredCategories" :key="i">-->
-<!--                        <router-link :to="'/post-a-job?category='+category.name">{{ category.name }}</router-link>-->
-<!--                      </li>-->
-<!--                    </ul>-->
-<!--                  </div>-->
                 </div>
               </div>
             </div>
@@ -94,7 +81,7 @@
     <div class="counter-area home2-counter-area mb-20">
       <div class="container">
         <div class="row justify-content-center" v-if="!statsLoader && stats">
-          <div class="col-lg-4 col-sm-6 col-12 mb-4 d-flex justify-content-center">
+          <div class="col-lg-4 col-sm-4 col-md-4 col-12 mb-4 d-flex justify-content-center">
             <div class="counter-single border-start text-start px-3" style="min-width: 200px;">
               <div class="coundown">
                 <p class="mb-1">Tradespeople</p>
@@ -105,7 +92,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-sm-6 col-12 mb-4 d-flex justify-content-center">
+          <div class="col-lg-4 col-sm-4 col-md-4 col-12 mb-4 d-flex justify-content-center">
             <div class="counter-single border-start text-start px-3" style="min-width: 200px;">
               <div class="coundown">
                 <p class="mb-1">Trade categories</p>
@@ -117,7 +104,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-sm-6 col-12 mb-4 d-flex justify-content-center">
+          <div class="col-lg-4 col-sm-4 col-md-4 col-12 mb-4 d-flex justify-content-center">
             <div class="counter-single border-start text-start px-3" style="min-width: 200px;">
               <div class="coundown">
                 <p class="mb-1">Reviews</p>
@@ -130,7 +117,7 @@
           </div>
         </div>
         <div class="row justify-content-center" v-else>
-          <div class="col-lg-4 col-sm-6 col-12 mb-4 d-flex justify-content-center">
+          <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4 d-flex justify-content-center">
             <div class="counter-single border-start text-start px-3" style="min-width: 200px;">
               <div>
                 <p class="mb-1">Tradespeople</p>
@@ -180,10 +167,10 @@
           </div>
         </div>
         <div class="row gy-5 justify-content-center align-items-stretch">
-          <div class="col-lg-4 col-md-6 d-flex">
+          <div class="col-lg-4 col-md-4 d-flex">
             <div class="fancy-card card flex-fill d-flex flex-column">
               <div class="recent-article-img card-img-top" style="height: 200px;">
-                <img class="img-fluid" src="../../../../public/frontend/assets/images/home/step-1.png" alt="Post your job">
+                <img class="img-fluid w-100" src="../../../../public/frontend/assets/images/home/step-1.png" alt="Post your job">
               </div>
               <div class="text-center card-body" style="background: white;">
                 <h5 class="fw-bold">Post your job</h5>
@@ -193,10 +180,10 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 d-flex">
+          <div class="col-lg-4 col-md-4 d-flex">
             <div class="fancy-card card flex-fill d-flex flex-column">
               <div class="recent-article-img card-img-top" style="height: 200px;">
-                <img class="img-fluid" src="../../../../public/frontend/assets/images/home/step-2.png" alt="Trades respond">
+                <img class="img-fluid w-100" src="../../../../public/frontend/assets/images/home/step-2.png" alt="Trades respond">
               </div>
               <div class="card-body text-center" style="background: white;">
                 <h5 class="fw-bold">Trades respond</h5>
@@ -207,17 +194,14 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 d-flex">
-            <div class="fancy-card card">
+          <div class="col-lg-4 col-md-4 d-flex">
+            <div class="fancy-card card flex-fill d-flex flex-column">
               <div class="recent-article-img card-img-top" style="height: 200px;">
-                <img class="img-fluid" src="../../../../public/frontend/assets/images/home/step-3.png" alt="Choose and connect">
+                <img class="img-fluid w-100" src="../../../../public/frontend/assets/images/home/step-3.png" style="height: 162px; object-fit: cover;" alt="Trades respond">
               </div>
               <div class="card-body text-center" style="background: white;">
                 <h5 class="fw-bold">Choose and connect</h5>
-                <p class="fw-lighter">When you're ready, select the tradesperson who best fits your job. Once you
-                  confirm,
-                  you’ll be
-                  connected directly to make arrangements and get started.</p>
+                <p class="fw-lighter">When you're ready, select the tradesperson who best fits your job. Once you confirm, you’ll be connected directly to make arrangements and get started.</p>
               </div>
             </div>
           </div>

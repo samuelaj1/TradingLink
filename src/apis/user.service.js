@@ -21,6 +21,7 @@ export const userService = {
     postJobTrades,
     updateQualificationStatus,
     updateJob,
+    updateTradesperson,
     postProfileView,
     contactFormSubmit,
     verifyIdentity,
@@ -29,7 +30,7 @@ export const userService = {
     getTradespersonsByTrade,
     getTradesperson,
     getTradeQuestion,
-    getParisCities,
+    getParishCities,
     getServiceInvites,
     getUserInterest,
     createAccount,
@@ -74,6 +75,7 @@ export const userService = {
     savePortfolioOrder,
     deletePortfolio,
     deleteTrades,
+    deleteTradesPerson,
     createTrade,
     resendVerifyEmail,
     getPermissions,
@@ -551,6 +553,15 @@ function deleteTrades(tradeIds) {
     })
 }
 
+function deleteTradesPerson(id) {
+    return new Promise((resolve) => {
+        axios.delete(`/admin/api/trades-persons/${id}`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
 function createTrade(formData) {
     return new Promise((resolve) => {
         axios.post('/admin/api/trade', formData, useBearerTokenHeaders())
@@ -745,9 +756,19 @@ function updateQualificationStatus(payload) {
     });
 }
 
-function updateJob(jobId,payload) {
+function updateJob(jobId, payload) {
     return new Promise((resolve) => {
         axios.post(`/admin/api/update-job/${jobId}`, payload, useBearerTokenHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+function updateTradesperson(id, payload) {
+    return new Promise((resolve) => {
+        axios.post(`/admin/api/update-trade-persons/${id}`, payload, useBearerTokenHeaders())
             .then((response) => {
                 resolve(response.data);
             })
@@ -857,7 +878,7 @@ function getTradeQuestion(id) {
     });
 }
 
-function getParisCities() {
+function getParishCities() {
     return new Promise((resolve) => {
         axios.get("/api/parishes-cities", useBasicAuthHeaders())
             .then((response) => {

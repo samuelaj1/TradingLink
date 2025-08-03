@@ -105,12 +105,12 @@
 
     <b-modal id="edit-job-modal" title="Edit Job" v-model="showEditModal" @ok="updateJob" v-if="editJob">
       <b-form @submit.stop.prevent>
-        <b-form-group label="Headline">
+        <b-form-group label="Headline" class="mb-3">
           <b-form-input v-model="editJob.headline" required/>
         </b-form-group>
 
 
-        <b-form-group label="Job location">
+        <b-form-group label="Job location" class="mb-3">
           <GmapAutocomplete
               @place_changed="setPlace"
               @click="locationError =''"
@@ -130,7 +130,7 @@
         </b-form-group>
 
 
-        <b-form-group label="Trade">
+        <b-form-group label="Trade" class="mb-3">
           <b-form-select class="form-control"
                          v-model="editJob.trade_id"
                          :options="trades.map(t => ({ value: t.id, text: t.name }))"

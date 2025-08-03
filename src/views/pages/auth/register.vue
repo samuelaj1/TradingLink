@@ -21,14 +21,14 @@
               <form @submit.prevent="signUp">
                 <h5 class="font-weight-bold mt-3 mb-3">Discover local trade tasks</h5>
                 <div class="mb-3">
-                  <select class="form-control" required v-model="selectedTradeId" :disabled="tradeLoader">
+                  <select class="form-control form-input h-auto" required v-model="selectedTradeId" :disabled="tradeLoader">
                     <option value="">--Select your trade--</option>
                     <option v-for="(trade,i) in trades" :key="i" :value="trade.id">{{ trade.name }}</option>
                   </select>
                 </div>
 
                 <div class="mb-3">
-                  <select class="form-control" v-model="selectedParishId" required :disabled="parishLoader">
+                  <select class="form-control form-input h-auto" v-model="selectedParishId" required :disabled="parishLoader">
                     <option value="">--Select parish--</option>
                     <option v-for="parish in parishes" :key="parish.id" :value="parish.id">
                       {{ parish.name }}
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="mb-3" v-if="selectedParishId">
-                  <select class="form-control" v-model="selectedCityId" required>
+                  <select class="form-control form-input h-auto" v-model="selectedCityId" required>
                     <option value="">--Select city--</option>
                     <option
                         v-for="city in parishes.find(p => p.id === selectedParishId)?.cities || []"
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="mb-4">
-                  <input type="email" class="form-control form-input" :class="{ 'border-danger': emailError }"
+                  <input type="email" class="form-control form-input h-auto" :class="{ 'border-danger': emailError }"
                          v-model="email" placeholder="Your email to receive leads" required>
                 </div>
 
@@ -283,13 +283,11 @@ export default {
        });
      },
 
-    async getParisCities() {
+     getParishCities() {
       this.parishLoader = true
-      await this.$store.dispatch('showLoader')
-      userService.getParisCities().then((res) => {
+      userService.getParishCities().then((res) => {
         this.parishes = res.extra;
         this.parishLoader = false
-
       });
     },
 
@@ -319,7 +317,7 @@ export default {
   },
   created() {
     this.getTrades();
-    this.getParisCities();
+    this.getParishCities();
   },
   mounted() {
     $('.sidebar-button').on("click", function () {
