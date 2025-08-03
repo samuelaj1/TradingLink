@@ -316,216 +316,216 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-9">
-            <div class="swiper home5-feedback-slider swiper-initialized swiper-horizontal swiper-pointer-events">
-              <div class="swiper-wrapper" id="swiper-wrapper-a97345a614234bc4" aria-live="off"
-                   style="transform: translate3d(-2624px, 0px, 0px); transition-duration: 1700ms;">
-                <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="0" role="group"
-                     aria-label="1 / 2" style="width: 636px; margin-right: 20px;">
-                  <div class="client-feedback-wrap hover-btn">
-                    <span class="for-border"></span>
-                    <div class="client-feedback-inner">
-                      <div class="client-feedback-top">
-                        <div class="author-area">
-                          <div class="author-img">
-                            <img src="../../../../public/frontend/assets/images/bg/home5-testimonial-01.png" alt="">
-                            <div class="author-quat">
-                              <img class="quate1" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat.svg" alt="">
-                              <img class="quate2" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat2.svg" alt="">
-                            </div>
-                          </div>
-                          <div class="author-content">
-                            <h5>Rakhab Uddin</h5>
-                            <span>UI/UX Engineer</span>
-                          </div>
-                        </div>
-                        <div class="reviews">
-                          <ul>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-half"></i></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="client-feedback-content">
-                        <p>On the other hand, denounce with righteous to indignation and dislike men who are so the
-                          beguiled and demoralized.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev" data-swiper-slide-index="1"
-                     role="group" aria-label="2 / 2" style="width: 636px; margin-right: 20px;">
-                  <div class="client-feedback-wrap hover-btn">
-                    <span class="for-border"></span>
-                    <div class="client-feedback-inner">
-                      <div class="client-feedback-top">
-                        <div class="author-area">
-                          <div class="author-img">
-                            <img src="../../../../public/frontend/assets/images/bg/home5-testimonial-02.png" alt="">
-                            <div class="author-quat">
-                              <img class="quate1" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat.svg" alt="">
-                              <img class="quate2" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat2.svg" alt="">
-                            </div>
-                          </div>
-                          <div class="author-content">
-                            <h5>Mrs. Jordan Harry</h5>
-                            <span>UI/UX Engineer</span>
-                          </div>
-                        </div>
-                        <div class="reviews">
-                          <ul>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-half"></i></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="client-feedback-content">
-                        <p>On the other hand, denounce with righteous to indignation and dislike men who are so the
-                          beguiled and demoralized.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group"
-                     aria-label="1 / 2" style="width: 636px; margin-right: 20px;">
-                  <div class="client-feedback-wrap hover-btn">
-                    <div class="client-feedback-inner">
-                      <h5 class="fw-bold">Replace wooden front door with upvc</h5>
+<!--          <div class="col-lg-9">-->
+<!--            <div class="swiper home5-feedback-slider swiper-initialized swiper-horizontal swiper-pointer-events">-->
+<!--              <div class="swiper-wrapper" id="swiper-wrapper-a97345a614234bc4" aria-live="off"-->
+<!--                   style="transform: translate3d(-2624px, 0px, 0px); transition-duration: 1700ms;">-->
+<!--                <div class="swiper-slide swiper-slide-duplicate" data-swiper-slide-index="0" role="group"-->
+<!--                     aria-label="1 / 2" style="width: 636px; margin-right: 20px;">-->
+<!--                  <div class="client-feedback-wrap hover-btn">-->
+<!--                    <span class="for-border"></span>-->
+<!--                    <div class="client-feedback-inner">-->
+<!--                      <div class="client-feedback-top">-->
+<!--                        <div class="author-area">-->
+<!--                          <div class="author-img">-->
+<!--                            <img src="../../../../public/frontend/assets/images/bg/home5-testimonial-01.png" alt="">-->
+<!--                            <div class="author-quat">-->
+<!--                              <img class="quate1" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat.svg" alt="">-->
+<!--                              <img class="quate2" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat2.svg" alt="">-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="author-content">-->
+<!--                            <h5>Rakhab Uddin</h5>-->
+<!--                            <span>UI/UX Engineer</span>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                        <div class="reviews">-->
+<!--                          <ul>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-half"></i></li>-->
+<!--                          </ul>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="client-feedback-content">-->
+<!--                        <p>On the other hand, denounce with righteous to indignation and dislike men who are so the-->
+<!--                          beguiled and demoralized.</p>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev" data-swiper-slide-index="1"-->
+<!--                     role="group" aria-label="2 / 2" style="width: 636px; margin-right: 20px;">-->
+<!--                  <div class="client-feedback-wrap hover-btn">-->
+<!--                    <span class="for-border"></span>-->
+<!--                    <div class="client-feedback-inner">-->
+<!--                      <div class="client-feedback-top">-->
+<!--                        <div class="author-area">-->
+<!--                          <div class="author-img">-->
+<!--                            <img src="../../../../public/frontend/assets/images/bg/home5-testimonial-02.png" alt="">-->
+<!--                            <div class="author-quat">-->
+<!--                              <img class="quate1" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat.svg" alt="">-->
+<!--                              <img class="quate2" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat2.svg" alt="">-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="author-content">-->
+<!--                            <h5>Mrs. Jordan Harry</h5>-->
+<!--                            <span>UI/UX Engineer</span>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                        <div class="reviews">-->
+<!--                          <ul>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-half"></i></li>-->
+<!--                          </ul>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="client-feedback-content">-->
+<!--                        <p>On the other hand, denounce with righteous to indignation and dislike men who are so the-->
+<!--                          beguiled and demoralized.</p>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="swiper-slide swiper-slide-duplicate-active" data-swiper-slide-index="0" role="group"-->
+<!--                     aria-label="1 / 2" style="width: 636px; margin-right: 20px;">-->
+<!--                  <div class="client-feedback-wrap hover-btn">-->
+<!--                    <div class="client-feedback-inner">-->
+<!--                      <h5 class="fw-bold">Replace wooden front door with upvc</h5>-->
 
-                      <div class="client-feedback-top">
-                        <div class="author-area">
-                          <div class="author-content">
-                            <h5>Rakhab Uddin</h5>
-                          </div>
-                        </div>
-                        <div class="reviews">
-                          <ul>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-half"></i></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="client-feedback-content">
-                        <p>"Wow! Very efficient and professional. Really good communication on time and did a great job of de-weeding the …"</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide swiper-slide-prev swiper-slide-duplicate-next" data-swiper-slide-index="1"
-                     role="group" aria-label="2 / 2" style="width: 636px; margin-right: 20px;">
-                  <div class="client-feedback-wrap hover-btn">
-                    <span class="for-border"></span>
-                    <div class="client-feedback-inner">
-                      <div class="client-feedback-top">
-                        <div class="author-area">
-                          <div class="author-img">
-                            <img src="../../../../public/frontend/assets/images/bg/home5-testimonial-02.png" alt="">
-                            <div class="author-quat">
-                              <img class="quate1" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat.svg" alt="">
-                              <img class="quate2" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat2.svg" alt="">
-                            </div>
-                          </div>
-                          <div class="author-content">
-                            <h5>Mrs. Jordan Harry</h5>
-                          </div>
-                        </div>
-                        <div class="reviews">
-                          <ul>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-half"></i></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="client-feedback-content">
-                        <p>"They provide a professional service with attention to detail and competitive pricing. I recommend their servic…"</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide swiper-slide-duplicate swiper-slide-active" data-swiper-slide-index="0"
-                     role="group" aria-label="1 / 2" style="width: 636px; margin-right: 20px;">
-                  <div class="client-feedback-wrap hover-btn">
-                    <span class="for-border"></span>
-                    <div class="client-feedback-inner">
-                      <div class="client-feedback-top">
-                        <div class="author-area">
-                          <div class="author-img">
-                            <img src="../../../../public/frontend/assets/images/bg/home5-testimonial-01.png" alt="">
-                            <div class="author-quat">
-                              <img class="quate1" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat.svg" alt="">
-                              <img class="quate2" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat2.svg" alt="">
-                            </div>
-                          </div>
-                          <div class="author-content">
-                            <h5>Rakhab Uddin</h5>
-                          </div>
-                        </div>
-                        <div class="reviews">
-                          <ul>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-half"></i></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="client-feedback-content">
-                        <p>"Quick turnaround, good price, good communication and 10yr warranty"</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev"
-                     data-swiper-slide-index="1" role="group" aria-label="2 / 2"
-                     style="width: 636px; margin-right: 20px;">
-                  <div class="client-feedback-wrap hover-btn">
-                    <span class="for-border"></span>
-                    <div class="client-feedback-inner">
-                      <div class="client-feedback-top">
-                        <div class="author-area">
-                          <div class="author-img">
-                            <img src="../../../../public/frontend/assets/images/bg/home5-testimonial-02.png" alt="">
-                            <div class="author-quat">
-                              <img class="quate1" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat.svg" alt="">
-                              <img class="quate2" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat2.svg" alt="">
-                            </div>
-                          </div>
-                          <div class="author-content">
-                            <h5>Mrs. Jordan Harry</h5>
-                          </div>
-                        </div>
-                        <div class="reviews">
-                          <ul>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-fill"></i></li>
-                            <li><i class="bi bi-star-half"></i></li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="client-feedback-content">
-                        <p>"Fitted me in next day as I was in a hurry and done an excellent job. Would 100% recommend"</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-          </div>
+<!--                      <div class="client-feedback-top">-->
+<!--                        <div class="author-area">-->
+<!--                          <div class="author-content">-->
+<!--                            <h5>Rakhab Uddin</h5>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                        <div class="reviews">-->
+<!--                          <ul>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-half"></i></li>-->
+<!--                          </ul>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="client-feedback-content">-->
+<!--                        <p>"Wow! Very efficient and professional. Really good communication on time and did a great job of de-weeding the …"</p>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="swiper-slide swiper-slide-prev swiper-slide-duplicate-next" data-swiper-slide-index="1"-->
+<!--                     role="group" aria-label="2 / 2" style="width: 636px; margin-right: 20px;">-->
+<!--                  <div class="client-feedback-wrap hover-btn">-->
+<!--                    <span class="for-border"></span>-->
+<!--                    <div class="client-feedback-inner">-->
+<!--                      <div class="client-feedback-top">-->
+<!--                        <div class="author-area">-->
+<!--                          <div class="author-img">-->
+<!--                            <img src="../../../../public/frontend/assets/images/bg/home5-testimonial-02.png" alt="">-->
+<!--                            <div class="author-quat">-->
+<!--                              <img class="quate1" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat.svg" alt="">-->
+<!--                              <img class="quate2" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat2.svg" alt="">-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="author-content">-->
+<!--                            <h5>Mrs. Jordan Harry</h5>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                        <div class="reviews">-->
+<!--                          <ul>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-half"></i></li>-->
+<!--                          </ul>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="client-feedback-content">-->
+<!--                        <p>"They provide a professional service with attention to detail and competitive pricing. I recommend their servic…"</p>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="swiper-slide swiper-slide-duplicate swiper-slide-active" data-swiper-slide-index="0"-->
+<!--                     role="group" aria-label="1 / 2" style="width: 636px; margin-right: 20px;">-->
+<!--                  <div class="client-feedback-wrap hover-btn">-->
+<!--                    <span class="for-border"></span>-->
+<!--                    <div class="client-feedback-inner">-->
+<!--                      <div class="client-feedback-top">-->
+<!--                        <div class="author-area">-->
+<!--                          <div class="author-img">-->
+<!--                            <img src="../../../../public/frontend/assets/images/bg/home5-testimonial-01.png" alt="">-->
+<!--                            <div class="author-quat">-->
+<!--                              <img class="quate1" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat.svg" alt="">-->
+<!--                              <img class="quate2" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat2.svg" alt="">-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="author-content">-->
+<!--                            <h5>Rakhab Uddin</h5>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                        <div class="reviews">-->
+<!--                          <ul>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-half"></i></li>-->
+<!--                          </ul>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="client-feedback-content">-->
+<!--                        <p>"Quick turnaround, good price, good communication and 10yr warranty"</p>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev"-->
+<!--                     data-swiper-slide-index="1" role="group" aria-label="2 / 2"-->
+<!--                     style="width: 636px; margin-right: 20px;">-->
+<!--                  <div class="client-feedback-wrap hover-btn">-->
+<!--                    <span class="for-border"></span>-->
+<!--                    <div class="client-feedback-inner">-->
+<!--                      <div class="client-feedback-top">-->
+<!--                        <div class="author-area">-->
+<!--                          <div class="author-img">-->
+<!--                            <img src="../../../../public/frontend/assets/images/bg/home5-testimonial-02.png" alt="">-->
+<!--                            <div class="author-quat">-->
+<!--                              <img class="quate1" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat.svg" alt="">-->
+<!--                              <img class="quate2" src="../../../../public/frontend/assets/images/icon/home5-testimonial-quat2.svg" alt="">-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="author-content">-->
+<!--                            <h5>Mrs. Jordan Harry</h5>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                        <div class="reviews">-->
+<!--                          <ul>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-fill"></i></li>-->
+<!--                            <li><i class="bi bi-star-half"></i></li>-->
+<!--                          </ul>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="client-feedback-content">-->
+<!--                        <p>"Fitted me in next day as I was in a hurry and done an excellent job. Would 100% recommend"</p>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>-->
+<!--          </div>-->
         </div>
       </div>
     </div>

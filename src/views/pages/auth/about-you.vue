@@ -8,19 +8,14 @@
 
             <div class="d-flex align-items-center justify-content-between mb-4">
               <h1 class="fw-bold mb-0">Work Details</h1>
-
-<!--              <router-link to="/create-account" class="ms-auto">-->
-<!--                <a href="#" class="text-decoration-underline me-2">Cancel</a>-->
-<!--                <a href="#" aria-label="Close"><i class="fa fa-times"></i></a>-->
-<!--              </router-link>-->
             </div>
 
             <div class="progress">
-              <div class="progress-bar w-25 bg-primary-1" role="progressbar"></div>
+              <div class="progress-bar bg-primary-1" style="width: 0%" role="progressbar"></div>
             </div>
 
             <div class="d-flex align-items-center justify-content-between mt-3">
-              <h6 class=" mb-0">Step 1/5</h6>
+              <h6 class=" mb-0">Step 1/7</h6>
               <div class="ms-auto cursor-pointer">
                 <a @click="showModal = true" class="me-2" aria-label="Close"><i class="fa fa-info-circle"></i></a>
                 <a @click="showModal = true" class="text-decoration-underline" >All Steps</a>
@@ -53,22 +48,35 @@
     <b-modal v-model="showModal" title="Complete your registration">
       <div class="registration-steps">
         <div class="step completed">
-          <span class="step-icon">✓</span>
+          <span class="step-icon">1</span>
           <span class="step-text">Work details</span>
         </div>
-        <div class="step completed">
-          <span class="step-icon">✓</span>
-          <span class="step-text">ID Check</span>
+        <div class="step">
+          <span class="step-icon">2</span>
+          <span class="step-text">Profession</span>
         </div>
-        <div class="step completed">
-          <span class="step-icon">✓</span>
-          <span class="step-text">Safety & Quality</span>
+        <div class="step">
+          <span class="step-icon">3</span>
+          <span class="step-text">Work Distance</span>
         </div>
         <div class="step">
           <span class="step-icon">4</span>
-          <span class="step-text">Profile Setup</span>
+          <span class="step-text">Business Type</span>
+        </div>
+        <div class="step">
+          <span class="step-icon">5</span>
+          <span class="step-text">Business Details</span>
+        </div>
+        <div class="step">
+          <span class="step-icon">6</span>
+          <span class="step-text">Identity Verification</span>
+        </div>
+        <div class="step">
+          <span class="step-icon">7</span>
+          <span class="step-text">Skills Verification</span>
         </div>
       </div>
+
       <template #modal-footer>
         <b-button variant="secondary" @click="showModal = false">Close</b-button>
         <b-button class="btn bg-primary-1 text-light ">Save changes</b-button>

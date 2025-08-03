@@ -7,7 +7,7 @@
           <div class="col-lg-12">
 
             <div class="d-flex align-items-center justify-content-between mb-4">
-              <h1 class="fw-bold mb-0">Work Details</h1>
+              <h1 class="fw-bold mb-0">Identify Verification</h1>
 
               <router-link to="/business-details" class="ms-auto">
                 <a href="#" class="text-decoration-underline me-2">Cancel</a>
@@ -16,11 +16,11 @@
             </div>
 
             <div class="progress">
-              <div class="progress-bar w-25 bg-primary-1" role="progressbar"></div>
+              <div class="progress-bar bg-primary-1" style="width: 71.42%" role="progressbar"></div>
             </div>
 
             <div class="d-flex align-items-center justify-content-between mt-3">
-              <h6 class=" mb-0">Step 2/5</h6>
+              <h6 class=" mb-0">Step 6/7</h6>
               <div class="ms-auto cursor-pointer">
                 <a @click="showModal = true" class="me-2" aria-label="Close"><i class="fa fa-info-circle"></i></a>
                 <a @click="showModal = true" class="text-decoration-underline" >All Steps</a>
@@ -35,7 +35,7 @@
               <p class="mb-4 font-weight-lighter">Your ID will be handled securely and won’t be shared with anyone else.</p>
               <div class="button-container mt-5">
                 <div class="col-12">
-                  <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.go(-1)">Back</button>
+                  <button class="btn btn-outline-primary-1 me-3 big-button" @click="$router.push('/business-details')">Back</button>
                   <button class="btn primry-btn-2 d-inline-block text-light big-button" @click="$router.push('/id-verification')">
                     Continue
                   </button>
@@ -57,15 +57,27 @@
         </div>
         <div class="step completed">
           <span class="step-icon">✓</span>
-          <span class="step-text">ID Check</span>
+          <span class="step-text">Profession</span>
         </div>
         <div class="step completed">
           <span class="step-icon">✓</span>
-          <span class="step-text">Safety & Quality</span>
+          <span class="step-text">Work Distance</span>
+        </div>
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span class="step-text">Business Type</span>
+        </div>
+        <div class="step completed">
+          <span class="step-icon">✓</span>
+          <span class="step-text">Business Details</span>
+        </div>
+        <div class="step completed">
+          <span class="step-icon">6</span>
+          <span class="step-text">Identity Verification</span>
         </div>
         <div class="step">
-          <span class="step-icon">4</span>
-          <span class="step-text">Profile Setup</span>
+          <span class="step-icon">7</span>
+          <span class="step-text">Skills Verification</span>
         </div>
       </div>
       <template #modal-footer>
