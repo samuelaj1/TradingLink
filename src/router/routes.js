@@ -677,7 +677,6 @@ export default [
         meta: {
             authRequired: true,
             roles: ['homeowner']
-
         },
         component: () => import('../views/pages/homeowner/homeowner-chat'),
     },
@@ -700,6 +699,15 @@ export default [
             roles: ['tradesperson']
         },
         component: () => import('../views/pages/lead-settings/services'),
+    },
+    {
+        path: '/tools',
+        name: 'tools',
+        meta:{
+            authRequired: true,
+            roles: ['tradesperson']
+        },
+        component: () => import('../views/pages/lead-settings/tools'),
     },
     {
         path: '/notifications',

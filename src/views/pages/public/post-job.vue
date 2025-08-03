@@ -26,7 +26,7 @@
                   {{ trade.name }}
                 </option>
               </select>
-              <div class="button-container mt-4" v-if="!questions.length">
+              <div class="button-container mt-4" v-if="!questions.length && !questionLoader">
                 <button class="btn primry-btn-2 d-inline-block text-light big-button"
                         :disabled="!selectedTrade"
                         @click.prevent="loadFirstStep">

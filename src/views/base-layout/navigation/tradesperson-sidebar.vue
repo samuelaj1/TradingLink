@@ -11,7 +11,13 @@
           </div>
         </div>
         <div class="flex-grow-1 cursor-pointer" @click="$router.push(`/user-profile/${user.id}`)">
-          <h4 class="profile-name">{{ user.name }}</h4>
+          <h4 class="profile-name">{{ user.name }}
+            <i
+                v-show="user.qualification_status === 'approved'"
+                id="approvedBadge"
+                class="bi bi-patch-check-fill text-primary-1"
+            ></i>
+          </h4>
           <div class="fw-lighter mb-0 small">{{ user.email }}</div>
           <h5 class="card-title my-1 small">
             {{ user.city_name ? `${user.city_name} ${user.parish_name}` : '' }}
@@ -134,6 +140,15 @@
         </div>
         <i class="bi bi-chevron-right d-lg-none"></i>
       </router-link>
+
+      <router-link to="/tools" id="services"
+                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <div>
+          <i class="bi bi-input-cursor-text mr-2"></i> Tools
+        </div>
+        <i class="bi bi-chevron-right d-lg-none"></i>
+      </router-link>
+
       <router-link to="/notifications" id="notifications"
                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
         <div>
@@ -174,7 +189,8 @@ export default {
     return {
       user: this.$store.getters.GET_USER_INFO || {},
       inboxCount: this.$store.getters.GET_INBOX_COUNT || 0,
-      userStats: null
+      userStats: null,
+      showInfo: false,
     };
   },
   computed: {
@@ -299,5 +315,15 @@ export default {
   font-weight: lighter;
   font-size: 14px;
   border-radius: 0;
+}
+
+.info-box::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: white;
 }
 </style>

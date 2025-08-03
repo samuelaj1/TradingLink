@@ -25,8 +25,13 @@
             <i class="bi bi-person-fill"></i>
           </div>
           <div v-if="!userLoader">
-            <h5 class="mb-2" v-if="userInfo.business_name">{{ userInfo.business_name }}</h5>
-            <h6 class="mb-2">{{ userInfo.name }}</h6>
+            <div class="d-flex justify-content-start align-items-center">
+              <h5 class="mb-2 me-2" v-if="userInfo.business_name">{{ userInfo.business_name }}</h5>
+              <h6 class="mb-2 me-2">({{ userInfo.name }})</h6>
+              <h5><i v-if="userInfo.qualification_status ==='approved'"
+                     class="bi bi-patch-check-fill text-primary-1"></i></h5>
+            </div>
+
             <div class="text-muted mb-1 small fw-lighter">
               <i class="bi bi-envelope"></i> {{ userInfo.email || 'N/A' }}
             </div>
@@ -80,11 +85,42 @@
               <h6 class="fw-bold">Portfolio</h6>
               <div class="row g-2">
                 <div class="col-4 col-sm-3 col-md-2" v-for="(item, index) in userInfo.portfolio" :key="index">
-                  <img :src="item.file || 'https://placehold.co/400x300'" class="img-fluid rounded border"
-                       alt="Portfolio image" @click="openGallery(index)"/>
+                  <img :src="item.file" class="img-fluid rounded border"
+                       alt="Portfolio image" @click="openGallery(index)" style="width:96px; height: 66px; object-fit: cover"/>
                 </div>
               </div>
             </div>
+
+            <!-- Qualifications -->
+            <div class="row mb-4 mt-4">
+              <div class="col-md-12">
+                <h6 class="fw-bold">Qualifications</h6>
+
+                <div v-if="userInfo.qualifications && userInfo.qualifications.length">
+                  <ul class="list-group">
+                    <li
+                        v-for="(q, index) in userInfo.qualifications"
+                        :key="q.id"
+                        class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+                    >
+                      <div>
+                        <strong>Document {{ index + 1 }}</strong>
+                        <a class="btn btn-link text-primary-1 btn-sm ms-2" :href="q.full_path" target="_blank">
+                          <i class="bi bi-eye"></i> View
+                        </a>
+                      </div>
+                      <div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div v-else>
+                  <p><em>No qualifications uploaded.</em></p>
+                </div>
+              </div>
+            </div>
+
           </b-tab>
 
           <b-tab title="Reviews">
@@ -117,7 +153,7 @@
   </div>
 
   <!-- Gallery Modal -->
-  <b-modal v-model="galleryVisible" size="xl" hide-footer centered>
+  <b-modal v-model="galleryVisible" size="xl" hide-footer centered v-if="galleryVisible">
     <div class="d-flex flex-row">
       <b-button
           variant="light"
@@ -133,7 +169,7 @@
           class="position-absolute btn-primary"
           style="top: 50%; right: 20px; transform: translateY(-50%); z-index: 10; border-radius: 50%; width: 50px; height: 50px;"
           @click="nextImage"
-          :disabled="currentIndex === portfolio.length - 1"
+          :disabled="currentIndex === userInfo.portfolio.length - 1"
       >
         <i class="bi bi-chevron-right"></i>
       </b-button>
@@ -141,13 +177,13 @@
     <div class="row">
       <div class="col-md-6">
         <img
-            :src="portfolio[currentIndex]?.file || 'https://placehold.co/400x300'"
-            class="img-fluid w-100" style="object-fit: cover" :alt="portfolio[currentIndex]?.title || 'Untitled'"
+            :src="userInfo.portfolio[currentIndex]?.file"
+            class="img-fluid w-100" style="object-fit: cover" :alt="userInfo.portfolio[currentIndex]?.title || 'Untitled'"
         >
       </div>
       <div class="col-md-6">
-        <h5 class="mt-4">{{ portfolio[currentIndex]?.title || 'Untitled' }}</h5>
-        <p>{{ portfolio[currentIndex]?.description || 'No description provided.' }}</p>
+        <h5 class="mt-4">{{ userInfo.portfolio[currentIndex]?.title || 'Untitled' }}</h5>
+        <p>{{ userInfo.portfolio[currentIndex]?.description || 'No description provided.' }}</p>
       </div>
     </div>
   </b-modal>
@@ -217,7 +253,7 @@ export default {
       if (this.currentIndex > 0) this.currentIndex--;
     },
     nextImage() {
-      if (this.currentIndex < this.portfolio.length - 1) this.currentIndex++;
+      if (this.currentIndex < this.userInfo.portfolio.length - 1) this.currentIndex++;
     },
 
     getUserProfile() {

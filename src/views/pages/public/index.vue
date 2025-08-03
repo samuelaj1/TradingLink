@@ -92,13 +92,13 @@
 
     <div class="counter-area home2-counter-area mb-20">
       <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" v-if="!statsLoader && stats">
           <div class="col-lg-4 col-sm-6 col-12 mb-4 d-flex justify-content-center">
             <div class="counter-single border-start text-start px-3" style="min-width: 200px;">
               <div class="coundown">
                 <p class="mb-1">Tradespeople</p>
                 <div class="d-flex align-items-center gap-2">
-                  <h3 class="odometer mb-0 fw-bold">20223</h3>
+                  <h3 class="odometer mb-0 fw-bold">{{ stats.tradespeople }}</h3>
                 </div>
               </div>
             </div>
@@ -109,7 +109,7 @@
               <div class="coundown">
                 <p class="mb-1">Trade categories</p>
                 <div class="d-flex align-items-center gap-2">
-                  <h3 class="odometer mb-0 fw-bold">40</h3>
+                  <h3 class="odometer mb-0 fw-bold">{{ stats.trade_categories }}</h3>
                   <span class="fw-bold">+</span>
                 </div>
               </div>
@@ -121,13 +121,48 @@
               <div class="coundown">
                 <p class="mb-1">Reviews</p>
                 <div class="d-flex align-items-center gap-2">
-                  <h3 class="odometer mb-0 fw-bold">200</h3>
+                  <h3 class="odometer mb-0 fw-bold">{{ stats.reviews }}</h3>
                   <span class="fw-bold">+</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="row justify-content-center" v-else>
+          <div class="col-lg-4 col-sm-6 col-12 mb-4 d-flex justify-content-center">
+            <div class="counter-single border-start text-start px-3" style="min-width: 200px;">
+              <div>
+                <p class="mb-1">Tradespeople</p>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="shine lines"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-sm-6 col-12 mb-4 d-flex justify-content-center">
+            <div class="counter-single border-start text-start px-3" style="min-width: 200px;">
+              <div class="">
+                <p class="mb-1">Trade categories</p>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="shine lines"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-sm-6 col-12 mb-4 d-flex justify-content-center">
+            <div class="counter-single border-start text-start px-3" style="min-width: 200px;">
+              <div class="coundown">
+                <p class="mb-1">Reviews</p>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="shine lines"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -252,17 +287,6 @@
 
             <p class="font-weight-lighter">Take on big jobs or smaller gap fillers - it’s up to you.</p>
 
-            <div class="apply-btn">
-              <router-link to="/register">
-            <span>
-              <img src="../../../../public/frontend/assets/images/icon/apply-ellipse.svg" alt="">
-            </span>
-                <span class="text-primary-1">
-              Tradespeople join for free
-            </span>
-
-              </router-link>
-            </div>
           </div>
 
 
@@ -558,7 +582,9 @@ export default {
   data() {
     return {
       trades: [],
+      stats: null,
       tradesLoader: false,
+      statsLoader: false,
       categoryLoader: false,
       user: this.$store.getters.GET_USER_INFO || {},
       searchQuery: '',
@@ -591,11 +617,28 @@ export default {
     },
     async getAllTrades() {
       this.categoryLoader = true
-      userService.getTrades().then((res) => {
+      userService.postJobTrades().then((res) => {
         this.filteredCategories = res.extra;
         this.categories = res.extra;
         this.categoryLoader = false
       });
+    },
+
+    async pageStats() {
+      this.statsLoader = true
+      userService.pageStats().then((res) => {
+        this.statsLoader = false
+        this.stats = res.extra;
+        this.triggerCounter();
+      });
+    },
+    triggerCounter(){
+      setTimeout(() => {
+        $('.odometer').counterUp({
+          delay: 10,
+          time: 2000
+        });
+      }, 1000)
     },
     filterCategories() {
       if (this.searchQuery.trim() === '') {
@@ -624,6 +667,7 @@ export default {
   created() {
     this.getTrades();
     this.getAllTrades();
+    this.pageStats();
   },
   mounted() {
     this.$nextTick(() => {
@@ -715,10 +759,6 @@ export default {
         }
       });
 
-      $('.odometer').counterUp({
-        delay: 10,
-        time: 1000
-      });
 
       $('.sidebar-button').on("click", function () {
         $('.main-menu').addClass('show-menu');

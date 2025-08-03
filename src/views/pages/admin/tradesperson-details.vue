@@ -115,13 +115,62 @@
           <div class="col-md-12">
             <h5>Skills Verification</h5>
             <div v-if="trade.skill_verification_file">
-              <a target="_blank" :href="trade.skill_verification_file" class="btn btn-link btn-sm"><i class="bi bi-eye"/> View Skills File</a>
+              <a target="_blank" :href="trade.skill_verification_file" class="btn btn-link btn-sm"><i
+                  class="bi bi-eye"/> View Skills File</a>
             </div>
             <div v-else>
               <p><em>No skills verification file uploaded.</em></p>
             </div>
           </div>
         </div>
+
+        <!-- Qualifications -->
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <h5>Qualifications</h5>
+
+            <div v-if="trade.qualifications && trade.qualifications.length">
+              <ul class="list-group">
+                <li v-for="(q, index) in trade.qualifications" :key="q.id"
+                    class="list-group-item d-flex justify-content-between align-items-center">
+                  <span>Document {{ index + 1 }}</span>
+                  <a class="btn btn-link btn-sm" :href="q.full_path" target="_blank">
+                    <i class="bi bi-eye"></i> View
+                  </a>
+                </li>
+              </ul>
+              <div class="mt-3">
+                <strong>Status:</strong>
+                <span class="badge text-white rounded-pill ms-1"
+                      :class="{
+          'bg-secondary': trade.qualification_status === 'pending',
+          'bg-success': trade.qualification_status === 'approved',
+          'bg-danger': trade.qualification_status === 'rejected'
+        }">
+    {{ trade.qualification_status || 'Pending' }}
+  </span>
+              </div>
+
+
+              <div class="mt-2" v-if="trade.qualification_status !== 'approved'">
+                <button class="btn btn-danger btn-sm me-2"
+                        v-if="trade.qualification_status !== 'rejected'"
+                        @click="updateQualificationStatus('rejected')">Reject
+                </button>
+                <button class="btn btn-primary btn-sm"
+                        @click="updateQualificationStatus('approved')">Approve
+                </button>
+              </div>
+
+
+            </div>
+
+            <div v-else>
+              <p><em>No qualifications uploaded.</em></p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -149,6 +198,26 @@ export default {
     };
   },
   methods: {
+    async updateQualificationStatus(status) {
+      confirm("Are you sure you want to approve this qualification?",  () => {
+        this.loading = true;
+        const payload = {
+          user_id: this.trade.id,
+          qualification_status: status
+        };
+        userService.updateQualificationStatus(payload).then((res) => {
+          this.loading = false;
+          const {extra, status, message} = res;
+          if (!status) {
+            this.$store.dispatch('error', {message, showSwal: true});
+            return;
+          }
+          this.trade.qualification_status = extra;
+        });
+
+      });
+    },
+
     async fetchTradePerson() {
       this.loading = true;
       userService.getTradesperson(this.$route.params.id).then((res) => {

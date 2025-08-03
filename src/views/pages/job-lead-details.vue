@@ -41,6 +41,19 @@
 
           <h4 class="title mb-3 font-weight-bold ps-4 mt-4">Job Details: <span
               class="text-capitalize">{{ project?.headline }}</span></h4>
+
+          <div
+              class="alert d-flex justify-content-between align-items-center"
+              style="background-color: #FFA500; color: white; border-radius: 0.375rem;"
+          >
+            <div>
+              ⚠ Contract Required Before Work — Please ensure it’s signed before starting.
+            </div>
+            <a href="/frontend/assets/docs/Tradelink_Modern_Service_Agreement_Logo.docx" target="_blank" class="btn btn-sm btn-light text-dark">
+              Download Contract
+            </a>
+          </div>
+
           <div class="card mb-4" v-if="!isLoading">
             <div class="card-header d-flex justify-content-between align-items-center">
               <div><i class="bi bi-chat-right"></i> {{ project.responses || 0 }} responses</div>

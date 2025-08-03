@@ -81,6 +81,11 @@
 
       <div class="col-md-6" v-if="!isMobile || !showChatList">
         <!-- Chat area -->
+        <div class="alert alert-info d-flex align-items-center gap-2" v-if="serviceSelected.status ==='complete'">
+          <i class="bi bi-info-circle-fill"></i>
+          <span>You can’t send a message because this job has been marked as completed.</span>
+        </div>
+
         <div class="card">
           <div class="card-header bg-primary-1 text-white">
             {{ serviceSelected ? serviceSelected.headline : 'Select a job to start chatting' }}
@@ -97,7 +102,12 @@
             <div v-if="!messages.length">
               <h6 class="text-center fw-lighter">Be the first to send a message</h6>
             </div>
+            <!-- Persistent Notice -->
           </div>
+          <div class="card-body">
+            <ChatReminderNotice />
+          </div>
+
           <div class="card-footer d-flex" v-if="serviceSelected.status !=='complete'">
             <input v-model="newMessage" @keyup.enter="sendMessage" type="text" class="form-control me-2"
                    placeholder="Type your message...">
@@ -195,6 +205,35 @@
         </div>
       </div>
     </div>
+
+    <!-- b-modal -->
+    <b-modal
+        id="first-message-contract-modal"
+        title="Important"
+        :visible="showingModal"
+        hide-footer
+        no-close-on-backdrop
+        no-close-on-esc
+        centered
+    >
+      <p>
+        All jobs arranged on Tradelink require a signed contract between homeowner and tradesperson.
+        This protects both parties and avoids disputes.
+      </p>
+
+      <a
+          href="/frontend/assets/docs/Tradelink_Modern_Service_Agreement_Logo.docx"
+          target="_blank"
+          download
+          class="btn btn-sm btn-outline-primary my-3"
+      >
+        Download Contract Template
+      </a>
+
+      <div class="text-end">
+        <b-button variant="success" @click="acknowledgeContract">✅ I Understand</b-button>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -203,8 +242,10 @@ import BaseDashboardLayout from '../base-layout/tradesperson-dashboard';
 import appConfig from "../../../app.config.json";
 import {userService} from "@/apis/user.service";
 import topHeader from '../base-layout/header-2';
+import ChatReminderNotice from '@/components/chatReminderNotice.vue';
 
 import {getDatabase, ref, push, off,update, onChildAdded} from "firebase/database";
+import store from "@/store/store";
 
 export default {
   name: "Chat",
@@ -222,11 +263,14 @@ export default {
       newMessage: '',
       isMobile: false,
       showChatList: true,
+      showingModal: false,
+      hasAcknowledged: false,
     };
   },
   components: {
     BaseDashboardLayout,
-    topHeader
+    topHeader,
+    ChatReminderNotice
   },
   methods: {
     chatJobOwner(service) {
@@ -308,6 +352,14 @@ export default {
     },
 
     sendMessage() {
+      const userRole = this.user.roles?.[0] || '';
+      if (
+          userRole === "homeowner" &&
+          !this.hasAcknowledged
+      ) {
+        this.showingModal = true;
+        return;
+      }
       if (this.newMessage.trim() === '') return;
       const db = getDatabase();
       const jobId = this.serviceSelected.id;
@@ -331,14 +383,23 @@ export default {
     checkScreenSize() {
       this.isMobile = window.innerWidth < 768;
     },
+    acknowledgeContract() {
+      this.hasAcknowledged = true;
+      this.showingModal = false;
+      localStorage.setItem("contract_acknowledged", "true");
+      this.sendMessage();
+    },
   },
   created() {
     this.getServiceInvites();
   },
   mounted() {
     $('#inbox').addClass('active');
+    $('body').addClass('bg-wight');
     this.isMobile = window.innerWidth < 768;
     window.addEventListener('resize', this.checkScreenSize);
+    const ack = localStorage.getItem("contract_acknowledged");
+    if (ack === "true") this.hasAcknowledged = true;
   },
   beforeDestroy() {
     if (this.unsubscribeMessages) {

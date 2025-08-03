@@ -7,6 +7,8 @@ export const userService = {
     adminRegister,
     logout,
     getTrades,
+    pageStats,
+    getQualifications,
     homeOwnerJobPosts,
     getForumQuestions,
     getProfileViews,
@@ -16,6 +18,7 @@ export const userService = {
     submitQuestionComment,
     submitReply,
     postJobTrades,
+    updateQualificationStatus,
     postProfileView,
     contactFormSubmit,
     verifyIdentity,
@@ -40,6 +43,7 @@ export const userService = {
     idVerification,
     proofOfSkills,
     verifyEmail,
+    uploadQualifications,
     getUserInfo,
     getGuarantee,
     getProjectDetails,
@@ -229,7 +233,6 @@ function idVerification(formData) {
     })
 }
 
-
 function proofOfSkills(formData) {
     return new Promise((resolve, reject) => {
         axios.post('/api/proof-of-skills', formData, useBearerTokenHeaders(true))
@@ -237,8 +240,28 @@ function proofOfSkills(formData) {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
     })
-
 }
+
+function getQualifications() {
+    return new Promise((resolve) => {
+        axios.get(`/api/get-qualifications`, useBearerTokenHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+
+function uploadQualifications(formData) {
+    return new Promise((resolve) => {
+        axios.post('/api/upload-qualifications', formData, useBearerTokenHeaders(true))
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
 
 function getUserInfo() {
     return new Promise((resolve) => {
@@ -284,7 +307,6 @@ function adminJobDetails(id) {
             }).catch(err => resolve({status: false, message: err}));
     })
 }
-
 
 function jobDetails(id) {
     return new Promise((resolve) => {
@@ -422,7 +444,7 @@ function getBusinessDetails() {
 }
 function getUserProfile(userId) {
     return new Promise((resolve) => {
-        axios.get(`/admin/api/user-profile/${userId}`, useBearerTokenHeaders())
+        axios.get(`/api/user-profile/${userId}`, useBasicAuthHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
@@ -642,6 +664,16 @@ function getTrades(limit) {
     });
 }
 
+function pageStats() {
+    return new Promise((resolve) => {
+        axios.get(`/api/fetch-page-stats`, useBasicAuthHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
 function getForumQuestions() {
     return new Promise((resolve) => {
         axios.get(`/api/forum/threads`, useBearerTokenHeaders())
@@ -685,6 +717,16 @@ function searchForum(term) {
 function postJobTrades() {
     return new Promise((resolve) => {
         axios.get(`/api/post-job-trades`, useBasicAuthHeaders())
+            .then((response) => {
+                resolve(response.data);
+            })
+            .catch((err) => resolve({status: false, message: err}));
+    });
+}
+
+function updateQualificationStatus(payload) {
+    return new Promise((resolve) => {
+        axios.post(`/admin/api/update-qualification-status`, payload, useBearerTokenHeaders())
             .then((response) => {
                 resolve(response.data);
             })

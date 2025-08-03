@@ -18,7 +18,7 @@
     <h5 class="fw-bolder">Guarantee</h5>
     <hr/>
 
-    <p class="font-weight-lighter">Increase your chances of getting hired by offering a guarantee.</p>
+    <p class="font-weight-lighter mb-2">Increase your chances of getting hired by offering a guarantee.</p>
     <small class="font-weight-lighter">
       <i class="bi bi-info-circle"></i> Homeowners are aware guarantees vary and should discuss the terms in advance.
     </small>
@@ -34,30 +34,89 @@
           </div>
         </div>
         <div v-else>
-          <div class="card mb-3">
-            <div class="card-body d-flex align-items-center justify-content-start">
-              <label for="yes" class="form-check-label cursor-pointer">
-                <input type="radio" id="yes" v-model="guarantee" :value="true" class="form-check-input" name="guarantee"> Yes, I offer a
-                guarantee
-              </label>
+          <div class="d-flex justify-content-between align-items-center mb-3" v-if="!showGuaranteeForm">
+            <div>
+              <i class="bi bi-shield-check me-2"></i>
+              {{ guaranteeStatus ? 'You offer warranty' : 'You do not offer warranty' }}
             </div>
+            <button class="btn btn-outline-primary-1" @click="showGuaranteeForm=true;">
+              <i class="bi bi-pencil-square"></i> Edit
+            </button>
           </div>
-          <div class="card mb-3">
-            <div class="card-body d-flex align-items-center justify-content-start">
-              <label for="no" class="form-check-label cursor-pointer">
-                <input type="radio" id="no" v-model="guarantee" :value="false" class="form-check-input" name="guarantee"> No, I do not offer a
-                guarantee
-              </label>
+          <div v-else>
+            <h6>Edit Guarantee</h6>
+            <div class="card mb-3">
+              <div class="card-body d-flex align-items-center justify-content-start">
+                <label for="yes" class="form-check-label cursor-pointer">
+                  <input type="radio" id="yes" v-model="guarantee" :value="true" class="form-check-input"
+                         name="guarantee"> Yes, I offer a
+                  guarantee
+                </label>
+              </div>
+            </div>
+            <div class="card mb-3">
+              <div class="card-body d-flex align-items-center justify-content-start">
+                <label for="no" class="form-check-label cursor-pointer">
+                  <input type="radio" id="no" v-model="guarantee" :value="false" class="form-check-input"
+                         name="guarantee"> No, I do not offer a
+                  guarantee
+                </label>
+              </div>
+            </div>
+            <div class="button mt-4">
+              <button class="btn btn-danger me-3" @click="resetGuarantee">Close
+              </button>
+              <button class="btn btn-primary" @click="save"
+                      :disabled="isLoading">Save
+              </button>
             </div>
           </div>
         </div>
-        <div class="button mt-4">
-          <button class="btn primry-btn-2 d-inline-block text-light big-button" @click="save"
-                  :disabled="guaranteeLoader || isLoading">Save
+      </div>
+    </div>
+
+    <h5 class="fw-bolder">Qualifications</h5>
+    <hr/>
+
+    <!-- Upload Qualifications -->
+    <div class="row mt-4 mb-5">
+      <div class="col-md-8">
+        <h6 class="fw-bold mb-2">Upload your qualifications</h6>
+        <p class="small">
+          Upload and get your qualifications approved to <strong>earn a verified badge</strong> on your profile.
+
+        </p>
+
+        <div v-if="qualification.approved" class="alert alert-success d-flex align-items-center gap-2" role="alert">
+          <i class="bi bi-patch-check-fill text-primary-1"></i>
+          <span>Qualifications approved</span>
+        </div>
+
+        <div v-if="qualification.documents.length">
+          <ul class="list-group mb-3">
+            <li v-for="(doc, index) in qualification.documents" :key="index"
+                class="list-group-item d-flex justify-content-between align-items-center">
+              {{ doc.name }}
+              <a :href="doc.full_path" target="_blank" class="btn btn-sm btn-outline-primary">
+                <i class="bi bi-download"></i> View
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div v-if="!qualification.approved">
+          <div class="mb-3">
+            <input type="file" class="form-control" multiple @change="handleFileUpload">
+          </div>
+          <button class="btn btn-primary" :disabled="isUploading || !newQualifications.length"
+                  @click="submitQualifications">
+            <b-spinner small v-if="isUploading"></b-spinner>
+            {{ isUploading ? 'Uploading...' : 'Submit for Approval' }}
           </button>
         </div>
       </div>
     </div>
+
 
     <!--    edit description modal-->
     <b-modal v-model="showModal" title="Edit your company description" hide-footer>
@@ -102,17 +161,67 @@ export default {
   data() {
     return {
       guarantee: '',
+      guaranteeStatus: '',
       description: '',
       isLoading: false,
       guaranteeLoader: false,
       showModal: false,
+      showGuaranteeForm: false,
       user: this.$store.getters.GET_USER_INFO,
+      isUploading: false,
+      newQualifications: [],
+      qualification: {
+        documents: [],
+        approved: false
+      },
+
     };
   },
   components: {
     BaseDashboardLayout
   },
   methods: {
+    // Qualifications
+    async getQualifications() {
+      await userService.getQualifications().then((res) => {
+        const {status, message, extra} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message, showSwal: true});
+          return;
+        }
+        this.qualification.documents = extra.documents;
+        this.qualification.approved = extra.approved;
+      });
+
+    },
+
+    handleFileUpload(event) {
+      this.newQualifications = Array.from(event.target.files);
+    },
+
+    submitQualifications() {
+      this.isUploading = true;
+      const formData = new FormData();
+      this.newQualifications.forEach((file, index) => {
+        formData.append(`documents[${index}]`, file);
+      });
+
+      userService.uploadQualifications(formData).then((res) => {
+        this.isUploading = false;
+        const {status, message, extra} = res;
+        if (!status) {
+          this.$store.dispatch('error', {message, showSwal: true});
+          return;
+        }
+
+        this.$store.dispatch('success', {message, showSwal: true});
+        this.getQualifications();
+        this.newQualifications = [];
+      });
+
+    },
+
+    // end of qualifications
     async save() {
       this.isLoading = true;
       userService.updateGuarantee({
@@ -124,6 +233,7 @@ export default {
           this.$store.dispatch('error', {message: message, showSwal: true});
           return;
         }
+        this.getGuarantee();
         this.$store.dispatch('success', {message, showSwal: true});
       });
     },
@@ -146,6 +256,10 @@ export default {
       });
     },
 
+    resetGuarantee() {
+      this.getGuarantee();
+    },
+
     getGuarantee() {
       this.guaranteeLoader = true;
       userService.getGuarantee().then((res) => {
@@ -155,12 +269,15 @@ export default {
           this.$store.dispatch('error', {message: message, showSwal: true});
           return;
         }
+        this.guaranteeStatus = extra.guarantee;
         this.guarantee = extra.guarantee;
+        this.showGuaranteeForm = false;
       });
     }
   },
   created() {
     this.getGuarantee();
+    this.getQualifications();
   },
   mounted() {
     $('#company-description').addClass('active')
