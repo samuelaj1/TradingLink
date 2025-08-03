@@ -197,7 +197,7 @@
           <div class="col-lg-4 col-md-4 d-flex">
             <div class="fancy-card card flex-fill d-flex flex-column">
               <div class="recent-article-img card-img-top" style="height: 200px;">
-                <img class="img-fluid w-100" src="../../../../public/frontend/assets/images/home/step-3.png" style="height: 162px; object-fit: cover;" alt="Trades respond">
+                <img class="img-fluid w-100" src="../../../../public/frontend/assets/images/home/step-3.png" alt="Trades respond">
               </div>
               <div class="card-body text-center" style="background: white;">
                 <h5 class="fw-bold">Choose and connect</h5>
