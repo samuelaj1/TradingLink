@@ -309,7 +309,7 @@
             <div class="card card-cut bg-primary-1 text-light mb-sm-2 mb-3">
               <div class="card-body py-5" style="margin-bottom: 1rem">
                 <h3 class="">Verified Reviews from Real Customers</h3>
-                <p class="text-muted text-light mt-3" style="font-size: 18px">Authentic feedback from homeowners like you</p>
+                <p class="text-light mt-3" style="font-size: 18px">Authentic feedback from homeowners like you</p>
                 <div class="text-center mt-5">
                   <router-link to="/post-a-job" class="btn btn-light text-center py-3 btn-block">Get Free Quotes</router-link>
                 </div>

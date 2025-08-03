@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-8 offset-md-2 text-center mb-4">
           <div class="alert bg-primary-1 diamond">
-            <p class="text-muted mb-0 text-light">Invite 10 tradespeople to give you a quote. It's the fastest way to
+            <p class="mb-0 text-light">Invite 10 tradespeople to give you a quote. It's the fastest way to
               start a conversation!</p>
           </div>
         </div>
