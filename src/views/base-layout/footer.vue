@@ -13,7 +13,7 @@
 
   <div>
     <h3>Proudly Connecting <span>Jamaica’s</span> Trades Industry</h3>
-    <p>Helping homeowners find trusted tradespeople across Jamaica.</p>
+    <p>Linking homeowners with trusted, verified tradespeople across Jamaica.</p>
   </div>
 </div>
 
@@ -202,6 +202,10 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   gap: 60px;
   min-width: 550px;
+}
+
+.tl-footer-links > div {
+  text-align: center;
 }
 
 .tl-footer-links h5 {
