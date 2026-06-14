@@ -3,11 +3,7 @@
     <div class="container">
       <div class="tl-footer-main">
         <div class="tl-footer-brand">
-  <img
-  src="/frontend/assets/images/jamaica-outline.svg"
-  alt="Jamaica Outline"
-  class="jamaica-outline"
-/>
+  
 
   <img
     src="../../../public/frontend/assets/images/header1-logo.svg"
@@ -194,13 +190,6 @@ export default {
   .tl-map-line {
     justify-content: center;
   }
-}
-.jamaica-outline {
-  width: 220px;
-  margin-bottom: 20px;
-  display: block;
-  opacity: 0.9;
-  filter: brightness(0) saturate(100%) invert(52%) sepia(34%) saturate(742%) hue-rotate(341deg) brightness(92%) contrast(88%);
 }
 
 .tl-footer-brand {
