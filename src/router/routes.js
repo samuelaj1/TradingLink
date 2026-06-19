@@ -98,6 +98,15 @@ export default [
         component: () => import('../views/pages/admin/trades'),
     },
     {
+        path: '/admin/dashboard',
+        name: 'adminDashboard',
+        meta: {
+            authRequired: true,
+            roles: ['admin'],
+        },
+        component: () => import('../views/pages/admin/dashboard'),
+    },
+    {
         path: '/admin/job-posts',
         name: 'jobPosts',
         meta: {
@@ -831,5 +840,7 @@ export default [
     {
         path: "*",
         redirect: "/error/404"
-    }
+    },
+    { path: '/suspended', component: () => import('@/views/pages/suspended') }
+
 ]

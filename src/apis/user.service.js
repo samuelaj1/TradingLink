@@ -90,7 +90,10 @@ export const userService = {
     forgotPassword,
     resetPassword,
     updatePersonalInfo,
-    changePassword
+    changePassword,
+    getPricingStats,
+    getTradespersonRegistryStats,
+    getJobVolumeStats
 };
 
 function login(email, password) {
@@ -387,6 +390,33 @@ function getTradePeople() {
 function getHomeowners() {
     return new Promise((resolve) => {
         axios.get(`/admin/api/homeowners`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function getPricingStats() {
+    return new Promise((resolve) => {
+        axios.get(`/admin/api/dashboard/pricing-stats`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function getTradespersonRegistryStats() {
+    return new Promise((resolve) => {
+        axios.get(`/admin/api/dashboard/tradesperson-stats`, useBearerTokenHeaders())
+            .then(response => {
+                resolve(response.data)
+            }).catch(err => resolve({status: false, message: err}));
+    })
+}
+
+function getJobVolumeStats() {
+    return new Promise((resolve) => {
+        axios.get(`/admin/api/dashboard/job-volume-stats`, useBearerTokenHeaders())
             .then(response => {
                 resolve(response.data)
             }).catch(err => resolve({status: false, message: err}));
