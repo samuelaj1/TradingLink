@@ -831,6 +831,7 @@ export default [
     {
         path: "*",
         redirect: "/error/404"
-    }{ path: '/suspended', component: () => import('@/views/pages/suspended') }
+    },
+    { path: '/suspended', component: () => import('@/views/pages/suspended') }
 
 ]
